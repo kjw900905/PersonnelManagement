@@ -30,7 +30,14 @@
        <put-attribute name="body" value="/WEB-INF/views/pages/contactus.jsp" />  
    </definition>  
    
+   <!-- START [인사관리] -->
+   <!-- [인사관리]-[일정관리]-[일정보기] -->
+   <definition name="fullcalendar" extends="base-definition">  
+       <put-attribute name="title" value="일정보기" />
+       <put-attribute name="body" value="/WEB-INF/views/personnel/schedule/fullcalendar.jsp" />  
+   </definition>
    
+   <!-- [인사관리] END -->
    
    <!-- START [근태관리] -->
    <!-- [근태관리]-[출결관리]-[일일근태등록] -->
