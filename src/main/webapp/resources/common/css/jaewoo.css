@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+/*  */
+/* 여백 > margin */
+.mgl_8 {margin-left:8px;}
+
+/* 정렬 */
+.ftl {float:left;}
+.ftr {float:right;}
+
+.w_120 {width:120px !important;}
+
+.w_300 {width:300px !important;}
+
+.bold_Character {font-weight:bold;}
+
+.mgu_15 {margin-top:15px;}
+
+.mgu_8 {margin-top:8px;}
+
+.pdu_8 {padding-top:8px;}
+
+.boxArea{
+	overflow:hidden;
+	padding:10px 25px;
+}
