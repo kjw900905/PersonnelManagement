@@ -6,13 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>일정보기</title>
 <!-- fullcalendar -->
-<link href="/spring/resources/common/fullcalendar/fullcalendar.min.css" rel="stylesheet"/>
-<link href="/spring/resources/common/fullcalendar/fullcalendar.print.min.css" rel="stylesheet" media="print"/>
-<script src="/spring/resources/common/fullcalendar/moment.min.js"></script>
-<script src="/spring/resources/common/fullcalendar/jquery.min.js"></script>
-<script src="/spring/resources/common/fullcalendar/fullcalendar.min.js"></script>
-<script src="/spring/resources/common/fullcalendar/ko.js"></script><!-- 한글패치 -->
-<script src="/spring/resources/common/fullcalendar/gcal.js"></script><!-- 구글캘린더 -->
+<link href="/spring/resources/common/fullcalendar/css/fullcalendar.min.css" rel="stylesheet"/>
+<link href="/spring/resources/common/fullcalendar/css/fullcalendar.print.min.css" rel="stylesheet" media="print"/>
+<script src="/spring/resources/common/fullcalendar/js/moment.min.js"></script>
+<script src="/spring/resources/common/fullcalendar/js/jquery.min.js"></script>
+<script src="/spring/resources/common/fullcalendar/js/fullcalendar.min.js"></script>
+<script src="/spring/resources/common/fullcalendar/js/ko.js"></script><!-- 한글패치 -->
+<script src="/spring/resources/common/fullcalendar/js/gcal.js"></script><!-- 구글캘린더 -->
 
 </head>
 <body>
