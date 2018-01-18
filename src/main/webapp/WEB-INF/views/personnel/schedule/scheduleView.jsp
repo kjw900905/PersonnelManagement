@@ -5,13 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>일정보기</title>
-<link href="/spring/resources/common/fullcalendar/fullcalendar.min.css" rel="stylesheet"/>
-<link href="/spring/resources/common/fullcalendar/fullcalendar.print.min.css" rel="stylesheet" media="print"/>
-<script src="/spring/resources/common/fullcalendar/moment.min.js"></script>
-<script src="/spring/resources/common/fullcalendar/jquery.min.js"></script>
-<script src="/spring/resources/common/fullcalendar/fullcalendar.min.js"></script>
-<script src="/spring/resources/common/fullcalendar/ko.js"></script><!-- 한글패치 -->
-<script src="/spring/resources/common/fullcalendar/gcal.js"></script><!-- 구글캘린더 -->
+<!-- fullcalendar -->
+<link href="/spring/resources/common/fullcalendar/css/fullcalendar.min.css" rel="stylesheet"/>
+<link href="/spring/resources/common/fullcalendar/css/fullcalendar.print.min.css" rel="stylesheet" media="print"/>
+<script src="/spring/resources/common/fullcalendar/js/moment.min.js"></script>
+<script src="/spring/resources/common/fullcalendar/js/jquery.min.js"></script>
+<script src="/spring/resources/common/fullcalendar/js/fullcalendar.min.js"></script>
+<script src="/spring/resources/common/fullcalendar/js/ko.js"></script><!-- 한글패치 -->
+<script src="/spring/resources/common/fullcalendar/js/gcal.js"></script><!-- 구글캘린더 -->
 
 </head>
 <body>
@@ -44,28 +45,48 @@
 	</div>
 		
 	<!-- Date View Modal -->
-	<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  		<div class="modal-dialog modal-lg">
+	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  		<div class="modal-dialog modal-md">
     		<div class="modal-content">
      			<div class="modal-header">
-					<h4 class="modal-title">일정 상세보기</h4>
+					<h4 class="modal-title">일정 등록하기</h4>
+				</div>
+				<div class="modal-body">	
 					<div class="row">
 						<div class="col-md-10" style="padding-top:20px;">
-							일정상세보기 내용
+							<p><input type="hidden" name="emno">
+							제목<p><input type="text" name="title">
+							<p>내용<p><textarea rows="7" cols="70" name="content" style="resize:none"></textarea>
+							<p>날짜<input type="text" id="datepicker">~<input type="text" id="datepicker">
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">등록</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">저장</button>
 								<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 							</div>
 						</div>
 					</div>
-				</div>
+				</div>	
     		</div>
   		</div>
 	</div>
 
 <!-- script -->
 <script>
-
+	function mouseMove(){
+		$("table tr td.fc-day").on('mouseover', function() {
+			color = $(this).css('background-color');
+			$(this).css({
+				'background-color' : '#bbe1fd',
+				'opacity' : '0.3'
+			});
+		});
+		$("table tr td.fc-day").on('mouseout', function() {
+			$(this).css({
+				'background-color' : color,
+				'opacity' : '1'
+			});
+		});//마우스 이벤트
+	}
+	
 	$('#calendar').fullCalendar({
 		header : {
 			left : '',
@@ -128,76 +149,37 @@
 		eventClick : function(event, jsEvent, view){
 			alert("test");
 		}
+		
 	});
-
-	$("table tr td.fc-day.fc-widget-content").on('mouseover', function() {
-		color = $(this).css('background-color');
-		$(this).css({
-			'background-color' : '#bbe1fd',
-			'opacity' : '0.3'
-		});
-	});
-	$("table tr td.fc-day.fc-widget-content").on('mouseout', function() {
-		$(this).css({
-			'background-color' : color,
-			'opacity' : '1'
-		});
-	}); //마우스 이벤트
+	
+	mouseMove(); //마우스이벤트
+	
 	$("table tr td.fc-day.fc-widget-content").click(function(){
 		$("table tr td.fc-day").attr("data-toggle",'modal');
-		$("table tr td.fc-day").attr("data-target",'.bs-example-modal-lg');
-	});
+		$("table tr td.fc-day").attr("data-target",'.modal');
+	});//일정상세보기
+	
 	
 	//왼쪽버튼 클릭시 
 	jQuery("button.fc-prev-button").click(function(){
-		$("table tr td.fc-day").on('mouseover', function() {
-			color = $(this).css('background-color');
-			$(this).css({
-				'background-color' : '#bbe1fd',
-				'opacity' : '0.3'
-			});
-		});
-		$("table tr td.fc-day").on('mouseout', function() {
-			$(this).css({
-				'background-color' : color,
-				'opacity' : '1'
-			});
-		});//마우스 이벤트
+		mouseMove();
 	});
 	
 	//왼쪽버튼 클릭시 
 	jQuery("button.fc-next-button").click(function(){
-		$("table tr td.fc-day").on('mouseover', function() {
-			color = $(this).css('background-color');
-			$(this).css({
-				'background-color' : '#bbe1fd',
-				'opacity' : '0.3'
-			});
-		});
-		$("table tr td.fc-day").on('mouseout', function() {
-			$(this).css({
-				'background-color' : color,
-				'opacity' : '1'
-			});
-		});//마우스 이벤트
+		mouseMove();
 	});
 	
 	//today버튼 클릭시 
 	jQuery("button.fc-today-button").click(function(){
-		$("table tr td.fc-day").on('mouseover', function() {
-			color = $(this).css('background-color');
-			$(this).css({
-				'background-color' : '#bbe1fd',
-				'opacity' : '0.3'
-			});
-		});
-		$("table tr td.fc-day").on('mouseout', function() {
-			$(this).css({
-				'background-color' : color,
-				'opacity' : '1'
-			});
-		});//마우스 이벤트
+		mouseMove();
 	});
+	
+	$(function() {
+	    
+	});//insert 날짜선택
+
+	
 </script>
 </body>
 </html>
