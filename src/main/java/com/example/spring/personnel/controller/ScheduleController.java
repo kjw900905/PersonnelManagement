@@ -16,15 +16,7 @@ public class ScheduleController {
 	
 	//private String PRE_VIEW_PATH = "personnel/schedule/";
 	
-	//í•œê¸€
-	//í•œê¸€2
-	@RequestMapping(value="fullcalendar.do")
-	public String fullcalendar() {
-		
-		return "fullcalendar";
-	}
-
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//ÀÏÁ¤º¸±â
 	@RequestMapping(value="scheduleView.do")
 	public String scheduleView() {
 		
