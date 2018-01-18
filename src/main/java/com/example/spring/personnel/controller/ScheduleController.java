@@ -14,19 +14,13 @@ public class ScheduleController {
 //	@Autowired
 //	private ScheduleService scheduleService;
 	
-	private String PRE_VIEW_PATH = "personnel/schedule/";
+	//private String PRE_VIEW_PATH = "personnel/schedule/";
 	
 	//��������
-	@RequestMapping(value="fullcalendar.do")
-	public String fullcalendar() {
+	@RequestMapping(value="scheduleView.do")
+	public String scheduleView() {
 		
-		return "fullcalendar";
-	}
-	
-	@RequestMapping(value="home.do")
-	public String home() {
-		
-		return "home";
+		return "scheduleView";
 	}
 	
 }
