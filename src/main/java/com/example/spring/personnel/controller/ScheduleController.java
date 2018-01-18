@@ -16,7 +16,8 @@ public class ScheduleController {
 	
 	//private String PRE_VIEW_PATH = "personnel/schedule/";
 	
-	//ÀÏÁ¤º¸±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//í•œê¸€í…ŒìŠ¤íŠ¸2
 	@RequestMapping(value="scheduleView.do")
 	public String scheduleView() {
 		
