@@ -16,7 +16,8 @@ public class ScheduleController {
 	
 	private String PRE_VIEW_PATH = "personnel/schedule/";
 	
-	//��������
+	//한글
+	//한글2
 	@RequestMapping(value="fullcalendar.do")
 	public String fullcalendar() {
 		
