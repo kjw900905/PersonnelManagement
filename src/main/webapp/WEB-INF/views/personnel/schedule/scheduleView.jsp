@@ -148,8 +148,10 @@
 		}],
 		eventClick : function(event, jsEvent, view){
 			alert("test");
-		}
-		
+		},//일정상세보기
+		eventMouseover : function(event, jsEvent, view){
+			alert("mouseover");
+		}//일정삭제
 	});
 	
 	mouseMove(); //마우스이벤트
@@ -157,28 +159,29 @@
 	$("table tr td.fc-day.fc-widget-content").click(function(){
 		$("table tr td.fc-day").attr("data-toggle",'modal');
 		$("table tr td.fc-day").attr("data-target",'.modal');
-	});//일정상세보기
+	});//일정등록
 	
 	
 	//왼쪽버튼 클릭시 
-	jQuery("button.fc-prev-button").click(function(){
+	$("button.fc-prev-button").click(function(){
 		mouseMove();
 	});
 	
 	//왼쪽버튼 클릭시 
-	jQuery("button.fc-next-button").click(function(){
+	$("button.fc-next-button").click(function(){
 		mouseMove();
 	});
 	
 	//today버튼 클릭시 
-	jQuery("button.fc-today-button").click(function(){
+	$("button.fc-today-button").click(function(){
 		mouseMove();
 	});
 	
+	/*
 	$(function() {
 	    
-	});//insert 날짜선택
-
+	});//insert 날짜선택 */
+	
 	
 </script>
 </body>
