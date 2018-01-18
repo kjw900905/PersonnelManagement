@@ -16,11 +16,17 @@ public class ScheduleController {
 	
 	private String PRE_VIEW_PATH = "personnel/schedule/";
 	
-	//ÀÏÁ¤º¸±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="fullcalendar.do")
 	public String fullcalendar() {
 		
 		return "fullcalendar";
+	}
+	
+	@RequestMapping(value="home.do")
+	public String home() {
+		
+		return "home";
 	}
 	
 }

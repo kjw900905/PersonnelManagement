@@ -8,6 +8,8 @@
 .ftl {float:left;}
 .ftr {float:right;}
 
+.w_80{width:80px !important;}
+
 .w_120 {width:120px !important;}
 
 .w_300 {width:300px !important;}
@@ -23,4 +25,9 @@
 .boxArea{
 	overflow:hidden;
 	padding:10px 25px;
+}
+
+.scrollBody{
+	overflow-y:scroll; 
+	display:block;
 }
