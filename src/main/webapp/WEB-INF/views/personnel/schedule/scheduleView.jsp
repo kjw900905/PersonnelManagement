@@ -60,7 +60,6 @@
 								<p>내용<p><textarea rows="7" cols="70" name="content" style="resize:none"></textarea>
 								<p>날짜<p><input type="text" id="datepicker" name="startDate">
 											~<input type="text" id="datepicker" name="endDate">
-								<p>시간<p><input type="text" name="time">
 							</form>
 							<div class="modal-footer">
 								<button type="button" id="insertBtn" class="btn btn-default" data-dismiss="modal">저장</button>
