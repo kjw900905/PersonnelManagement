@@ -197,8 +197,8 @@ $(function () {
 				<div class="panel">
 					<div class="panel-body">		
 						<form action="">
-							<input type="button" class="btn btn-danger btn-xs" style="float:right;"name="delete" onClick="addRow('')" value="행삭제">
-							<input type="button" class="btn btn-danger btn-xs" style="float:right;"name="delete" onClick="delRow('')" value="행추가">
+							<input type="button" class="btn btn-danger btn-xs" style="float:right;"name="delete" onClick="addRow('');" value="행삭제">
+							<input type="button" class="btn btn-danger btn-xs" style="float:right;"name="delete" onClick="delRow('');" value="행추가">
 						</form>
 						<h4>◈ 출장정산내역</h4>
 						<table id="businessAdj" class="table table-bordered" >
