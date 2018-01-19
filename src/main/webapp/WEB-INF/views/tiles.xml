@@ -69,8 +69,7 @@
    <definition name="businessRequest" extends="base-definition">  
        <put-attribute name="title" value="출장신청" />
        <put-attribute name="body" value="/WEB-INF/views/attendance/business/businessRequest.jsp" />  
-   </definition>
-   
+   </definition>  
    
    <!-- [근태관리]-[휴가관리]-[휴가개수설정] -->
    <definition name="vacationCount" extends="base-definition">  
@@ -110,9 +109,8 @@
    
    <!-- END [근태관리] -->
    
-   
-   
    <!-- [권한관리] START -->
+ 
    <definition name="commonList" extends="base-definition">
 		<put-attribute name="title" value="공통관리(관리자)" />
 		<put-attribute name="body" value="/WEB-INF/views/management/common/commonList.jsp" />
@@ -124,7 +122,16 @@
 		<put-attribute name="scripts" value="/WEB-INF/views/management/menuTree/script/menuTree.jsp"/>
    </definition>
    
+   <definition name="menuDetail" template="/WEB-INF/views/management/menuTree/menuDetail.jsp">
+   		<put-attribute name="content" value=""></put-attribute>
+   </definition>
    
+   <definition name="menuUpdateForm" template="/WEB-INF/views/management/menuTree/menuUpdateForm.jsp">
+   </definition>
+   
+   <definition name="menuInsertForm" template="/WEB-INF/views/management/menuTree/menuInsertForm.jsp">
+   </definition>
+
    <!-- [권한관리] END -->
   
 </tiles-definitions>

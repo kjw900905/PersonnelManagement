@@ -69,7 +69,7 @@ public class MenuTreeController {
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("map", menuTreeService.menuDetail(mnNo));
-		mv.setViewName("menuDetailTable");
+		mv.setViewName("menuDetail");
 		
 		return mv;
 	}//menuDetailTable
