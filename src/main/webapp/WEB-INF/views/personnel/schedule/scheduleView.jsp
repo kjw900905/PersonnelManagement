@@ -44,8 +44,8 @@
 		</div>
 	</div>
 		
-	<!-- Date View Modal -->
-	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<!-- Date Insert Modal -->
+	<div id="insertModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   		<div class="modal-dialog modal-md">
     		<div class="modal-content">
      			<div class="modal-header">
@@ -57,7 +57,8 @@
 							<p><input type="hidden" name="emno">
 							제목<p><input type="text" name="title">
 							<p>내용<p><textarea rows="7" cols="70" name="content" style="resize:none"></textarea>
-							<p>날짜<input type="text" id="datepicker">~<input type="text" id="datepicker">
+							<p>날짜<p><input type="text" id="datepicker">~<input type="text" id="datepicker">
+							<p>시간<p><input type="text">
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">저장</button>
 								<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
@@ -68,18 +69,44 @@
     		</div>
   		</div>
 	</div>
-
+	
+	<!-- Data View Modal -->
+	<div id="viewModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  		<div class="modal-dialog modal-md">
+    		<div class="modal-content">
+     			<div class="modal-header">
+					<h4 class="modal-title">일정 상세보기</h4>
+				</div>
+				<div class="modal-body">	
+					<div class="row">
+						<div class="col-md-10" style="padding-top:20px;">
+							<p><input type="hidden" name="emno">
+							제목<p><input type="text" name="title">
+							<p>내용<p><textarea rows="7" cols="70" name="content" style="resize:none"></textarea>
+							<p>날짜<p><input type="text" id="datepicker">~<input type="text" id="datepicker">
+							<p>시간<p><input type="text">
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">수정</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">삭제</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+							</div>
+						</div>
+					</div>
+				</div>	
+    		</div>
+  		</div>
+	</div>
 <!-- script -->
 <script>
 	function mouseMove(){
-		$("table tr td.fc-day").on('mouseover', function() {
+		$("table tr td.fc-day,table tr td.fc-day-top").on('mouseover', function() {
 			color = $(this).css('background-color');
 			$(this).css({
 				'background-color' : '#bbe1fd',
 				'opacity' : '0.3'
 			});
 		});
-		$("table tr td.fc-day").on('mouseout', function() {
+		$("table tr td.fc-day,table tr td.fc-day-top").on('mouseout', function() {
 			$(this).css({
 				'background-color' : color,
 				'opacity' : '1'
@@ -101,8 +128,8 @@
 			//공휴일
 			googleCalendarId : "ko.south_korea#holiday@group.v.calendar.google.com",
 			className : "koHolidays",
-			color : "#FF0000",
-			textColor : "#FFFFFF"
+			color : "#FFFFFF",
+			textColor : "#FF0000"
 		}],
 		events : [{
 			title : '(test)',
@@ -146,21 +173,36 @@
 			end : '2017-12-13T16:00:00',
 			rendering : 'background'
 		}],
-		eventClick : function(event, jsEvent, view){
-			alert("test");
+		eventClick : function(calEvent, jsEvent, view){
+			/* alert('Event: ' + calEvent.title);
+	        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+	        alert('View: ' + view.name); */
+	        if(calEvent.url != null){
+	        	return false;
+	        }
+	        alert(calEvent.title);
+	        $(this).attr("data-toggle","modal");
+	        $(this).attr("data-target","#viewModal");
+	        
 		},//일정상세보기
 		eventMouseover : function(event, jsEvent, view){
-			alert("mouseover");
-		}//일정삭제
+			//alert("mouseover");
+		},//일정삭제
+		dayClick: function(date, jsEvent, view) {
+
+	        /* alert('Clicked on: ' + date.format());
+
+	        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+
+	        alert('Current view: ' + view.name); */
+
+	        $("table tr td.fc-day,table tr td.fc-day-top").attr("data-toggle","modal");
+			$("table tr td.fc-day,table tr td.fc-day-top").attr("data-target","#insertModal");
+
+	    }//일정등록
 	});
 	
 	mouseMove(); //마우스이벤트
-	
-	$("table tr td.fc-day.fc-widget-content").click(function(){
-		$("table tr td.fc-day").attr("data-toggle",'modal');
-		$("table tr td.fc-day").attr("data-target",'.modal');
-	});//일정등록
-	
 	
 	//왼쪽버튼 클릭시 
 	$("button.fc-prev-button").click(function(){

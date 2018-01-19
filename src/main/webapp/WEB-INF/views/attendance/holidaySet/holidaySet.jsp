@@ -10,13 +10,13 @@
 <script>
 	$(document).on("click", "button[name=addTr]", function(){
 		var addStaffText =  '<tr name="vacationOption">'+
-							'<td><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
-							'<td><select name="attendanceDivision" class="w_120 mgl_8 mgu_8"><option value="vacation">ÈÞ°¡</option></select></td>' +
-							'<td><input type="text" class="w_80"></td>' +
-							'<td><input type="text" class="form-control"></td>' +
-							'<td><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
-							'<td><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
-							'<td><input type="text" class="form-control w_300"></td>' +
+							'<td class="w3"><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
+							'<td class="w10"><select name="attendanceDivision" class=" mgl_8 mgu_8"><option value="vacation">ÈÞ°¡</option></select></td>' +
+							'<td class="w10"><input type="text" class="w_80"></td>' +
+							'<td class="w20"><input type="text" class="form-control"></td>' +
+							'<td class="w10"><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
+							'<td class="w10"><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
+							'<td class="w37"><input type="text" class="form-control w_300"></td>' +
 							'</tr>';
 							
 		$("#vacationOptionTable #headTr").before(addStaffText);
@@ -59,180 +59,180 @@
 						<div class="panel-body mgu_15">
 							<form class="form-inline" name="f2">
 								
-								<table class="table table-bordered" id="vacationOptionTable">
-	<!-- 							<thead> -->
-									<colgroup>
-										<col width="3%">
-										<col width="10%">
-										<col width="10%">
-										<col width="20%">
-										<col width="10%">
-										<col width="10%">
-										<col width="37%">
-									</colgroup>
-									<thead>
-										<tr>
-											<th>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</th>
-											<th class="text-center"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>±¸ºÐ</th>
-											<th class="text-center"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>ÄÚµå</th>
-											<th class="text-center"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>¸íÄª</th>
-											<th class="text-center">¿¬Â÷¹Ý¿µ</th>
-											<th class="text-center">»ç¿ë¿©ºÎ</th>
-											<th class="text-center">ºñ°í</th>
-										</tr>
-									</thead>
-									<tbody class="srollBody">
-										<tr id="headTr">
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td>ÈÞ°¡</td>
-											<td>00</td>
-											<td><input type="text" value="ÈÞ°¡(³âÂ÷)" class="form-control"></td>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td><input type="text" class="form-control w_300"></td>
-										</tr>
-										<tr>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td>ÈÞ°¡</td>
-											<td>01</td>
-											<td><input type="text" value="»ý¸®ÈÞ°¡" class="form-control"></td>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td><input type="text" class="form-control w_300"></td>
-										</tr>
-										<tr>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td>ÈÞ°¡</td>
-											<td>02</td>
-											<td><input type="text" value="º´°¡" class="form-control"></td>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td><input type="text" class="form-control w_300"></td>
-										</tr>
-										<tr>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td>ÈÞ°¡</td>
-											<td>03</td>
-											<td><input type="text" value="°æÁ¶ÈÞ°¡" class="form-control"></td>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td><input type="text" class="form-control w_300"></td>
-										</tr>
-										<tr>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td>ÈÞ°¡</td>
-											<td>04</td>
-											<td><input type="text" value="Ãâ»êÈÞ°¡" class="form-control"></td>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td><input type="text" class="form-control w_300"></td>
-										</tr>
-										<tr>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td>ÈÞ°¡</td>
-											<td>05</td>
-											<td><input type="text" value="Æ÷»óÈÞ°¡" class="form-control"></td>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td>
-												<label class="fancy-checkbox-inline">
-													<input type="checkbox" name="">
-													<span></span>
-												</label>
-											</td>
-											<td><input type="text" class="form-control w_300"></td>
-										</tr>
-									</tbody>
-								</table>
+								<table class="table table-bordered" id="vacationOptionTable" style="980px;">
+   <!--                      <thead> -->
+		                           <colgroup>
+		                              <col width="3%">
+		                              <col width="10%">
+		                              <col width="10%">
+		                              <col width="20%">
+		                              <col width="10%">
+		                              <col width="10%">
+		                              <col width="37%">
+		                           </colgroup>
+		                           <thead class="scrollHead">
+		                              <tr>
+		                                 <th class="w3">
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </th>
+		                                 <th class="text-center w10"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>±¸ºÐ</th>
+		                                 <th class="text-center w10"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>ÄÚµå</th>
+		                                 <th class="text-center w20"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>¸íÄª</th>
+		                                 <th class="text-center w10">¿¬Â÷¹Ý¿µ</th>
+		                                 <th class="text-center w10">»ç¿ë¿©ºÎ</th>
+		                                 <th class="text-center w37">ºñ°í</th>
+		                              </tr>
+		                           </thead>
+		                           <tbody class="scrollBody">
+		                              <tr id="headTr">
+		                                 <td class="w3">
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td class="w10">ÈÞ°¡</td>
+		                                 <td class="w10">00</td>
+		                                 <td class="w20"><input type="text" value="ÈÞ°¡(³âÂ÷)" class="form-control"></td>
+		                                 <td class="w10">
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td class="w10">
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td class="w37"><input type="text" class="form-control w_300"></td>
+		                              </tr>
+		                              <tr>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td>ÈÞ°¡</td>
+		                                 <td>01</td>
+		                                 <td><input type="text" value="»ý¸®ÈÞ°¡" class="form-control"></td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td><input type="text" class="form-control w_300"></td>
+		                              </tr>
+		                              <tr>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td>ÈÞ°¡</td>
+		                                 <td>02</td>
+		                                 <td><input type="text" value="º´°¡" class="form-control"></td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td><input type="text" class="form-control w_300"></td>
+		                              </tr>
+		                              <tr>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td>ÈÞ°¡</td>
+		                                 <td>03</td>
+		                                 <td><input type="text" value="°æÁ¶ÈÞ°¡" class="form-control"></td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td><input type="text" class="form-control w_300"></td>
+		                              </tr>
+		                              <tr>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td>ÈÞ°¡</td>
+		                                 <td>04</td>
+		                                 <td><input type="text" value="Ãâ»êÈÞ°¡" class="form-control"></td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td><input type="text" class="form-control w_300"></td>
+		                              </tr>
+		                              <tr>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td>ÈÞ°¡</td>
+		                                 <td>05</td>
+		                                 <td><input type="text" value="Æ÷»óÈÞ°¡" class="form-control"></td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td><input type="text" class="form-control w_300"></td>
+		                              </tr>
+		                           </tbody>
+		                        </table>
 							</form>
 						</div>
 					</div>	

@@ -27,7 +27,34 @@
 	padding:10px 25px;
 }
 
-.scrollBody{
-	overflow-y:scroll; 
-	display:block;
+.scrollHead{
+	float:left;
+	width:100%;
 }
+.scrollBody{
+	float:left;
+	width:980px;
+}
+.scrollBody{
+	overflow-x: hidden; 
+	overflow-y: scroll; 
+	height:300px; 
+}
+.scrollBody tr{
+	width:100%;
+}
+
+.scrollHead, .scrollBody{
+   float:left;
+   width:100%;
+}
+/* .scrollBody{ */
+/*    overflow-x: hidden;  */
+/*    overflow-y: scroll; */
+/*    height:300px; */
+/* } */
+.scrollHead .w3, .scrollBody .w3{width:3%;}
+.scrollHead .w10, .scrollBody .w10{width:10%;}
+.scrollHead .w20, .scrollBody .w20{width:20%;}
+.scrollHead .w37, .scrollBody .w37{width:37%;}
+.scrollBody .w12{width:12%;}
