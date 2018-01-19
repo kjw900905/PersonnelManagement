@@ -54,12 +54,13 @@
 				<div class="modal-body">	
 					<div class="row">
 						<div class="col-md-10" style="padding-top:20px;">
-							<form id="insertForm">
+							<form id="insertForm" method="post">
 								<p><input type="hidden" name="emno">
 								제목<p><input type="text" name="title">
 								<p>내용<p><textarea rows="7" cols="70" name="content" style="resize:none"></textarea>
-								<p>날짜<p><input type="text" id="datepicker">~<input type="text" id="datepicker">
-								<p>시간<p><input type="text">
+								<p>날짜<p><input type="text" id="datepicker" name="startDate">
+											~<input type="text" id="datepicker" name="endDate">
+								<p>시간<p><input type="text" name="time">
 							</form>
 							<div class="modal-footer">
 								<button type="button" id="insertBtn" class="btn btn-default" data-dismiss="modal">저장</button>
@@ -229,8 +230,7 @@
 	$("#insertBtn").click(function(){
 		//alert("저장");
 		if(confirm("저장하시겠습니까?") == true){
-			$("#insertForm").action = "/spring/scheduleInsert.do";
-			$("#insertForm").submit();
+			$("#insertForm").attr("action","/spring/scheduleInsert.do").submit();
 		}else{
 			return false;
 		}

@@ -14,6 +14,11 @@
 	
 	<mappers>
 		<mapper resource="com/example/spring/management/menuTree/menuTreeMapper.xml"/>
+<<<<<<< HEAD
+		<mapper resource="com/example/spring/personnel/schedule/scheduleMapper.xml"/>
+=======
+		<mapper resource="com/example/spring/common/commonMapper.xml"/>
+>>>>>>> origin/개몽구리
 	</mappers>
 		
 </configuration>
