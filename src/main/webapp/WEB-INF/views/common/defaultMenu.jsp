@@ -75,7 +75,7 @@
 								<div id="TimeMiddle4" class="collapse">
 									<ul class="nav">
 										<li><a href="" class="">휴일설정</a></li>
-										<li><a href="${pageContext.request.contextPath}/holidaySet" class="">휴가항목설정</a></li>
+										<li><a href="${pageContext.request.contextPath}/holidaySet" class="">휴가항목설정</a></li>	
 										<li><a href="" class="">근속연수별휴가설정</a></li>
 										<li><a href="" class="">월간근무표설정</a></li>
 									</ul>
