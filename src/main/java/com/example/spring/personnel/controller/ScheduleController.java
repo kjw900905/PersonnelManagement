@@ -16,11 +16,17 @@ public class ScheduleController {
 	
 	//private String PRE_VIEW_PATH = "personnel/schedule/";
 	
-	//일정보기
+	//일정보기(메인)
+	@RequestMapping(value="scheduleView.do")
 	public String scheduleView() {
-		
 		return "scheduleView";
-		
+	}
+	
+	//일정등록
+	@RequestMapping(value="scheduleInsert.do")
+	public String scheduleInsert() {
+		System.out.println("insert in");
+		return "";
 	}
 	
 }
