@@ -10,7 +10,7 @@ public class BusinessAdjController {
 
 	private static final Logger logger = LoggerFactory.getLogger(BusinessAdjController.class);
 	
-	//������� - ��������
+	//출장관리 - 출장정산
 	@RequestMapping(value = "/businessAdj")
 	public String businessAdj() {
 		return "businessAdj";

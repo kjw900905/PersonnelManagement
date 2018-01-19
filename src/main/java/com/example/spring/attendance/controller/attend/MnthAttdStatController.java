@@ -10,7 +10,8 @@ public class MnthAttdStatController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MnthAttdStatController.class);
 	
-	//Ãâ°á°ü¸® - ¿ù±ÙÅÂÇöÈ²
+	
+	//ì¶œê²°ê´€ë¦¬ - ì›”ê·¼íƒœí˜„í™©
 	@RequestMapping(value = "/mnthAttdStat")
 	public String mnthAttdStat() {
 		return "mnthAttdStat";
