@@ -71,6 +71,12 @@
        <put-attribute name="body" value="/WEB-INF/views/attendance/business/businessRequest.jsp" />  
    </definition>  
    
+     <!-- [근태관리]-[출장관리]-[출장정산] -->
+   <definition name="businessAdj" extends="base-definition">  
+       <put-attribute name="title" value="출장정산" />
+       <put-attribute name="body" value="/WEB-INF/views/attendance/business/businessAdj.jsp" />  
+   </definition>
+   
    <!-- [근태관리]-[휴가관리]-[휴가개수설정] -->
    <definition name="vacationCount" extends="base-definition">  
        <put-attribute name="title" value="휴가개수설정" />
