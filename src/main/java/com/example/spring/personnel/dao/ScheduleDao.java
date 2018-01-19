@@ -23,7 +23,7 @@ public class ScheduleDao {
 	public int scheduleInsert(HashMap<String, Object> map) {
 		logger.debug("scheduleInsert(dao) in");
 		
-		int result = 0;//this.sql.selectList(namespace+"menuList");
+		int result = 0;//(int)this.sql.insert(namespace+"schedule");
 		
 		return result;
 	}
