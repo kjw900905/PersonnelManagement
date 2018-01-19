@@ -24,21 +24,18 @@ public class MenuTreeController {
 	@Autowired
 	MenuTreeService menuTreeService;
 	
-	String PRE_VIEW_PATH = "management/menuTree";
-	
 	private static final Logger logger = LoggerFactory.getLogger(MenuTreeController.class);
 	
 	//메뉴관리 메인 
 	@RequestMapping(value="/menuTreeMain.do")
 	public String menuTreeMain() {
-		return PRE_VIEW_PATH+"menuTreeMain";
+		return "menuTreeMain";
 	}//menuTreeMain 
 	 
 	//메뉴등록 폼
 	@RequestMapping(value="/menuInsertForm.do")
 	public String menuInserForm(HttpServletResponse response) {
-		logger.info("--------------->"+PRE_VIEW_PATH+"menuInsertForm");	
-		return PRE_VIEW_PATH+"menuInsertForm";
+		return "menuInsertForm";
 	}//menuInserForm
 	
 	//메뉴리스트 
@@ -72,7 +69,7 @@ public class MenuTreeController {
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("map", menuTreeService.menuDetail(mnNo));
-		mv.setViewName(PRE_VIEW_PATH+"menuDetailTable");
+		mv.setViewName("menuDetailTable");
 		
 		return mv;
 	}//menuDetailTable
@@ -86,7 +83,7 @@ public class MenuTreeController {
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("map",menuTreeService.menuDetail(mnNo));
-		mv.setViewName(PRE_VIEW_PATH+"menuUpdateForm");
+		mv.setViewName("menuUpdateForm");
 		
 		return mv;
 	}//menuUpdateForm
@@ -124,6 +121,6 @@ public class MenuTreeController {
 	public String testMenu() {
 		
 		menuTreeService.testMenu();
-		return PRE_VIEW_PATH+"test";
+		return "management/menuTree/test";
 	}//testMenu
 }

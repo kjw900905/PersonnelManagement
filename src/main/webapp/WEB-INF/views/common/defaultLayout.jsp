@@ -69,7 +69,6 @@
 	<script src="/spring/resources/common/js/ko.js"></script>
 	<script src="/spring/resources/common/js/bootstrap-datetimepicker.js"></script>
 	<script src="/spring/resources/common/js/jquery.tablesorter.js"></script> <!-- 테이블 정렬 -->
-	
-
+	<tiles:insertAttribute name="scripts"/>
 </body>
 </html>
