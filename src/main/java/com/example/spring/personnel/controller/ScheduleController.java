@@ -26,9 +26,18 @@ public class ScheduleController {
 		
 	}
 	
+	//사원 일정db
+	@RequestMapping(value="scheduleDb.ajax")
+	public @ResponseBody HashMap<String, String> scheduleDb(@RequestParam String emno){
+		
+		System.out.println("emno : " + emno);
+		
+		return null;
+	}
+	
 	//일정등록
 	@RequestMapping(value="scheduleInsert.do")
-	public @ResponseBody int scheduleInsert(@RequestParam HashMap<String, Object> map) {
+	public int scheduleInsert(@RequestParam HashMap<String, Object> map) {
 		System.out.println("scheduleInsert(controller) In");
 		System.out.println("파라미터로 넘겨온 맵 : " + map);
 		
