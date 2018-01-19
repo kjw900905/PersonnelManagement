@@ -356,6 +356,46 @@
 				</div>
 			</div>
 		</div>
+		<!-- UPDATE MODAL -->
+		<div id="updateModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">공통코드 수정</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-11" style="padding-top:20px;">
+								<form action="/Project/commonUpdate.do" id="commUpdateForm">
+									<table class="table table-hover" align="center">
+										<tr>
+											<td> &nbsp;그룹코드</td>
+											<td><input type="text" name="commCode"></td>
+										</tr>
+										<tr>
+											<td> &nbsp;그룹코드명</td>
+											<td><input type="text" name="commName"></td>
+										</tr>
+										<tr>
+											<td> &nbsp;코드정보</td>
+											<td><input type="text" name="commCodeInfo"></td>
+										</tr>
+										<tr>
+											<td> &nbsp;수정부서</td>
+											<td><input type="text" name="deptUpdtCode"></td>
+										</tr>
+									</table>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default">저장</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- INFO INSERT MODAL -->
 		<div id="infoInsertModal" class="modal" role="dialog">
 			<div class="modal-dialog">
@@ -400,8 +440,8 @@
 				</div>
 			</div>
 		</div>
-		<!-- UPDATE MODAL -->
-		<div id="updateModal" class="modal fade" role="dialog">
+		<!-- INFO UPDATE MODAL -->
+		<div id="infoUpdateModal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -411,14 +451,14 @@
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-md-11" style="padding-top:20px;">
-								<form action="/Project/commonUpdate.do" id="commUpdateForm">
+								<form action="/Project/commonUpdate.do" id="commInfoUpdateForm">
 									<table class="table table-hover" align="center">
 										<tr>
-											<td> &nbsp;그룹코드</td>
+											<td> &nbsp;코드</td>
 											<td><input type="text" name="commCode"></td>
 										</tr>
 										<tr>
-											<td> &nbsp;그룹코드명</td>
+											<td> &nbsp;코드명</td>
 											<td><input type="text" name="commName"></td>
 										</tr>
 										<tr>
@@ -650,7 +690,8 @@
 										"<td name='deptCode'>" + result[idx].deptCode + "</td>" +
 										"<td name='commCodeCrt'>" + result[idx].commCodeCrt + "</td>" +
 										"<td name='commCodeUpdt'>" + result[idx].commCodeUpdt + "</td>" +
-										"<td name='commCodeInfoUpdt'><button type='button' name='commCodeInfoUpdtBtn' class='btn btn-default'>수정</td>" +
+										"<td name='commInfoUpdt'><button type='button' name='commInfoUpdtBtn' class='btn btn-default' onClick='commInfoUpdtFunc()'>수정</button></td>" +
+										"<td name='commInfoDel'><button type='button' name='commInfoDelBtn' class='btn btn-default'>삭제</button></td>" + 
 									"</tr>"
 								);
 							
@@ -705,6 +746,16 @@
 			});
 			// 공통코드 상세보기에서 코드 등록 //
 			
+			
+			
+			// 공통코드 상세보기에서 코드 수정 //
+			function commInfoUpdtFunc(){
+				
+				$("#infoUpdateModal").modal('show');
+
+				
+			}//commInfoUpdtFunc
+			// 공통코드 상세보기에서 코드 수정 //
 			
 			
 			
