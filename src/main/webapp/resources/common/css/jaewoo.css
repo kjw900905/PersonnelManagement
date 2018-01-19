@@ -37,8 +37,8 @@
 }
 .scrollBody{
 	overflow-x: hidden; 
-	overflow-y: scroll;
-	height:300px;
+	overflow-y: scroll; 
+	height:300px; 
 }
 .scrollBody tr{
 	width:100%;
@@ -48,11 +48,11 @@
    float:left;
    width:100%;
 }
-/* .scrollBody{ */
-/*    overflow-x: hidden;  */
-/*    overflow-y: scroll; */
-/*    height:300px; */
-/* } */
+.scrollBody{
+   overflow-x: hidden; 
+   overflow-y: scroll;
+   height:300px;
+}
 .scrollHead .w3, .scrollBody .w3{width:3%;}
 .scrollHead .w10, .scrollBody .w10{width:10%;}
 .scrollHead .w20, .scrollBody .w20{width:20%;}
