@@ -1,19 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>ÈÞÀÏ /¿¬Àå /¾ß°£±Ù¹« Á¶È¸</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>íœ´ì¼ /ì—°ìž¥ /ì•¼ê°„ê·¼ë¬´ ì¡°íšŒ</title>
 <script>
-
-	//Å×ÀÌºí ³»¿ë °¡¿îµ¥Á¤·Ä
+	//í…Œì´ë¸” ë‚´ìš© ê°€ìš´ë°ì •ë ¬ 
 	$(document).ready(function() { 
 	    $('.table tr').children().addClass('text-center');
 	    console.log('hg');
 	});
 	
-	//´Þ·Â
+	//ë‹¬ë ¥
 	$(function () {
 	    $('#monthDate').datetimepicker({
 	    	viewMode: 'months',
@@ -28,50 +27,50 @@
 	<div class="main">
 		<div class="main-content">
 			<div class="container-fluid">
-				<h3 class="page-title">ÈÞÀÏ /¿¬Àå /¾ß°£±Ù¹« Á¶È¸</h3>
+				<h3 class="page-title">íœ´ì¼ /ì—°ìž¥ /ì•¼ê°„ê·¼ë¬´ ì¡°íšŒ</h3>
 				
 				<div class="panel">
 					<div class="panel-body">
 						<form class="form-inline" action="/spring/readHdayExtnNightWorkInqr">
-							<i class="fa fa-asterisk-red" aria-hidden="true" ></i>±Ù¹«³â¿ù
-							<!-- ´Þ·Â -->
+							<i class="fa fa-asterisk-red" aria-hidden="true" ></i>ê·¼ë¬´ë…„ì›”
+							<!-- ë‹¬ë ¥ -->
 							<div class="input-group date" id="monthDate">
 							  	<input type="text" class="form-control" id="modeApplicationDate" name="workYyMm"/>
 							    <span class="input-group-addon">
-								    <span class="glyphicon glyphicon-calendar"></span> <!-- ´Þ·Â ¾ÆÀÌÄÜ -->
+								    <span class="glyphicon glyphicon-calendar"></span> <!-- ë‹¬ë ¥ ì•„ì´ì½˜ -->
 							    </span>
 						  	</div>
-							<!-- »ç¿ø¹øÈ£ -->
-							<i class="fa fa-asterisk-red" aria-hidden="true" ></i>»ç¿ø¹øÈ£
+							<!-- ì‚¬ì›ë²ˆí˜¸ -->
+							<i class="fa fa-asterisk-red" aria-hidden="true" ></i>ì‚¬ì›ë²ˆí˜¸
 							<div class="input-group">
-								<input type="text" class="form-control" id="" name="empEmno" placeholder="»ç¹ø">
+								<input type="text" class="form-control" id="" name="empEmno" placeholder="ì‚¬ë²ˆ">
 								<span class="input-group-addon">
-									<span class="glyphicon glyphicon-search" aria-hidden="true" data-toggle="modal" data-target="#emnoModal"></span> <!-- °Ë»ö ¾ÆÀÌÄÜ -->
+									<span class="glyphicon glyphicon-search" aria-hidden="true" data-toggle="modal" data-target="#emnoModal"></span> <!-- ê²€ìƒ‰ ì•„ì´ì½˜ -->
 								</span>
 							</div>
-							<!-- °Ë»ö¹öÆ° -->
-						  	<input type="submit" class="btn btn-primary" style="float:right; name="search" value="°Ë»ö">
+							<!-- ê²€ìƒ‰ë²„íŠ¼ -->
+						  	<input type="submit" class="btn btn-primary" style="float:right; name="search" value="ê²€ìƒ‰">
 						</form>
 					</div>
 				</div>
 				
 				<div class="panel panel-headline">
 					<div class="panel-heading">
-						<h3 class="panel-title">ÈÞÀÏ /¿¬Àå /¾ß°£±Ù¹« Á¶È¸</h3>
-							<!-- <p class="subtitle">¼³¸íÀÌ ÇÊ¿äÇÒ °æ¿ì Ãß°¡ ¿¹Á¤</p> -->
+						<h3 class="panel-title">íœ´ì¼ /ì—°ìž¥ /ì•¼ê°„ê·¼ë¬´ ì¡°íšŒ</h3>
+							<!-- <p class="subtitle">ì„¤ëª…ì´ í•„ìš”í•  ê²½ìš° ì¶”ê°€ ì˜ˆì •</p> -->
 					</div>
 					<div class="panel-body">
 						<div class="list_wrapper">
 							<table class="table tablesorter table-bordered" id="">
 								<thead>
 									<tr>
-										<th>»ç¿ø¹øÈ£</th>
-										<th>¼º¸í</th>
-										<th>Á÷±Þ</th>
-										<th>ºÎ¼­</th>
-										<th>±ÙÅÂÁ¾·ù</th>
-										<th>±ÙÅÂ½Ã°£</th>
-										<th>±ÙÅÂÀÏÀÚ</th>
+										<th>ì‚¬ì›ë²ˆí˜¸</th>
+										<th>ì„±ëª…</th>
+										<th>ì§ê¸‰</th>
+										<th>ë¶€ì„œ</th>
+										<th>ê·¼íƒœì¢…ë¥˜</th>
+										<th>ê·¼íƒœì‹œê°„</th>
+										<th>ê·¼íƒœì¼ìž</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -86,11 +85,11 @@
 									</tr>
 								</tbody>
 							</table>
-							<!-- paging ¿µ¿ª -->
+							<!-- paging ì˜ì—­ -->
 							<div align="center">
 								<ul class="pagination">
 									<li>
-										<a title="ÀÌÀüÆäÀÌÁö" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+										<a title="ì´ì „íŽ˜ì´ì§€" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
 									</li>
 									<li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
 									<li><a href="#">2</a></li>
@@ -104,14 +103,14 @@
 									</li>
 								</ul>
 							</div>
-							<!-- END list table ¿µ¿ª -->
+							<!-- END list table ì˜ì—­ -->
 							    
-							<!-- ¹öÆ°¿µ¿ª -->
+							<!-- ë²„íŠ¼ì˜ì—­ -->
 							<div class="text-center"> 
-								<button type="button" class="btn btn-info">ÀÎ¼âÇÏ±â</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<button type="button" class="btn btn-success">¿¢¼¿´Ù¿î</button>
+								<button type="button" class="btn btn-info">ì¸ì‡„í•˜ê¸°</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<button type="button" class="btn btn-success">ì—‘ì…€ë‹¤ìš´</button>
 							</div>
-							<!-- END ¹öÆ°¿µ¿ª -->
+							<!-- END ë²„íŠ¼ì˜ì—­ -->
 						</div>
 					</div>
 				</div>
