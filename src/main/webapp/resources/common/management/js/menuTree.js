@@ -11,42 +11,47 @@
  * 
  * $("button").addEvent();
  * 
- * JSON DATA 
+ * JSON DATA 형식 예
  * 
- * ex)
- * {
-    "data" : [
-        {"mnNo":code,"mnName":name,"mnIdx":index,"mnPrntCode":"root"(parentCode)}
-        ]
- *	}
+ * root parent code  = 0;
+ * 예){"data":[{mnNo=301, mnPrntNo=120, mnName=test300, mnIdx=0},{mnNo=301, mnPrntNo=0, mnName=test300, mnIdx=0}]}
+ * 
  * 
  */
         $.fn.extend({
         	//data append menu tree
             ssTree:function(data){
+            	console.log(data);
             	//menu icon class name	
                 var openedClass= 'glyphicon-folder-open',
                     closedClass= 'glyphicon-folder-close';
                 
                 //menu parent code
-                var mnPrntCd;
+                var mnPrntNo;
+                //menu idx
+                var mnIdx;
                 
                 //menu append 
                 $.each(data,function(index,dataThis){
                     mnPrntNo = dataThis.mnPrntNo;
-                    console.log(mnPrntNo);
+                    mnIdx = dataThis.mnIdx;
   
                     //ul append
-                    if(($("#"+mnPrntNo).find("ul").length==0)){
-                        $("#"+mnPrntNo).append("<ul></ul>");
-                        
+                    if($("#tree #"+mnPrntNo).find("ul").length==0){
+                        $("#tree #"+mnPrntNo).append("<ul></ul>");
                     }//if
                     
                     //li append
-                    $("#"+mnPrntNo).find("ul").append("<li id='"+dataThis.mnNo+"'><span>"+dataThis.mnName+"</span></li>");
+                    
+                    //index 적용 if else
+                    if($("#tree #"+mnPrntNo).find("ul:eq(0)>li").length>mnIdx){
+                    	$("#tree #"+mnPrntNo).find("ul:eq(0)>li:eq("+mnIdx+")").before("<li id='"+dataThis.mnNo+"'><span>"+dataThis.mnName+"</span></li>");
+                    }else{
+                    	$("#tree #"+mnPrntNo).find("ul:eq(0)").append("<li id='"+dataThis.mnNo+"'><span>"+dataThis.mnName+"</span></li>");
+                    }//if else
+                    
                 });//data each
 
-                //menu addClass
                 var tree = $(this);
                 
                 //class add
@@ -56,7 +61,6 @@
                 tree.find('li').each(function (index) {
 
                     if($(this).has("ul").length>0){
-                    	                	
                         var branch = $(this); //li with children ul
                        
                         branch.prepend("<i class='indicator glyphicon " + closedClass + "'></i>");
@@ -64,8 +68,7 @@
                         
                         //toggle()
                         branch.children().children().toggle();
-                    }
-                    
+                    }//if
                	 	//root menu open
                     if(index==0){
                         $(this).openMenu();
@@ -121,49 +124,49 @@
                         $("[name='detail']").html(html);
                         var newMenu = $("[name='new']");
                         var prnt = newMenu.parents('li:eq(0)');
-                        console.log(prnt.attr("id"));
-                        if(prnt.attr("id")!="root"){
-                        	$("input[name='mnPrntNo']").val(prnt.attr("id"));
-                        }else{
-                        	$("input[name='mnPrntNo']").val(0);
-                        }
-                        if(prnt.text()!='/'){
-                        	$("input[name='mnPrntName']").val(prnt.find("span:eq[0]").text());
-                        }
-                        $("input[name='mnIdx']").val(prnt.find("li").index(newMenu)); 
-                     
+                        
+                        $("input[name='mnPrntNo']").val(prnt.attr("id"));
+                        $("input[name='mnIdx']").val(newMenu.siblings().length); 
                     }
                     ,error:function(){
                         console.log("error");
                     }
                 });//ajax
             },//end addMenu
-            //click event 
+            //menu click event 
             clickEvent : function(){
+            	//이벤트 등록 
                 $(this).on('click',function(e){
+                	//현재 대상외 class 삭제
                     $("#tree li.current").removeClass("current");
+                    //대상 class 추가 
                     $(this).addClass("current");
-                    $(this).openMenu(e);
-                    console.log($(this).attr("id"));
-                    $.ajax({
-                    	type:"POST",
-                    	url:"menuDetail.do",
-                    	data:{mnNo:$(this).attr("id")},
-                    	dataType:"html",
-                        success:function(html){
-                             $("[name='detail']").html(html);
-                         }
-                         ,error:function(){
-                             console.log("error");
-                         }	
-                    });
-                });
+                    //메뉴 오픈 
+                    $(this).openMenu(e); 
+                   
+                    //기본 루트 li 제외 if
+                    if($(this).attr("id")!="0"){
+                    	$.ajax({
+                        	type:"POST",
+                        	url:"menuDetail.do",
+                        	data:{mnNo:$(this).attr("id")},
+                        	dataType:"html",
+                            success:function(html){
+                                 $("[name='detail']").html(html);
+                             }
+                             ,error:function(){
+                                 console.log("error");
+                             }	
+                        });//ajax
+                    }//if
+                });//on click event
             },//end clickEvent
             //add event
             addEvent : function(){
                 $(this).on("click",function(){
-                    $("#tree li.current").addMenu();
-                    $(this).off("click");
-                });
+                    $("#tree li.current").addMenu();//메뉴 추가 
+                    $(this).off("click"); //메뉴추가 이벤트 제거
+                    $("#tree li").off("click"); //menu tree 이벤트 제거 
+                });//onclick
             }//end addEvent
         });//end extend
