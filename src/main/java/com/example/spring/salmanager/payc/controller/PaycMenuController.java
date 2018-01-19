@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.spring.department.Service.DepartmentService;
 import com.example.spring.salmanager.payc.service.PaycMenuService;
 
-//±Þ¿©´ëÀå
+//ï¿½Þ¿ï¿½ï¿½ï¿½ï¿½ï¿½
 @Controller
 public class PaycMenuController {
 
@@ -83,7 +82,7 @@ public class PaycMenuController {
 		map.put("paycname", params.get("paycname").toString());
 		map.put("payday", params.get("payyy").toString() + params.get("paymm") + params.get("paytoday"));
 		map.put("payyymm", params.get("payyy").toString() + params.get("paymm"));
-		logger.info("¸Ê : " + map);
+		logger.info("ï¿½ï¿½ : " + map);
 
 		paycMenuService.makePaycInsert(map);
 
@@ -92,7 +91,7 @@ public class PaycMenuController {
 	}
 
 	@RequestMapping(value = "makePayc.ajax")
-	public @ResponseBody HashMap<String, String> ajaxFormSubmit( // ¸Þ½ÃÁö ÄÁ¹öÅÍ ¼³Á¤
+	public @ResponseBody HashMap<String, String> ajaxFormSubmit( // ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			@RequestParam HashMap<String, String> map) {
 
 		map.put("success", "true");
@@ -100,8 +99,8 @@ public class PaycMenuController {
 		map.put("pyymm", map.get("pyy") + map.get("pmm"));
 		map.put("payyymm", map.get("payyy") + map.get("paymm"));
 		map.put("payday", map.get("payyymm") + map.get("paytoday"));
-		// System.out.println("¼º°ø");
-		logger.info("°á°úµ¥ÀÌÅÍ(controller) : " + map);
+		// System.out.println("ï¿½ï¿½ï¿½ï¿½");
+		logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(controller) : " + map);
 
 		ModelAndView mv = new ModelAndView();
 		paycMenuService.makePaycInsert(map);
@@ -113,7 +112,7 @@ public class PaycMenuController {
 	}
 
 	@RequestMapping(value = "/newPayc.ajax")
-	public @ResponseBody HashMap<String, String> ajaxnewPaycSubmit( // ¸Þ½ÃÁö ÄÁ¹öÅÍ ¼³Á¤
+	public @ResponseBody HashMap<String, String> ajaxnewPaycSubmit( // ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			@RequestParam HashMap<String, String> map) {
 	
 		// mv.addObject("year", paycMenuService.getYear());

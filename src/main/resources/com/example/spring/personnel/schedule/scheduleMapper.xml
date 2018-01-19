@@ -2,4 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="schedule">
+	<!-- 일정등록 -->
+	<insert id="scheduleInsert" parameterType="HashMap">
+		/* /personnel/schedule/scheduleMapper.xml - scheduleInsert(일정 등록 ) */
+		INSERT INTO INDIVIDUAL_PLAN
+			(
+			) 
+	</insert> 
 </mapper>
