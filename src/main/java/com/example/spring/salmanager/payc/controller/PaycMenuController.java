@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-//import com.example.spring.department.Service.DepartmentService;
+import com.example.spring.department.Service.DepartmentService;
 import com.example.spring.salmanager.payc.service.PaycMenuService;
 
 //급여대장
