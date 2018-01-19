@@ -1,0 +1,40 @@
+<!--?xml version="1.0" encoding="UTF-8"? -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="payc">
+
+	<select id="paycList" parameterType="HashMap" resultType="HashMap">
+        
+        SELECT *FROM SAL_REGISTER ORDER BY SREG_YYMM DESC;
+           
+    </select>
+
+	<select id="departmentSearch" parameterType="HashMap" resultType="HashMap">
+
+		SELECT
+			DEPT_CODE as deptCode
+			,DEPT_NAME as deptName
+		FROM DEPARTMENT WHERE DEPT_NAME LIKE CONCAT('%',#{deptName},'%')
+			
+
+
+
+	</select>
+
+	<insert id="makePaycInsert">
+	
+		INSERT INTO SAL_REGISTER
+		(SREG_YYMM
+		,SREG_NAME
+		,SREG_PDAY
+		,SREG_PYYMM)
+		VALUES(#{pyymm},#{paycname},#{payday},#{payyymm})
+	
+	</insert>
+	
+	<insert id="acalPayc">
+	
+	
+	</insert>
+</mapper>
