@@ -20,6 +20,17 @@
 	});
 	
 	
+	//테이블 마우스오버시 (행을 지날 때), 색 바뀜
+	$(document).ready(function(){
+		$('table tbody tr').mouseover(function(){ 
+			$(this).css("backgroundColor","#f2f2f2"); 
+		}); 
+		$('table tr').mouseout(function(){ 
+			$(this).css("backgroundColor","#fff"); 
+		});
+	});
+		
+	
 	//달력
 	$(function () {
 		$('#startDate').datetimepicker({ //휴가시작일 달력
@@ -45,9 +56,14 @@
 	});
 	
 	$(function(){ 
-		$("#vacationTable").tablesorter( {sortList: [[0,0], [1,0]]} ); 
+		$("#vacationTable").tablesorter({sortList: [[0,0], [1,0]]}); 
 	});
 	
+	
+	//휴가신청현황 페이지로 이동
+	function vacationProgressList(){
+		window.location.href = "${pageContext.request.contextPath}/vacationProgressList";
+	}
 
 </script>
 </head>
@@ -63,7 +79,8 @@
 <!-- 					</div> -->
 					<div class="panel-body">
 						<form class="form-inline">
-							<i class="fa fa-asterisk-red" aria-hidden="true" ></i>휴가항목 선택
+<!-- 							<i class="fa fa-asterisk-red" aria-hidden="true" ></i> -->
+							휴가항목 선택
 							<select name="vacationCategories" class="form-control">
 								<option value="dog">반차</option>
 								<option value="dog">연차</option>
@@ -74,7 +91,7 @@
 								<option value="pig">포상휴가</option>
 							</select>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<i class="fa fa-asterisk-red" aria-hidden="true" ></i>
+<!-- 							<i class="fa fa-asterisk-red" aria-hidden="true" ></i> -->
 							휴가 조회기간
 							<!-- 달력 -->
 							<div class="input-group date" id="startDate">
@@ -118,6 +135,10 @@
 								<option value="">주임</option>
 								<option value="">사원</option>
 							</select>
+							<button class="btn btn-danger" type="button" name="prog" style="float:right;" onclick="vacationProgressList()" >
+								휴가신청현황
+								<span class="badge">4</span>
+							</button>
 						</form>
 					</div>
 				</div>
@@ -125,17 +146,17 @@
 <!-- 					<div class="panel-heading"> -->
 <!-- 						<h3 class="panel-title">제목</h3> -->
 <!-- 					</div> -->
-							
+	
 					<div class="panel-body"> 
 						<div class="list_wrapper">
 							<table class="table tablesorter table-bordered" id="vacationTable">
 								<thead>
 									<tr>
-										<th class="tableheadColor">구분</th>
-										<th class="tableheadColor">사원번호</th>
-										<th class="tableheadColor">성명</th>
-										<th class="tableheadColor">부서</th>
-										<th class="tableheadColor">직위</th>
+										<th>구분</th>
+										<th>사원번호</th>
+										<th>성명</th>
+										<th>부서</th>
+										<th>직위</th>
 										<th>휴가항목</th>
 										<th>전체</th>
 										<th>사용일수</th>
@@ -275,7 +296,7 @@
 						<!-- 버튼영역 -->
 						<div class="text-center"> 
 							<button type="button" class="btn btn-info">인쇄하기</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<button type="button" class="btn btn-danger">엑셀다운</button>
+							<button type="button" class="btn btn-success">엑셀다운</button>
 						</div>
 						<!-- END 버튼영역 -->
 					</div>

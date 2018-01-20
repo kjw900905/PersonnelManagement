@@ -8,10 +8,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>휴가조회(사원)</title>
 <script>
-$(document).ready(function() { //테이블 내용 가운데정렬
-    $('.table tr').children().addClass('text-center');
-});
 
+	//테이블 내용 가운데 정렬
+	$(document).ready(function() {
+	    $('.table tr').children().addClass('text-center');
+	});
+
+	
+/* 	
+	//테이블 마우스오버시 (행을 지날 때), 색 바뀜
+	$(document).ready(function(){
+		$('#vacList tbody tr').mouseover(function(){ 
+			$(this).css("backgroundColor","#f2f2f2"); 
+		}); 
+		$('#vacList tbody tr').mouseout(function(){ 
+			$(this).css("backgroundColor","#fff"); 
+		});
+	});
+*/
+	
+ 
 </script>
 </head>
 <body>
@@ -23,19 +39,19 @@ $(document).ready(function() { //테이블 내용 가운데정렬
 					<div class="panel-body">
 						<table class="table table-bordered">	
 							<tr>
-								<td>사원번호</td>
+								<th>사원번호</th>
 								<td>seongsil</td>
-								<td>성명</td>
+								<th>성명</th>
 								<td>유성실</td>
-								<td>연차기간</td>
+								<th>연차기간</th>
 								<td>2018.01.01 ~ 2018.12.31</td>
 							</tr>
 							<tr>
-								<td>전체일수</td>
+								<th>전체일수</th>
 								<td>15</td>
-								<td>사용일수</td>
+								<th>사용일수</th>
 								<td>6</td>
-								<td>잔여일수</td>
+								<th>잔여일수</th>
 								<td>9</td>
 							</tr>
 						</table>
@@ -50,13 +66,12 @@ $(document).ready(function() { //테이블 내용 가운데정렬
 					<div class="panel-body">
 						<!-- list table 영역 -->
 						<div class="list_wrapper">
-							<table class="table table-bordered">
+							<table class="table table-bordered" id="vacList">
 								<thead>
 									<tr>
 										<th>번호</th>
 										<th>신청일</th>
 										<th>휴가항목</th>
-										<th>전일/반일</th>
 										<th>시작일</th>
 										<th>종료일</th>
 										<th>일수</th>
@@ -69,7 +84,6 @@ $(document).ready(function() { //테이블 내용 가운데정렬
 										<td>1</td>
 										<td>2018.01.01</td>
 										<td>연차</td>
-										<td>전일</td>
 										<td>2018.01.02</td>
 										<td>2018.01.02</td>
 										<td>1</td>
@@ -80,7 +94,6 @@ $(document).ready(function() { //테이블 내용 가운데정렬
 										<td>2</td>
 										<td>2018.01.08</td>
 										<td>경조사휴가</td>
-										<td>전일</td>
 										<td>2018.01.08</td>
 										<td>2018.01.10</td>
 										<td>3</td>
@@ -91,7 +104,6 @@ $(document).ready(function() { //테이블 내용 가운데정렬
 										<td>3</td>
 										<td>2018.01.15</td>
 										<td>휴가</td>
-										<td>전일</td>
 										<td>2018.01.18</td>
 										<td>2018.01.19</td>
 										<td>2</td>
