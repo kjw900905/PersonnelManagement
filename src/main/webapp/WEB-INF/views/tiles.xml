@@ -113,6 +113,17 @@
        <put-attribute name="body" value="/WEB-INF/views/attendance/holidaySet/holidaySet.jsp" />  
    </definition>
    
+   
+   
+    <!-- [근태관리]-[근태기초정보설정/조회]-[휴가항목설정](사원) -->
+   <definition name="holiDyMng" extends="base-definition">  
+       <put-attribute name="title" value="휴가항목설정" />
+       <put-attribute name="body" value="/WEB-INF/views/attendance/holidaySet/holiDyMng.jsp" />  
+   </definition>
+   
+   
+   
+   
    <!-- END [근태관리] -->
    
    <!-- [권한관리] START -->
