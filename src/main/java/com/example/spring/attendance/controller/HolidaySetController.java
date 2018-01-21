@@ -16,4 +16,10 @@ public class HolidaySetController {
 	public String vatacionListAdminPage() {
 		return "holidaySet";
 	}
+	
+	//관리자 - 휴가리스트 조회하기
+		@RequestMapping(value = "/holiDyMng")
+		public String vatacionListAdminPage2() {
+			return "holiDyMng";
+		}
 }
