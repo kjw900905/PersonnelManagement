@@ -1,4 +1,4 @@
-package com.project.spring.dao;
+package com.example.spring.management.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,10 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository("CommonDao")
-public class CommonDao {
+@Repository("CommonDao2")
+public class CommonDao2 {
 
-	private static Logger logger = LoggerFactory.getLogger(CommonDao.class);
+	private static Logger logger = LoggerFactory.getLogger(CommonDao2.class);
 	
 	@Autowired
 	private SqlSession sqlSession;

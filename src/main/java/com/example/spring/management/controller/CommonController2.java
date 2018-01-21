@@ -1,4 +1,4 @@
-package com.project.spring.controller;
+package com.example.spring.management.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.project.spring.service.CommonService;
+import com.example.spring.management.service.CommonService2;
 
 @Controller
-public class CommonController {
+public class CommonController2 {
 
-	private static Logger logger = LoggerFactory.getLogger(CommonController.class);
+	private static Logger logger = LoggerFactory.getLogger(CommonController2.class);
 
 	@Autowired
-	private CommonService commonService;
+	private CommonService2 commonService;
 
 	private String PRE_VIEW_PATH = "/";
 

@@ -1,4 +1,4 @@
-package com.project.spring.service;
+package com.example.spring.management.service;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,20 +13,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.project.spring.dao.CommonDao;
+import com.example.spring.management.dao.CommonDao2;
 
 @Service
-public class CommonService {
+public class CommonService2 {
 
-	private static Logger logger = LoggerFactory.getLogger(CommonService.class);
+	private static Logger logger = LoggerFactory.getLogger(CommonService2.class);
 	
-	@Resource(name="CommonDao")
-	private CommonDao commonDao;
+	@Resource(name="CommonDao2")
+	private CommonDao2 commonDao;
 	
 	int postNum;
 	int pageNum;
 	
-	public CommonService() {
+	public CommonService2() {
 		this.postNum = 5;
 		this.pageNum = 5;
 	}
