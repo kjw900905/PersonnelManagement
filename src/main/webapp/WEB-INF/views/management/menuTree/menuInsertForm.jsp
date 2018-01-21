@@ -17,7 +17,7 @@
 		<div class="form-group row">
 			<label for="staticEmail" class="col-sm-2 col-form-label">URL</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" name="mnUrl" placeholder="하위메뉴 존재 시에는 연결 아이디 값을 작성해주세요." required>
+				<input type="text" class="form-control" name="mnUrl" placeholder="하위메뉴 존재 시에는 연결 아이디 값을 작성해주세요.ex)#아이디명 url의 경우 ex)test.do" required>
 			</div>
 		</div>
 		<div class="form-group row">
