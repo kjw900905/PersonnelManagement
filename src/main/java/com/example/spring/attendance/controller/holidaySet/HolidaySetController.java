@@ -42,6 +42,7 @@ public class HolidaySetController {
 	@RequestMapping(value = "/holidaySetDBInset.ajax")
 	public @ResponseBody HashMap<String, String> holidaySetDBInsert(@RequestBody List<HashMap<String, String>> paramMap) {
 		logger.debug("-----------------------------------------holidaySetDBInsert 들어왔다");
+		HashMap<String, String> map = new HashMap<String, String>();
 		
 		/*Iterator<String> keys = paramMap.keySet().iterator();
 		
@@ -51,12 +52,12 @@ public class HolidaySetController {
 		}*/
 		
 		//int result = holidaySetService.holidaySetDBInsert(paramMap);
-		paramMap.put("success", "true");
+		map.put("success", "true");
 		
 		ModelAndView mv = new ModelAndView();
 		
 		mv.setViewName("holidaySet");
 		
-		return paramMap;
+		return map;
 	}
 }
