@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.spring.personnel.service.ScheduleService;
 
@@ -35,20 +36,18 @@ public class ScheduleController {
 		
 		List<String> list = scheduleService.scheduleDb(emno);
 		
-		System.out.println("list(controller) : " + list);
-		
 		return list;
 	}
 	
 	//일정등록
 	@RequestMapping(value="scheduleInsert.do")
-	public int scheduleInsert(@RequestParam HashMap<String, Object> map) {
+	public @ResponseBody int scheduleInsert(@RequestParam HashMap<String, String> map) {
 		System.out.println("scheduleInsert(controller) In");
-		System.out.println("파라미터로 넘겨온 맵 : " + map);
+		System.out.println("파라미터map : " + map);
 		
-		int reult = scheduleService.scheduleInsert(map);
+		int result = scheduleService.scheduleInsert(map);
 		
-		return reult;
+		return result;
 	}
 	
 	
