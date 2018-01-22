@@ -23,10 +23,10 @@
  				console.log("ajaxFormSubmit -> callback");
  				console.log("결과데이터:"+JSON.stringify(rslt));
  			
- 				//insert 성공여부에 따른 alert창 띄우기
-//				if(rslt.result == "true"){
-//					console.log("휴가가 신청되었습니다.");
-//				}
+//  				insert 성공여부에 따른 alert창 띄우기
+				if(rslt.result == "true"){
+					console.log("휴가가 신청되었습니다.");
+				}
  			});
 //  		}
  	}
