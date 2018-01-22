@@ -95,6 +95,13 @@
        <put-attribute name="body" value="/WEB-INF/views/attendance/vacation/vacationListAdmin.jsp" />  
    </definition>
    
+   <!-- [근태관리]-[휴가관리]-[휴가조회](관리자)-휴가신청현황 -->
+   <definition name="vacationProgressList" extends="base-definition">  
+       <put-attribute name="title" value="휴가신청현황" />
+       <put-attribute name="body" value="/WEB-INF/views/attendance/vacation/vacationProgressList.jsp" />  
+   </definition>
+   
+   
    <!-- [근태관리]-[휴가관리]-[휴가조회](사원) -->
    <definition name="vacationList" extends="base-definition">  
        <put-attribute name="title" value="휴가조회(사원)" />

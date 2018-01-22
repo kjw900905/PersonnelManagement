@@ -20,7 +20,20 @@ public class BusinessReqService {
 	private BusinessReqDao businessReqDao;
 	
 	private String PRE_VIEW_PATH = "/business/";
+
 	
+	//출장신청 사원정보조회
+	public List<HashMap<String,Object>> businessRequestEmpList() {
+		
+		List<HashMap<String,Object>> list = businessReqDao.businessRequestEmpList();
+		
+		logger.debug("service>>> " + list);
+		
+		return list;
+	}
+	
+	
+	//출장신청 insert
 	public int businessRequest(HashMap<String,String> map) {
 		
 		int list = businessReqDao.businessRequest(map);
