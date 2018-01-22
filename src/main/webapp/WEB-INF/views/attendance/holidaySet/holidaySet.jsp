@@ -13,6 +13,7 @@
 	});
 
 	$(document).on("click", "button[name=addTr]", function(){
+<<<<<<< HEAD
 		var addStaffText =  '<tr name="vacationOption">'+
 							'<td class="w3"><label class="fancy-checkbox-inline"><input type="checkbox" name="chk"><span></span></label></td>' +
 							'<td class="w10"><input type="text" class="form-control w_80" value="ÈÞ°¡" name="divide"></td>' +
@@ -195,7 +196,7 @@
 						<div class="panel-body mgu_15">
 							<form class="form-inline" name="f2" action="/spring/holidaySetDBInset.do" id="insertForm">
 								
-								<table class="table table-bordered" id="vacationOptionTable" style="980px;">
+								<table class="table table-bordered" id="vacationOptionTable">
    <!--                      <thead> -->
 		                           <colgroup>
 		                              <col width="3%">
