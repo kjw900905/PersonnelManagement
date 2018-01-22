@@ -1,12 +1,14 @@
 package com.example.spring.personnel.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.spring.personnel.service.ScheduleService;
 
@@ -28,22 +30,25 @@ public class ScheduleController {
 	
 	//사원 일정db
 	@RequestMapping(value="scheduleDb.ajax")
-	public @ResponseBody HashMap<String, String> scheduleDb(@RequestParam String emno){
+	public @ResponseBody List<String> scheduleDb(@RequestParam String emno){
 		
 		System.out.println("emno : " + emno);
 		
-		return null;
+		List<String> list = scheduleService.scheduleDb(emno);
+		
+		return list;
 	}
 	
 	//일정등록
 	@RequestMapping(value="scheduleInsert.do")
-	public int scheduleInsert(@RequestParam HashMap<String, Object> map) {
+	public @ResponseBody int scheduleInsert(@RequestParam HashMap<String, String> map) {
 		System.out.println("scheduleInsert(controller) In");
-		System.out.println("파라미터로 넘겨온 맵 : " + map);
+		System.out.println("파라미터map : " + map);
 		
-		int reult = scheduleService.scheduleInsert(map);
+		int result = scheduleService.scheduleInsert(map);
 		
-		return reult;
+		return result;
 	}
+	
 	
 }

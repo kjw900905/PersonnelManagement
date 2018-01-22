@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.example.spring.management.service.CommonService2;
+import com.example.spring.management.service.CommonCodeService;
 
 @Controller
-public class CommonController2 {
+public class CommonCodeController {
 
-	private static Logger logger = LoggerFactory.getLogger(CommonController2.class);
+	private static Logger logger = LoggerFactory.getLogger(CommonCodeController.class);
 
 	@Autowired
-	private CommonService2 commonService;
+	private CommonCodeService commonCodeService;
 
 	private String PRE_VIEW_PATH = "/";
 
@@ -32,7 +32,7 @@ public class CommonController2 {
 	@RequestMapping(value = "commonInsert.do")
 	public ModelAndView commonInsert(@RequestParam HashMap<String, String> paramMap) {
 
-		int result = commonService.commonInsert(paramMap);
+		int result = commonCodeService.commonInsert(paramMap);
 
 		ModelAndView mv = new ModelAndView();
 
@@ -49,7 +49,7 @@ public class CommonController2 {
 	@RequestMapping(value="commCodeCheck.do")
 	public @ResponseBody HashMap<String, String> commCodeCheck(@RequestParam(value = "commCode") String commCode) {
 
-		String checkValue = commonService.commCodeCheck(commCode);
+		String checkValue = commonCodeService.commCodeCheck(commCode);
 
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("commCode", checkValue);
@@ -80,8 +80,8 @@ public class CommonController2 {
 		paramMap.put("commonSearch",commonSearch);
 		
 
-		List<HashMap<String, Object>> list = commonService.commonList(paramMap);
-		List<HashMap<String, Integer>> pagingList = commonService.paging(paramMap);
+		List<HashMap<String, Object>> list = commonCodeService.commonList(paramMap);
+		List<HashMap<String, Integer>> pagingList = commonCodeService.paging(paramMap);
 
 		HashMap<String,List> map = new HashMap<String,List>();
 		
@@ -106,7 +106,7 @@ public class CommonController2 {
 	@RequestMapping(value="commonUpdate.do")
 	public ModelAndView commonUpdate(@RequestParam HashMap<String,Object> paramMap) {
 		
-		int result = commonService.commonUpdate(paramMap);
+		int result = commonCodeService.commonUpdate(paramMap);
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -122,7 +122,7 @@ public class CommonController2 {
 	@RequestMapping(value="commonDeleteCheck.do")
 	public @ResponseBody HashMap<String, Integer> commonDeleteCheck(@RequestParam(value = "commCode") String commCode) {
 
-		int listSize = commonService.commonDeleteCheck(commCode);
+		int listSize = commonCodeService.commonDeleteCheck(commCode);
 		
 		HashMap<String,Integer> map = new HashMap<String,Integer>();
 		map.put("listSize", listSize);
@@ -137,7 +137,7 @@ public class CommonController2 {
 	public ModelAndView commonDelete(@RequestParam(value="commCode") String commCode,
 			@RequestParam HashMap<String, Object> paramMap) {
 
-		int result = commonService.commonDelete(commCode);
+		int result = commonCodeService.commonDelete(commCode);
 
 		ModelAndView mv = new ModelAndView();
 
@@ -156,7 +156,7 @@ public class CommonController2 {
 	@RequestMapping(value="commonInfoInsert.do")
 	public ModelAndView commonInfoInsert(@RequestParam HashMap<String, String> paramMap) {
 
-		int result = commonService.commonInfoInsert(paramMap);
+		int result = commonCodeService.commonInfoInsert(paramMap);
 
 		ModelAndView mv = new ModelAndView();
 
@@ -172,7 +172,7 @@ public class CommonController2 {
 	@RequestMapping(value="commonInfoList.do")
 	public @ResponseBody List<HashMap<String, String>> commonInfoList(@RequestParam(value="commPrntCode") String commPrntCode) {
 
-		List<HashMap<String, String>> list = commonService.commonInfoList(commPrntCode);
+		List<HashMap<String, String>> list = commonCodeService.commonInfoList(commPrntCode);
 
 		return list;
 
@@ -192,7 +192,7 @@ public class CommonController2 {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("selectPageNum", selectPageNum);
 
-		List<HashMap<String, Integer>> pagingList = commonService.paging(paramMap);
+		List<HashMap<String, Integer>> pagingList = commonCodeService.paging(paramMap);
 
 		return pagingList;
 
