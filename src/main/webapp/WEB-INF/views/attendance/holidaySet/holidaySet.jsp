@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 
@@ -11,12 +11,14 @@
 	$(document).on("click", "button[name=addTr]", function(){
 		var addStaffText =  '<tr name="vacationOption">'+
 							'<td class="w3"><label class="fancy-checkbox-inline"><input type="checkbox" name="chk"><span></span></label></td>' +
-							'<td class="w10"><input type="text" class="form-control w_80" value="휴가"></td>' +
-							'<td class="w10"><input type="text" class="form-control w_80"></td>' +
-							'<td class="w20"><input type="text" class="form-control"></td>' +
-							'<td class="w10"><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
-							'<td class="w10"><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
-							'<td class="w37"><input type="text" class="form-control w_300"></td>' +
+							'<td class="w10"><input type="text" class="form-control w_80" value="휴가" name="divide"></td>' +
+							'<td class="w10"><input type="text" class="form-control w_80" name="code"></td>' +
+							'<td class="w20"><input type="text" class="form-control" name = "title"></td>' +
+							'<td class="w10"><label class="fancy-checkbox-inline"><input type="checkbox" name="AnnualLeaveReflectionCheckbox"><span></span></label></td>' +
+							'<input type="hidden" name="AnnualLeaveReflection">' +
+							'<td class="w10"><label class="fancy-checkbox-inline"><input type="checkbox" name="UseOrFailureCheckbox"><span></span></label></td>' +
+							'<input type="hidden" name="UseOrFailure">' +
+							'<td class="w37"><input type="text" class="form-control w_300" name="note"></td>' +
 							'</tr>';
 							
 		$("#vacationOptionTable #headTr").before(addStaffText);
@@ -50,42 +52,96 @@
 	function insertForm(){
 		$("#insertForm").submit();
 	}
-	
-	function tableToJson(){
-		var dataArray = new Array();
-		var title = document.getElementById("vacationOptionTable").value;  
-		var rowCount = $('#vacationOptionTable').length;
-		var mytable = document.getElementById("vacationOptionTable");
-		 
-		for(var i=0; i<rowCount; i++){
-		    var row = mytable.rows.item(i);
-		    var dataObj = new Object();
-		        for ( var j = 0; j<row.cells.length; j++ ) { 
-		            var col = row.cells.item(j);   
-		             if (col.firstChild.getAttribute('type') =="text"){   //텍스트일경우와 체크박스일경우 값을 다르게
-		                dataObj.question = col.firstChild.value;
-		            }else{
-		                dataObj.essential = col.firstChild.checked;  //체크박스의 경우 value값은 체크값이 아니기 때문
-		            }
-		        dataObj.title = title;
-		    }   
-		    dataArray.push(JSON.stringify(dataObj));   //데이터를 json 형식으로 만들어줌 stringify
-		}
-		
-		var result = {"'dataList'" : [dateArray]};
-		
-		var str='';
-		for(var i in result){
-		    if(result.hasOwnProperty(i)){
-		        str += i + ":[" + result[i]+"]";
-		    }
-		}
-		var dataParam = "{"+str+"}";
 
-		alert(dataParam);
+	function insertDB(formId){
+		var AnnualLeaveReflectionCheckbox = $("input[name='AnnualLeaveReflectionCheckbox']");
+		var UseOrFailureCheckbox = $("input[name='UseOrFailureCheckbox']");
+		var count = AnnualLeaveReflectionCheckbox.size();
+		
+		var AnnualLeaveReflectionCheckboxresult = $("input[name='AnnualLeaveReflectionCheckbox']").prop("checked");
+		var UseOrFailureCheckboxresult = $("input[name='UseOrFailureCheckbox']").prop("checked");
+		
+		var AnnualLeaveReflection = $("input[name='AnnualLeaveReflection']");
+		var UseOrFailure = $("input[name='UseOrFailure']");
+		
+		$("input[name='AnnualLeaveReflectionCheckbox']").val(AnnualLeaveReflectionCheckboxresult);
+		$("input[name='UseOrFailureCheckbox']").val(UseOrFailureCheckboxresult);
+		
+		//checkbox에 체크되어있으면 해당하는 hidden에 true값 넣어주고 아니면 false값 넣어줌.
+		for(var i = 0 ; i < count ; i++){
+			if(AnnualLeaveReflectionCheckbox.eq(i).is(":checked")){
+				AnnualLeaveReflection.eq(i).val('true');
+			}else{
+				AnnualLeaveReflection.eq(i).val('false');
+			}
+			
+			if(UseOrFailureCheckbox.eq(i).is(":checked")){
+				UseOrFailure.eq(i).val('true');
+			}else{
+				UseOrFailure.eq(i).val('false');
+			}
+		}
+		
+		
+		var json;
+		var obj = new Object();
+		var jsonObj = $("#" + formId).serializeArray();
+		var jobj = {};
+		var jArray = new Array();
+		
+		$(jsonObj).each(function(index, obj){
+
+			jobj[obj.name] = obj.value;
+			//index 0에 divide : 휴가  1에 code : 00 이렇게 들어감. 그래서 json 한세트에 6개 들어가서 6개씩  짤라줌.
+			//{"divide":"휴가","code":"00","title":"휴가(년차)","AnnualLeaveReflection":"false","UseOrFailure":"false","note":""} 6개 넣으면 이렇게 완성됨.
+			if((index+1) % 6 == 0 ){
+				jArray.push(jobj);
+				
+				//한번하면 초기화해줘야됨. 그래야 맨밑에있는값들로만 안들어감.
+				jobj = {};
+			}
+			
+			console.log(index + ":" + obj.name +":"+ obj.value);
+		});
+		
+		
+
+// 		for(var i = 0 ; i < jsonObj.length ; i++){
+// 			jArray[jsonObj[i]['name']] = jsonObj[i]['value'];
+// 		}
+
+		
+		$("#" + formId).ajaxForm({
+			
+			url:"/spring/holidaySetDBInset.ajax",
+			type:'GET',
+			data : jobj,
+			dataType:"JSON",
+			
+			success:function(data) {
+				
+				//window.opener.location.reload();
+				
+				if(data.success == "true") {
+					
+					alert("저장성공!");
+				}else {
+					
+					alert("중복된 급여대장이 있습니다.");
+				}
+				console.log("결과데이터 : "+ jsonObj);
+				console.log("결과데이터 : "+ JSON.stringify(jArray));
+		
+				self.close();
+			},
+			
+			error:function(jqXHR, textStatus, errorThrown){
+				alert("중복된 급여대장이 있습니다. \n" + textStatus + " : " + errorThrown);
+	            self.close();
+			}
+			
+		}).submit();
 	}
-	
-	
 	
 </script>
 
@@ -160,21 +216,24 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td class="w10"><input type="text" class="form-control w_80" value="휴기"></td>
-		                                 <td class="w10"><input type="text" class="form-control w_80" value="00"></td>
+		                                 <td class="w10"><input type="text" class="form-control w_80" value="휴가" name="divide"></td>
+		                                 <td class="w10"><input type="text" class="form-control w_80" value="00" name="code"></td>
 		                                 <td class="w20"><input type="text" value="휴가(년차)" class="form-control" name = "title"></td>
 		                                 <td class="w10">
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="AnnualLeaveReflection">
+		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+		                                 <input type="hidden" name="AnnualLeaveReflection">
 		                                 <td class="w10">
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="UseOrFailure">
+		                                       <input type="checkbox" name="UseOrFailureCheckbox">
+		                                       
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+		                                 <input type="hidden" name="UseOrFailure">
 		                                 <td class="w37"><input type="text" class="form-control w_300" name="note"></td>
 		                              </tr>
 		                              <tr>
@@ -184,22 +243,24 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td class="w10"><input type="text" class="form-control w_80" value="휴기"></td>
-		                                 <td><input type="text" class="form-control w_80" value="01"></td>
-		                                 <td><input type="text" value="생리휴가" class="form-control"></td>
+		                                 <td class="w10"><input type="text" class="form-control w_80" value="휴가" name="divide"></td>
+		                                 <td><input type="text" class="form-control w_80" value="01" name="code"></td>
+		                                 <td><input type="text" value="생리휴가" class="form-control" name = "title"></td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+		                                 <input type="hidden" name="AnnualLeaveReflection">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="UseOrFailureCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_300"></td>
+		                                 <input type="hidden" name="UseOrFailure">
+		                                 <td><input type="text" class="form-control w_300" name="note"></td>
 		                              </tr>
 		                              <tr>
 		                                 <td>
@@ -208,22 +269,24 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_80" value="휴기"></td>
-		                                 <td><input type="text" class="form-control w_80" value="02"></td>
-		                                 <td><input type="text" value="병가" class="form-control"></td>
+		                                 <td><input type="text" class="form-control w_80" value="휴가" name="divide"></td>
+		                                 <td><input type="text" class="form-control w_80" value="02" name="code"></td>
+		                                 <td><input type="text" value="병가" class="form-control" name = "title"></td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+		                                 <input type="hidden" name="AnnualLeaveReflection">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="UseOrFailureCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_300"></td>
+		                                 <input type="hidden" name="UseOrFailure">
+		                                 <td><input type="text" class="form-control w_300" name="note"></td>
 		                              </tr>
 		                              <tr>
 		                                 <td>
@@ -232,22 +295,24 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_80" value="휴기"></td>
-		                                 <td><input type="text" class="form-control w_80" value="03"></td>
-		                                 <td><input type="text" value="경조휴가" class="form-control"></td>
+		                                 <td><input type="text" class="form-control w_80" value="휴가" name="divide"></td>
+		                                 <td><input type="text" class="form-control w_80" value="03" name="code"></td>
+		                                 <td><input type="text" value="경조휴가" class="form-control" name = "title"></td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+		                                 <input type="hidden" name="AnnualLeaveReflection">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="UseOrFailureCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_300"></td>
+		                                 <input type="hidden" name="UseOrFailure">
+		                                 <td><input type="text" class="form-control w_300" name="note"></td>
 		                              </tr>
 		                              <tr>
 		                                 <td>
@@ -256,22 +321,24 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_80" value="휴기"></td>
-		                                 <td><input type="text" class="form-control w_80" value="04"></td>
-		                                 <td><input type="text" value="출산휴가" class="form-control"></td>
+		                                 <td><input type="text" class="form-control w_80" value="휴가" name="divide"></td>
+		                                 <td><input type="text" class="form-control w_80" value="04" name="code"></td>
+		                                 <td><input type="text" value="출산휴가" class="form-control" name = "title"></td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+		                                  <input type="hidden" name="AnnualLeaveReflection">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="UseOrFailureCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_300"></td>
+		                                 <input type="hidden" name="UseOrFailure">
+		                                 <td><input type="text" class="form-control w_300" name="note"></td>       
 		                              </tr>
 		                              <tr>
 		                                 <td>
@@ -280,27 +347,29 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_80" value="휴기"></td>
-		                                 <td><input type="text" class="form-control w_80" value="05"></td>
-		                                 <td><input type="text" value="포상휴가" class="form-control"></td>
+		                                 <td><input type="text" class="form-control w_80" value="휴가" name="divide"></td>
+		                                 <td><input type="text" class="form-control w_80" value="05" name="code"></td>
+		                                 <td><input type="text" value="포상휴가" class="form-control" name = "title"></td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="UseOrFailureCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_300"></td>
+		                                 <td><input type="text" class="form-control w_300" name="note"></td>
+		                                 <input type="hidden" name="AnnualLeaveReflection">
+		                                 <input type="hidden" name="UseOrFailure">
 		                              </tr>
 		                           </tbody>
 		                        </table>
 		                 
-		                        <button type="button" name="saveButton" class="btn btn-primary ftr" onClick="tableToJson()">저장</button>
+		                        <button type="button" name="saveButton" class="btn btn-primary ftr" onClick="insertDB('insertForm')">저장</button>
 							</form>
 						</div>
 					</div>	
