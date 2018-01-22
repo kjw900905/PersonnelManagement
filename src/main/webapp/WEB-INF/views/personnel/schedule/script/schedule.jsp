@@ -1,0 +1,142 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<script>
+	var emno = "1111111111";
+	var data = "";
+	
+	paging.ajaxSubmit("scheduleDb.ajax",{"emno":emno},function(rslt){
+		console.log("결과데이터 : " + JSON.stringify(rslt));
+		
+		calendarView(rslt); //캘린더함수호출
+	});//페이지 로딩시 사용자의 db 일정정보를 가져온다 
+
+
+	function calendarView(data){ //캘린더함수
+		$('#calendar').fullCalendar({
+			header : {
+				left : '',
+				center : 'title',
+				right : 'today prev,next'
+			},
+			lang : "ko", //한글패치
+			defaultDate : new Date(), //초기날짜
+			editable : false, //드래그사용여부
+			googleCalendarApiKey:"AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE", //구글api키값
+			eventSources : [{
+				//공휴일
+				googleCalendarId : "ko.south_korea#holiday@group.v.calendar.google.com",//구글캘린더 주소
+				className : "koHolidays",
+				color : "#FFFFFF",
+				textColor : "#FF0000"
+			}],
+			events : data,
+			eventClick : function(calEvent, jsEvent, view){
+				/* alert('Event: ' + calEvent.title);
+		        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+		        alert('View: ' + view.name); */
+		        if(calEvent.url != null){
+		        	return false;
+		        }
+		        alert(calEvent.title);
+		        $(this).attr("data-toggle","modal");
+		        $(this).attr("data-target","#viewModal");
+		        
+			},//일정상세보기
+			/* eventMouseover : function(event, jsEvent, view){
+				//alert("mouseover");
+			},//일정삭제 */
+			dayClick: function(date, jsEvent, view) {
+	
+		        /* alert('Clicked on: ' + date.format());
+	
+		        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+	
+		        alert('Current view: ' + view.name); */
+	
+		        $("table tr td.fc-day,table tr td.fc-day-top").attr("data-toggle","modal");
+				$("table tr td.fc-day,table tr td.fc-day-top").attr("data-target","#insertModal");
+	
+		    }//일정등록
+		});
+		
+		mouseMove(); //마우스이벤트
+		
+		//왼쪽버튼 클릭시 
+		$("button.fc-prev-button").click(function(){
+			mouseMove();
+		});
+		
+		//왼쪽버튼 클릭시 
+		$("button.fc-next-button").click(function(){
+			mouseMove();
+		});
+		
+		//today버튼 클릭시 
+		$("button.fc-today-button").click(function(){
+			mouseMove();
+		});
+		
+		/* $(function() {
+		    $().datepicker();
+		});//insert 날짜선택  */
+		
+	}//calendarView
+	
+	function mouseMove(){
+		$("table tr td.fc-day,table tr td.fc-day-top").on('mouseover', function() {
+			color = $(this).css('background-color');
+			$(this).css({
+				'background-color' : '#bbe1fd',
+				'opacity' : '0.3'
+			});
+		});
+		$("table tr td.fc-day,table tr td.fc-day-top").on('mouseout', function() {
+			$(this).css({
+				'background-color' : color,
+				'opacity' : '1'
+			});
+		});//마우스 이벤트
+	}
+	
+	//insert 달력
+	$(function() {
+		$('#startDate').datetimepicker({ //시작날짜 달력
+			viewMode : 'days',
+			format : 'YYYY-MM-DD'
+		});
+		$('#endDate').datetimepicker({ //종료날짜 달력
+			viewMode : 'days',
+			format : 'YYYY-MM-DD'
+		});
+	});//달력
+	
+	//insert 시간선택
+	$("#startTime").timepicker({
+		step: 30,            //시간간격 : 30분
+		timeFormat: "H:i"    //시간:분 으로표시
+	});
+	$("#endTime").timepicker({
+		step: 30,            //시간간격 : 30분
+		timeFormat: "H:i"    //시간:분 으로표시
+	});
+	
+	//일정등록 저장버튼클릭시
+	$("#insertBtn").click(function(){
+		var url = "/spring/scheduleInsert.do";
+		var frim = $("#insertForm").attr("id");
+		
+		if(confirm("저장하시겠습니까?") == true){
+			paging.ajaxFormSubmit(url,"insertForm", function(result){
+				console.log("result : " + result);
+				if(result == true){
+					alert("저장되었습니다");
+					location.href="/spring/scheduleView.do";
+				}else{
+					alert("저장실패. 다시 입력해주세요");
+				}
+			});
+		}else{
+			return false;
+		}
+	});
+</script>
