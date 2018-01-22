@@ -13,7 +13,6 @@
 	});
 
 	$(document).on("click", "button[name=addTr]", function(){
-<<<<<<< HEAD
 		var addStaffText =  '<tr name="vacationOption">'+
 							'<td class="w3"><label class="fancy-checkbox-inline"><input type="checkbox" name="chk"><span></span></label></td>' +
 							'<td class="w10"><input type="text" class="form-control w_80" value="휴가" name="divide"></td>' +
@@ -24,17 +23,6 @@
 							'<td class="w10"><label class="fancy-checkbox-inline"><input type="checkbox" name="UseOrFailureCheckbox"><span></span></label></td>' +
 							'<input type="hidden" name="UseOrFailure">' +
 							'<td class="w37"><input type="text" class="form-control w_300" name="note"></td>' +
-=======
-		var addStaffText =  "<tr name='vacationOption' style='display:table;width:100%;table-layout:fixed;'>"+
-							'<td><label class="fancy-checkbox-inline"><input type="checkbox" name="chk"><span></span></label></td>' +
-							'<td><input type="text" class="form-control" value="휴가"></td>' +
-							'<td><input type="text" class="form-control"></td>' +
-							'<td><input type="text" class="form-control"></td>' +
-							'<td><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
-							'<td><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
-							'<td><input type="text" class="form-control"></td>' +
->>>>>>> origin/���깆��
-							'</tr>';
 							
 		$("#vacationOptionTable #headTr").before(addStaffText);
 	});
