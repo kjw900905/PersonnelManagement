@@ -20,8 +20,8 @@ public class CommonCodeService {
 
 	private static Logger logger = LoggerFactory.getLogger(CommonCodeService.class);
 	
-	@Resource(name="CommonDao2")
-	private CommonCodeDao commonDao;
+	@Resource(name="CommonCodeDao")
+	private CommonCodeDao commonCodeDao;
 	
 	int postNum;
 	int pageNum;
@@ -45,7 +45,7 @@ public class CommonCodeService {
 		paramMap.put("commCodeUpdt", "--------------");
 		paramMap.put("commDelYn", "N");
 		
-		int result = commonDao.commonInsert(paramMap);
+		int result = commonCodeDao.commonInsert(paramMap);
 		
 		
 		return result;
@@ -55,7 +55,7 @@ public class CommonCodeService {
 	
 	public String commCodeCheck(String commCode) {
 
-		List<String> list = commonDao.commCodeCheck(commCode);
+		List<String> list = commonCodeDao.commCodeCheck(commCode);
 		
 		String checkValue = "";
 		
@@ -77,7 +77,7 @@ public class CommonCodeService {
 	
 	public List<HashMap<String,Object>> commonList(HashMap<String,Object> paramMap){
 		
-		int allPostNum = commonDao.commAllPostNum(paramMap);
+		int allPostNum = commonCodeDao.commAllPostNum(paramMap);
 		int postNum = this.postNum;
 		int pageNum = this.pageNum;
 		int selectPageNum = Integer.parseInt((String)paramMap.get("selectPageNum"));
@@ -96,7 +96,7 @@ public class CommonCodeService {
 		paramMap.put("postNum", postNum);
 		
 		
-		List<HashMap<String,Object>> list = commonDao.commonList(paramMap);
+		List<HashMap<String,Object>> list = commonCodeDao.commonList(paramMap);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 		Date date = new Date();
@@ -129,7 +129,7 @@ public class CommonCodeService {
 		paramMap.put("commCode",commCode);
 		paramMap.put("commCodeUpdt",commCodeUpdt);
 		
-		int result = commonDao.commonUpdate(paramMap);
+		int result = commonCodeDao.commonUpdate(paramMap);
 		
 		return result;
 		
@@ -141,7 +141,7 @@ public class CommonCodeService {
 		
 		int commCode = Integer.parseInt(param);
 		
-		List<HashMap<String,Integer>> list = commonDao.commonDeleteCheck(commCode);
+		List<HashMap<String,Integer>> list = commonCodeDao.commonDeleteCheck(commCode);
 		
 		int listSize = list.size();
 		
@@ -155,7 +155,7 @@ public class CommonCodeService {
 		
 		int commCode = Integer.parseInt(param);
 		
-		int result = commonDao.commonDelete(commCode);
+		int result = commonCodeDao.commonDelete(commCode);
 		
 		return result;
 		
@@ -173,7 +173,7 @@ public class CommonCodeService {
 		paramMap.put("deptUpdtCode", "----");
 		paramMap.put("commDelYn", "N");
 		
-		int result = commonDao.commonInfoInsert(paramMap);
+		int result = commonCodeDao.commonInfoInsert(paramMap);
 		
 		return result;
 		
@@ -184,7 +184,7 @@ public class CommonCodeService {
 		
 		int commPrntCode = Integer.parseInt(param);
 		
-		List<HashMap<String,String>> list = commonDao.commonInfoList(commPrntCode);
+		List<HashMap<String,String>> list = commonCodeDao.commonInfoList(commPrntCode);
 		
 		return list;
 		
@@ -194,7 +194,7 @@ public class CommonCodeService {
 	
 	public int commAllPostNum(HashMap<String,Object> map) {
 		
-		int allPostNum = commonDao.commAllPostNum(map);
+		int allPostNum = commonCodeDao.commAllPostNum(map);
 		
 		return allPostNum;
 		
@@ -208,7 +208,7 @@ public class CommonCodeService {
 		List<HashMap<String,Integer>> list = new ArrayList<HashMap<String,Integer>>(); 
 		
 		
-		int allPostNum = commonDao.commAllPostNum(paramMap);
+		int allPostNum = commonCodeDao.commAllPostNum(paramMap);
 		int postNum = this.postNum;
 		int pageNum = this.pageNum;
 		int selectPageNum = Integer.parseInt((String)paramMap.get("selectPageNum"));
