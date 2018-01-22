@@ -1,315 +1,315 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ìú¥Í∞ÄÌï≠Î™©ÏÑ§Ï†ï</title>
 </head>
 
 <script>
-	$(function() { //Ω∫≈©∑—πŸ css
-		$('#vacationOptionTable').children('thead').css('width','calc(100% - 1em)');
-	});
+   $(function() { //Ïä§ÌÅ¨Î°§Î∞î css
+      $('#vacationOptionTable').children('thead').css('width','calc(100% - 1em)');
+   });
 
-	$(document).on("click", "button[name=addTr]", function(){
-		var addStaffText =  "<tr name='vacationOption' style='display:table;width:100%;table-layout:fixed;'>"+
-							'<td><label class="fancy-checkbox-inline"><input type="checkbox" name="chk"><span></span></label></td>' +
-							'<td><input type="text" class="form-control" value="»ﬁ∞°"></td>' +
-							'<td><input type="text" class="form-control"></td>' +
-							'<td><input type="text" class="form-control"></td>' +
-							'<td><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
-							'<td><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
-							'<td><input type="text" class="form-control"></td>' +
-							'</tr>';
-							
-		$("#vacationOptionTable #headTr").before(addStaffText);
-	});
-	
-	$(document).on("click", "button[name=deleteTr]", function(){
-		var $obj = $("input[name='chk']");
-		var checkCount = $obj.size();
-		
-		for(var i = 0 ; i < checkCount ; i++){
-			if($obj.eq(i).is(":checked")){
-				$obj.eq(i).parent().parent().parent().remove();
-			}
-		}
-	});
-	
-	function selectAll(){
-		var $obj = $("input[name='selectAll_chk']");
-		var $obj2 = $("input[name='chk']");
-		var $obj3 = $("input[name='notDeleteChk']");
-		
-		if($obj.is(":checked")){
-			$obj2.prop("checked", true);
-			$obj3.prop("checked", true);
-		}else{
-			$obj2.prop("checked", false);
-			$obj3.prop("checked", false);
-		}
-	}
-	
-	function insertForm(){
-		$("#insertForm").submit();
-	}
-	
-	function tableToJson(){
-		var dataArray = new Array();
-		var title = document.getElementById("vacationOptionTable").value;  
-		var rowCount = $('#vacationOptionTable').length;
-		var mytable = document.getElementById("vacationOptionTable");
-		 
-		for(var i=0; i<rowCount; i++){
-		    var row = mytable.rows.item(i);
-		    var dataObj = new Object();
-		        for ( var j = 0; j<row.cells.length; j++ ) { 
-		            var col = row.cells.item(j);   
-		             if (col.firstChild.getAttribute('type') =="text"){   //≈ÿΩ∫∆Æ¿œ∞ÊøÏøÕ √º≈©π⁄Ω∫¿œ∞ÊøÏ ∞™¿ª ¥Ÿ∏£∞‘
-		                dataObj.question = col.firstChild.value;
-		            }else{
-		                dataObj.essential = col.firstChild.checked;  //√º≈©π⁄Ω∫¿« ∞ÊøÏ value∞™¿∫ √º≈©∞™¿Ã æ∆¥œ±‚ ∂ßπÆ
-		            }
-		        dataObj.title = title;
-		    }   
-		    dataArray.push(JSON.stringify(dataObj));   //µ•¿Ã≈Õ∏¶ json «¸Ωƒ¿∏∑Œ ∏∏µÈæÓ¡‹ stringify
-		}
-		
-		var result = {"'dataList'" : [dateArray]};
-		
-		var str='';
-		for(var i in result){
-		    if(result.hasOwnProperty(i)){
-		        str += i + ":[" + result[i]+"]";
-		    }
-		}
-		var dataParam = "{"+str+"}";
+   $(document).on("click", "button[name=addTr]", function(){
+      var addStaffText =  "<tr name='vacationOption' style='display:table;width:100%;table-layout:fixed;'>"+
+                     '<td><label class="fancy-checkbox-inline"><input type="checkbox" name="chk"><span></span></label></td>' +
+                     '<td><input type="text" class="form-control" value="Ìú¥Í∞Ä"></td>' +
+                     '<td><input type="text" class="form-control"></td>' +
+                     '<td><input type="text" class="form-control"></td>' +
+                     '<td><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
+                     '<td><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
+                     '<td><input type="text" class="form-control"></td>' +
+                     '</tr>';
+                     
+      $("#vacationOptionTable #headTr").before(addStaffText);
+   });
+   
+   $(document).on("click", "button[name=deleteTr]", function(){
+      var $obj = $("input[name='chk']");
+      var checkCount = $obj.size();
+      
+      for(var i = 0 ; i < checkCount ; i++){
+         if($obj.eq(i).is(":checked")){
+            $obj.eq(i).parent().parent().parent().remove();
+         }
+      }
+   });
+   
+   function selectAll(){
+      var $obj = $("input[name='selectAll_chk']");
+      var $obj2 = $("input[name='chk']");
+      var $obj3 = $("input[name='notDeleteChk']");
+      
+      if($obj.is(":checked")){
+         $obj2.prop("checked", true);
+         $obj3.prop("checked", true);
+      }else{
+         $obj2.prop("checked", false);
+         $obj3.prop("checked", false);
+      }
+   }
+   
+   function insertForm(){
+      $("#insertForm").submit();
+   }
+   
+   function tableToJson(){
+      var dataArray = new Array();
+      var title = document.getElementById("vacationOptionTable").value;  
+      var rowCount = $('#vacationOptionTable').length;
+      var mytable = document.getElementById("vacationOptionTable");
+       
+      for(var i=0; i<rowCount; i++){
+          var row = mytable.rows.item(i);
+          var dataObj = new Object();
+              for ( var j = 0; j<row.cells.length; j++ ) { 
+                  var col = row.cells.item(j);   
+                   if (col.firstChild.getAttribute('type') =="text"){   //ÌÖçÏä§Ìä∏ÏùºÍ≤ΩÏö∞ÏôÄ Ï≤¥ÌÅ¨Î∞ïÏä§ÏùºÍ≤ΩÏö∞ Í∞íÏùÑ Îã§Î•¥Í≤å
+                      dataObj.question = col.firstChild.value;
+                  }else{
+                      dataObj.essential = col.firstChild.checked;  //Ï≤¥ÌÅ¨Î∞ïÏä§Ïùò Í≤ΩÏö∞ valueÍ∞íÏùÄ Ï≤¥ÌÅ¨Í∞íÏù¥ ÏïÑÎãàÍ∏∞ ÎïåÎ¨∏
+                  }
+              dataObj.title = title;
+          }   
+          dataArray.push(JSON.stringify(dataObj));   //Îç∞Ïù¥ÌÑ∞Î•º json ÌòïÏãùÏúºÎ°ú ÎßåÎì§Ïñ¥Ï§å stringify
+      }
+      
+      var result = {"'dataList'" : [dateArray]};
+      
+      var str='';
+      for(var i in result){
+          if(result.hasOwnProperty(i)){
+              str += i + ":[" + result[i]+"]";
+          }
+      }
+      var dataParam = "{"+str+"}";
 
-		alert(dataParam);
-	}
-	
-	
-	
+      alert(dataParam);
+   }
+   
+   
+   
 </script>
 
 <body>
-	<!-- MAIN -->
-		<div class="main">
-			<!-- MAIN CONTENT -->
-			<div class="main-content">
-				<div class="container-fluid">
-					<h3 class="page-title">»ﬁ∞°«◊∏Òº≥¡§</h3>
-					<!-- OVERVIEW -->
-						
-					<div class="panel panel-headline">
-						<div class="panel-body">
-							<form class="form-inline" name="searchForm">
-								<strong class="pdu_8 ftl">±Ÿ≈¬±∏∫–</strong>
-								<select name="attendanceDivision" class="w_120 mgl_8 mgu_8">
-									<option value="vacation">»ﬁ∞°</option>
-								</select>
-							
-								<span class="ftr">
-									<button type="button" class="btn btn-primary" onClick="">∞Àªˆ</button>
-								</span>
-							</form>
-						</div>
-					</div>
+   <!-- MAIN -->
+      <div class="main">
+         <!-- MAIN CONTENT -->
+         <div class="main-content">
+            <div class="container-fluid">
+               <h3 class="page-title">Ìú¥Í∞ÄÌï≠Î™©ÏÑ§Ï†ï</h3>
+               <!-- OVERVIEW -->
+                  
+               <div class="panel panel-headline">
+                  <div class="panel-body">
+                     <form class="form-inline" name="searchForm">
+                        <strong class="pdu_8 ftl">Í∑ºÌÉúÍµ¨Î∂Ñ</strong>
+                        <select name="attendanceDivision" class="w_120 mgl_8 mgu_8">
+                           <option value="vacation">Ìú¥Í∞Ä</option>
+                        </select>
+                     
+                        <span class="ftr">
+                           <button type="button" class="btn btn-primary" onClick="">Í≤ÄÏÉâ</button>
+                        </span>
+                     </form>
+                  </div>
+               </div>
 
-					<!-- TABLE STRIPED -->
-					<div class="panel panel-headline">
-						<div class="boxArea text-center">
-							<strong class="pdu_8 ftl">»ﬁ∞°«◊∏Òº≥¡§ </strong>
-							<span class="ftr">
-								<button type="button" name="addTr" class="btn btn-primary" onClick="">«‡√ﬂ∞°</button>
-								<button type="button" name="deleteTr" class="btn btn-primary" onClick="">«‡ªË¡¶</button>
-							</span>
-						</div>	
-						<div class="panel-body mgu_15">
-							<form class="form-inline" name="f2" action="/spring/holidaySetDBInset.do" id="insertForm">
-								
-								<table class="table table-bordered" id="vacationOptionTable">
+               <!-- TABLE STRIPED -->
+               <div class="panel panel-headline">
+                  <div class="boxArea text-center">
+                     <strong class="pdu_8 ftl">Ìú¥Í∞ÄÌï≠Î™©ÏÑ§Ï†ï </strong>
+                     <span class="ftr">
+                        <button type="button" name="addTr" class="btn btn-primary" onClick="">ÌñâÏ∂îÍ∞Ä</button>
+                        <button type="button" name="deleteTr" class="btn btn-primary" onClick="">ÌñâÏÇ≠Ï†ú</button>
+                     </span>
+                  </div>   
+                  <div class="panel-body mgu_15">
+                     <form class="form-inline" name="f2" action="/spring/holidaySetDBInset.do" id="insertForm">
+                        
+                        <table class="table table-bordered" id="vacationOptionTable">
    <!--                      <thead> -->
-		                           <colgroup>
-		                              <col width="3%">
-		                              <col width="10%">
-		                              <col width="10%">
-		                              <col width="20%">
-		                              <col width="10%">
-		                              <col width="10%">
-		                              <col width="37%">
-		                           </colgroup>
-		                           <thead style="display:table;width:100%;table-layout:fixed;">
-		                              <tr>
-		                                 <th>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="selectAll_chk" onClick="selectAll()">
-		                                       <span></span>
-		                                    </label>
-		                                 </th>
-		                                 <th class="text-center"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>±∏∫–</th>
-		                                 <th class="text-center"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>ƒ⁄µÂ</th>
-		                                 <th class="text-center"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>∏Ìƒ™</th>
-		                                 <th class="text-center">ø¨¬˜π›øµ</th>
-		                                 <th class="text-center">ªÁøÎø©∫Œ</th>
-		                                 <th class="text-center">∫Ò∞Ì</th>
-		                              </tr>
-		                           </thead>
-		                           <tbody style="display:block;height:200px;overflow:auto;">
-		                              <tr id="headTr" style="display:table;width:100%;table-layout:fixed;">
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="notDeleteChk">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td><input type="text" class="form-control" value="»ﬁ±‚"></td>
-		                                 <td><input type="text" class="form-control" value="00"></td>
-		                                 <td><input type="text" value="»ﬁ∞°(≥‚¬˜)" class="form-control" name = "title"></td>
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="AnnualLeaveReflection">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="UseOrFailure">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td><input type="text" class="form-control" name="note"></td>
-		                              </tr>
-		                              <tr style="display:table;width:100%;table-layout:fixed;">
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="notDeleteChk">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td><input type="text" class="form-control" value="»ﬁ±‚"></td>
-		                                 <td><input type="text" class="form-control" value="01"></td>
-		                                 <td><input type="text" value="ª˝∏Æ»ﬁ∞°" class="form-control"></td>
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td><input type="text" class="form-control"></td>
-		                              </tr>
-		                              <tr style="display:table;width:100%;table-layout:fixed;">
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="notDeleteChk">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td><input type="text" class="form-control" value="»ﬁ±‚"></td>
-		                                 <td><input type="text" class="form-control" value="02"></td>
-		                                 <td><input type="text" value="∫¥∞°" class="form-control"></td>
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td><input type="text" class="form-control"></td>
-		                              </tr>
-		                              <tr style="display:table;width:100%;table-layout:fixed;">
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="notDeleteChk">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td><input type="text" class="form-control" value="»ﬁ±‚"></td>
-		                                 <td><input type="text" class="form-control" value="03"></td>
-		                                 <td><input type="text" value="∞Ê¡∂»ﬁ∞°" class="form-control"></td>
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td><input type="text" class="form-control"></td>
-		                              </tr>
-		                              <tr style="display:table;width:100%;table-layout:fixed;">
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="notDeleteChk">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td><input type="text" class="form-control" value="»ﬁ±‚"></td>
-		                                 <td><input type="text" class="form-control" value="04"></td>
-		                                 <td><input type="text" value="√‚ªÍ»ﬁ∞°" class="form-control"></td>
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td><input type="text" class="form-control"></td>
-		                              </tr>
-		                              <tr style="display:table;width:100%;table-layout:fixed;">
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="notDeleteChk">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td><input type="text" class="form-control" value="»ﬁ±‚"></td>
-		                                 <td><input type="text" class="form-control" value="05"></td>
-		                                 <td><input type="text" value="∆˜ªÛ»ﬁ∞°" class="form-control"></td>
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td>
-		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
-		                                       <span></span>
-		                                    </label>
-		                                 </td>
-		                                 <td><input type="text" class="form-control"></td>
-		                              </tr>
-		                           </tbody>
-		                        </table>
-		                 
-		                        <button type="button" name="saveButton" class="btn btn-primary ftr" onClick="tableToJson()">¿˙¿Â</button>
-							</form>
-						</div>
-					</div>	
-				</div>
-			</div>
-		</div>
+                                 <colgroup>
+                                    <col width="3%">
+                                    <col width="10%">
+                                    <col width="10%">
+                                    <col width="20%">
+                                    <col width="10%">
+                                    <col width="10%">
+                                    <col width="37%">
+                                 </colgroup>
+                                 <thead style="display:table;width:100%;table-layout:fixed;">
+                                    <tr>
+                                       <th>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="selectAll_chk" onClick="selectAll()">
+                                             <span></span>
+                                          </label>
+                                       </th>
+                                       <th class="text-center"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>Íµ¨Î∂Ñ</th>
+                                       <th class="text-center"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>ÏΩîÎìú</th>
+                                       <th class="text-center"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>Î™ÖÏπ≠</th>
+                                       <th class="text-center">Ïó∞Ï∞®Î∞òÏòÅ</th>
+                                       <th class="text-center">ÏÇ¨Ïö©Ïó¨Î∂Ä</th>
+                                       <th class="text-center">ÎπÑÍ≥†</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody style="display:block;height:200px;overflow:auto;">
+                                    <tr id="headTr" style="display:table;width:100%;table-layout:fixed;">
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="notDeleteChk">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td><input type="text" class="form-control" value="Ìú¥Í∏∞"></td>
+                                       <td><input type="text" class="form-control" value="00"></td>
+                                       <td><input type="text" value="Ìú¥Í∞Ä(ÎÖÑÏ∞®)" class="form-control" name = "title"></td>
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="AnnualLeaveReflection">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="UseOrFailure">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td><input type="text" class="form-control" name="note"></td>
+                                    </tr>
+                                    <tr style="display:table;width:100%;table-layout:fixed;">
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="notDeleteChk">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td><input type="text" class="form-control" value="Ìú¥Í∏∞"></td>
+                                       <td><input type="text" class="form-control" value="01"></td>
+                                       <td><input type="text" value="ÏÉùÎ¶¨Ìú¥Í∞Ä" class="form-control"></td>
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td><input type="text" class="form-control"></td>
+                                    </tr>
+                                    <tr style="display:table;width:100%;table-layout:fixed;">
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="notDeleteChk">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td><input type="text" class="form-control" value="Ìú¥Í∏∞"></td>
+                                       <td><input type="text" class="form-control" value="02"></td>
+                                       <td><input type="text" value="Î≥ëÍ∞Ä" class="form-control"></td>
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td><input type="text" class="form-control"></td>
+                                    </tr>
+                                    <tr style="display:table;width:100%;table-layout:fixed;">
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="notDeleteChk">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td><input type="text" class="form-control" value="Ìú¥Í∏∞"></td>
+                                       <td><input type="text" class="form-control" value="03"></td>
+                                       <td><input type="text" value="Í≤ΩÏ°∞Ìú¥Í∞Ä" class="form-control"></td>
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td><input type="text" class="form-control"></td>
+                                    </tr>
+                                    <tr style="display:table;width:100%;table-layout:fixed;">
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="notDeleteChk">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td><input type="text" class="form-control" value="Ìú¥Í∏∞"></td>
+                                       <td><input type="text" class="form-control" value="04"></td>
+                                       <td><input type="text" value="Ï∂úÏÇ∞Ìú¥Í∞Ä" class="form-control"></td>
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td><input type="text" class="form-control"></td>
+                                    </tr>
+                                    <tr style="display:table;width:100%;table-layout:fixed;">
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="notDeleteChk">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td><input type="text" class="form-control" value="Ìú¥Í∏∞"></td>
+                                       <td><input type="text" class="form-control" value="05"></td>
+                                       <td><input type="text" value="Ìè¨ÏÉÅÌú¥Í∞Ä" class="form-control"></td>
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td>
+                                          <label class="fancy-checkbox-inline">
+                                             <input type="checkbox" name="">
+                                             <span></span>
+                                          </label>
+                                       </td>
+                                       <td><input type="text" class="form-control"></td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                       
+                              <button type="button" name="saveButton" class="btn btn-primary ftr" onClick="tableToJson()">Ï†ÄÏû•</button>
+                     </form>
+                  </div>
+               </div>   
+            </div>
+         </div>
+      </div>
 </body>
 </html>

@@ -25,7 +25,7 @@
 	</select>
 	
 	<select id="exi_checkbox_Choice" parameterType="HashMap" resultType="HashMap">
-		SELECT S.EMP_EMNO,SEMP_SAL,E.EMP_NAME
+		SELECT S.EMP_EMNO,SEMP_SAL,E.EMP_NAME,S.SEMP_TAMT,S.SEMP_FDEX,S.SEMP_CMC
 		FROM SAL_EMPLOYEE S, EMPLOYEE E WHERE S.EMP_EMNO = E.EMP_EMNO AND  (
 		
 		<foreach collection="list" item="item" index="index" separator= "or">
@@ -61,10 +61,23 @@
 		
 		<foreach collection="empcode" item="item" index="index">
 				
-				 #{item}
+			#{item}
 				
 		</foreach>
 		
 	</update>
+	
+	<update id="exi_empcode_update">
+	
+		UPDATE SAL_EMPLOYEE 
+			SET  SEMP_SAL = #{sal}
+				,SEMP_TAMT = #{tam}
+				,SEMP_FDEX = #{fde}
+				,SEMP_CMC = #{cmc}
+				
+			WHERE EMP_EMNO =  #{code}
+		
+	</update>
+	
 
 </mapper>

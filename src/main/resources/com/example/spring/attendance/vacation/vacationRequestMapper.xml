@@ -1,0 +1,37 @@
+<!--?xml version="1.0" encoding="UTF-8"? -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 휴가 sql -->
+<mapper namespace="vacation">
+	
+	<insert id="vacationRequestInsert" parameterType="HashMap">
+	/* vacationRequest Insert(휴가 신청) */
+	
+	INSERT INTO VAC_STATEMENT
+	(
+		EMP_EMNO,					#사원번호
+		ATTENDANCE_C,				#근태코드
+		VAST_C,						#휴가코드
+		VAST_CRT_DATE,				#휴가신청일자
+		VAST_START_DATE,			#휴가시작날짜
+		VAST_END_DATE,				#휴가종료날짜
+		VAST_VAC_UD,				#휴가일수
+		VAST_CONT,					#휴가사유
+		VAST_PROGRESS_SITUATION, 		#전자결재상태
+		VAST_DEL_YN					#삭제여부
+	) VALUES (
+		#{empEmno},					#사원번호
+		'W6',						#근태코드
+		#{vastC},					#휴가코드
+		(SELECT REPLACE(#{vastCrtDate},'-','')),		#휴가신청일자(날짜표기문자열,바꿀문자,바껴서보여줄문자)
+		(SELECT REPLACE(#{vastStartDate},'-','')),		#휴가시작날짜
+		(SELECT REPLACE(#{vastEndDate},'-','')),		#휴가종료날짜
+		#{vastVacUd},									#휴가일수
+		#{vastCont},									#휴가사유
+		#{vastProgressSituation},		
+		'N'												#삭제여부
+	)
+	
+	</insert>
+
+</mapper>

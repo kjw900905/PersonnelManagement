@@ -23,11 +23,17 @@
  				console.log("ajaxFormSubmit -> callback");
  				console.log("결과데이터:"+JSON.stringify(rslt));
  			
+<<<<<<< HEAD
+//  				insert 성공여부에 따른 alert창 띄우기
+				if(rslt.result == "true"){
+					console.log("휴가가 신청되었습니다.");
+=======
  				//insert 성공여부에 따른 alert창 띄우기
 				if(rslt.success == "Y"){
 					alert("출장 신청이 완료되었습니다.");
 				}else{
 					alert("출장 신청 실패");
+>>>>>>> origin/유성실
 				}
  			});
  		}
