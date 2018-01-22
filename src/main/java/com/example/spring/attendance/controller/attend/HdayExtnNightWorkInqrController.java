@@ -20,7 +20,6 @@ public class HdayExtnNightWorkInqrController {
 	@Autowired
 	HdayExtnNightWorkInqrService hdayExtnNightWorkInqrService;
 	
-	//출결관리 - 휴일/연장/야간근무조회  첫화면
 	@RequestMapping(value="/hdayExtnNightWorkInqr")
 	public String hdayExtnNightWorkInqr() {
 		return "hdayExtnNightWorkInqr";
@@ -35,6 +34,7 @@ public class HdayExtnNightWorkInqrController {
 		logger.debug("empEmno : " + map.get("empEmno"));
 		
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("resultList", hdayExtnNightWorkInqrService.readHdayExtnNightWorkInqr(map));
 		mv.setViewName("hdayExtnNightWorkInqr");
 		return mv;
 	}
