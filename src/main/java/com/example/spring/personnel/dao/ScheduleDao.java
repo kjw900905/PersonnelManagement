@@ -16,10 +16,11 @@ public class ScheduleDao {
 	private String namespace = "schedule.";
 	
 	//일정등록 dao
-	public int scheduleInsert(HashMap<String, Object> map) {
+	public int scheduleInsert(HashMap<String, String> map) {
 		System.out.println("scheduleInsert(dao) in");
+		System.out.println("map(dao) : " + map);
 		
-		int result = 0;//(int)this.sql.insert(namespace+"scheduleInsert",map);
+		int result = (int)this.sql.insert(namespace+"scheduleInsert",map);
 		
 		return result;
 	}

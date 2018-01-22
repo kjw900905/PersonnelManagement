@@ -8,12 +8,13 @@
 <!-- fullcalendar -->
 <link href="/spring/resources/common/fullcalendar/css/fullcalendar.min.css" rel="stylesheet"/>
 <link href="/spring/resources/common/fullcalendar/css/fullcalendar.print.min.css" rel="stylesheet" media="print"/>
+<link href="/spring/resources/common/fullcalendar/css/jquery.timepicker.css" rel="stylesheet"/><!-- 시간선택 -->
 <script src="/spring/resources/common/fullcalendar/js/moment.min.js"></script>
-<script src="/spring/resources/common/fullcalendar/js/jquery.min.js"></script>
+<!-- <script src="/spring/resources/common/fullcalendar/js/jquery.min.js"></script> -->
 <script src="/spring/resources/common/fullcalendar/js/fullcalendar.min.js"></script>
 <script src="/spring/resources/common/fullcalendar/js/ko.js"></script><!-- 한글패치 -->
 <script src="/spring/resources/common/fullcalendar/js/gcal.js"></script><!-- 구글캘린더 -->
-
+<script src="/spring/resources/common/fullcalendar/js/jquery.timepicker.min.js"></script><!-- 시간선택 -->
 </head>
 <body>
 	<!-- MAIN -->
@@ -55,11 +56,13 @@
 					<div class="row">
 						<div class="col-md-10" style="padding-top:20px;">
 							<form id="insertForm" method="post">
-								<p><input type="hidden" name="emno">
+								<p><input type="hidden" value="1111111111" name="emno">
 								제목<p><input type="text" name="title">
 								<p>내용<p><textarea rows="7" cols="70" name="content" style="resize:none"></textarea>
-								<p>날짜<p><input type="text" id="datepicker" name="startDate">
-											~<input type="text" id="datepicker" name="endDate">
+								<p>날짜<p><input type="text" size=8 id="startDate" name="startDate">
+										<input type="text" name="startTime" value="" placeholder="시간선택" id="startTime" size="5">
+										~<input type="text" size=8 id="endDate" name="endDate">
+										<input type="text" name="endTime" value="" placeholder="시간선택" id="endTime" size="5">
 							</form>
 							<div class="modal-footer">
 								<button type="button" id="insertBtn" class="btn btn-default" data-dismiss="modal">저장</button>
@@ -98,119 +101,5 @@
     		</div>
   		</div>
 	</div>
-<!-- script -->
-<script>
-	$(document).ready(function(){
-		var emno = "1111111111";
-		var data = "";
-		
-		paging.ajaxSubmit("scheduleDb.ajax",{"emno":emno},function(rslt){
-			console.log("결과데이터 : " + JSON.stringify(rslt));
-			
-			calendarView(rslt); //캘린더함수호출
-		});
-		
-		
-		
-	});//페이지 로딩시 사용자의 db 일정정보를 가져온다
-
-	function mouseMove(){
-		$("table tr td.fc-day,table tr td.fc-day-top").on('mouseover', function() {
-			color = $(this).css('background-color');
-			$(this).css({
-				'background-color' : '#bbe1fd',
-				'opacity' : '0.3'
-			});
-		});
-		$("table tr td.fc-day,table tr td.fc-day-top").on('mouseout', function() {
-			$(this).css({
-				'background-color' : color,
-				'opacity' : '1'
-			});
-		});//마우스 이벤트
-	}
-	
-	function calendarView(data){ //캘린더함수
-		$('#calendar').fullCalendar({
-			header : {
-				left : '',
-				center : 'title',
-				right : 'today prev,next'
-			},
-			lang : "ko", //한글패치
-			defaultDate : new Date(), //초기날짜
-			editable : false, //드래그사용여부
-			googleCalendarApiKey:"AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE", //구글api키값
-			eventSources : [{
-				//공휴일
-				googleCalendarId : "ko.south_korea#holiday@group.v.calendar.google.com",//구글캘린더 주소
-				className : "koHolidays",
-				color : "#FFFFFF",
-				textColor : "#FF0000"
-			}],
-			events : data,
-			eventClick : function(calEvent, jsEvent, view){
-				/* alert('Event: ' + calEvent.title);
-		        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-		        alert('View: ' + view.name); */
-		        if(calEvent.url != null){
-		        	return false;
-		        }
-		        alert(calEvent.title);
-		        $(this).attr("data-toggle","modal");
-		        $(this).attr("data-target","#viewModal");
-		        
-			},//일정상세보기
-			eventMouseover : function(event, jsEvent, view){
-				//alert("mouseover");
-			},//일정삭제
-			dayClick: function(date, jsEvent, view) {
-
-		        /* alert('Clicked on: ' + date.format());
-
-		        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-
-		        alert('Current view: ' + view.name); */
-
-		        $("table tr td.fc-day,table tr td.fc-day-top").attr("data-toggle","modal");
-				$("table tr td.fc-day,table tr td.fc-day-top").attr("data-target","#insertModal");
-
-		    }//일정등록
-		});
-		
-		mouseMove(); //마우스이벤트
-		
-		//왼쪽버튼 클릭시 
-		$("button.fc-prev-button").click(function(){
-			mouseMove();
-		});
-		
-		//왼쪽버튼 클릭시 
-		$("button.fc-next-button").click(function(){
-			mouseMove();
-		});
-		
-		//today버튼 클릭시 
-		$("button.fc-today-button").click(function(){
-			mouseMove();
-		});
-		
-		/* $(function() {
-		    $().datepicker();
-		});//insert 날짜선택  */
-		
-	}//calendarView
-	
-	//일정등록 저장버튼클릭시
-	$("#insertBtn").click(function(){
-		//alert("저장");
-		if(confirm("저장하시겠습니까?") == true){
-			$("#insertForm").attr("action","/spring/scheduleInsert.do").submit();
-		}else{
-			return false;
-		}
-	});
-	
-</script>
 </body>
 </html>

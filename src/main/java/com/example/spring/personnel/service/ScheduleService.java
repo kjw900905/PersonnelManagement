@@ -1,5 +1,8 @@
 package com.example.spring.personnel.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,8 +20,17 @@ public class ScheduleService {
 	private ScheduleDao scheduleDao;
 	
 	//일정등록 service
-	public int scheduleInsert(HashMap<String, Object> map) {
+	public int scheduleInsert(HashMap<String, String> map) {
 		System.out.println("schedul insert(service) in");
+		
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		
+		String today = sdf.format(cal.getTime());
+		map.put("startDate", map.get("startDate")+"T"+map.get("startTime"));
+		map.put("endDate", map.get("endDate")+"T"+map.get("endTime"));
+		map.put("createDate", today);
+		map.put("delYN", "N");
 		
 		int result = scheduleDao.scheduleInsert(map);
 		
