@@ -4,7 +4,7 @@
 
 <mapper namespace="payc">
 
-	<select id="paycList" parameterType="HashMap" resultType="HashMap">
+	<select id="paycList" parameterType="HashMap" resultType="HashMap"> 
         
         SELECT *FROM SAL_REGISTER ORDER BY SREG_YYMM DESC;
            
@@ -17,9 +17,6 @@
 			,DEPT_NAME as deptName
 		FROM DEPARTMENT WHERE DEPT_NAME LIKE CONCAT('%',#{deptName},'%')
 			
-
-
-
 	</select>
 
 	<insert id="makePaycInsert">

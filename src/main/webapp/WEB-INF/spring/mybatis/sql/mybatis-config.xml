@@ -18,7 +18,13 @@
 		<mapper resource="com/example/spring/personnel/schedule/scheduleMapper.xml"/>
 
 		<mapper resource="com/example/spring/common/commonMapper.xml"/>
-
+		
+		<!-- [급여관리] START  -->
+		<mapper resource="com/example/spring/salmanager/emp/EmpMenuMapper.xml"/>
+		
+		<mapper resource="com/example/spring/salmanager/payc/PaycMenuMapper.xml"/>
+		
+		<!-- [급여관리] END  -->
 	</mappers>
 		
 </configuration>
