@@ -21,6 +21,8 @@
 <!-- 		<mapper resource="com/example/spring/attendance/attend/hdayExtnNightWorkInqrMapper.xml"/> -->
 <!-- 		<mapper resource="com/example/spring/attendance/attend/mnthngAttdCrtClsMapper.xml"/> -->
 		<mapper resource="com/example/spring/attendance/businessTrip/businessRequestMapper.xml"/>
+		
+		<mapper resource="com/example/spring/management/common/commonCodeMapper.xml"/>
 	</mappers>
 		
 </configuration>
