@@ -39,11 +39,20 @@ public class ScheduleController {
 		return list;
 	}
 	
+	//일정상세보기
+	@RequestMapping(value="scheduleDetail.ajax")
+	public @ResponseBody List<String> scheduleDetail(@RequestParam HashMap<String, String> map){
+		System.out.println("일정상세보기(controller)");
+		System.out.println("파라미터값: " + map);
+		
+		List<String> list = scheduleService.scheduleDetail(map);
+		
+		return list;
+	}
+	
 	//일정등록
 	@RequestMapping(value="scheduleInsert.do")
 	public @ResponseBody int scheduleInsert(@RequestParam HashMap<String, String> map) {
-		System.out.println("scheduleInsert(controller) In");
-		System.out.println("파라미터map : " + map);
 		
 		int result = scheduleService.scheduleInsert(map);
 		
