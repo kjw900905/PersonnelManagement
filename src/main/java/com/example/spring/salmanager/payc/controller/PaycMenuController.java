@@ -16,12 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.spring.salmanager.payc.service.PaycMenuService;
 
-//�޿�����
+
 @Controller
 public class PaycMenuController {
 
 	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(PaycMenuController.class);
-	private String PRE_VIEW_PATH = "/SalManager/payc/";
+	//private String PRE_VIEW_PATH = "/SalManager/payc/";
 	@Autowired
 	private PaycMenuService paycMenuService;
 
@@ -31,7 +31,7 @@ public class PaycMenuController {
 		ModelAndView mv = new ModelAndView();
 
 		mv.addObject("list", paycMenuService.paycList(map));
-		mv.setViewName(PRE_VIEW_PATH + "payc_main");
+		mv.setViewName("payc_main");
 
 		return mv;
 	}
@@ -43,16 +43,16 @@ public class PaycMenuController {
 		ModelAndView mv = new ModelAndView();
 
 		mv.addObject("list", paycMenuService.paycList(map));
-		mv.setViewName(PRE_VIEW_PATH + "payc_main");
+		mv.setViewName("payc_main");
 
 		return mv;
 
 	}
 
-	@RequestMapping(value = "/makePayc.do", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/makePayc.do", method = RequestMethod.GET)
 	public String makePayc(@RequestParam HashMap<String, Object> params, Model model) throws Exception {
 
-		/*
+		
 		 * map.put("perSyy",request.getParameter("perSyy"));
 		 * map.put("perSmm",request.getParameter("perSmm"));
 		 * map.put("perSday",request.getParameter("perSday"));
@@ -60,22 +60,22 @@ public class PaycMenuController {
 		 * map.put("perEyy",request.getParameter("perEyy"));
 		 * map.put("perEmm",request.getParameter("perEmm"));
 		 * map.put("perEday",request.getParameter("perEday"));
-		 */
+		 
 
-		/*
+		
 		 * map.put("payyy",request.getParameter("payyy"));
 		 * map.put("paymm",request.getParameter("paymm"));
 		 * map.put("paytoday",request.getParameter("paytoday"));
-		 */
+		 
 
-		/*
+		
 		 * map.put("pyymm",request.getParameter("pyy")+request.getParameter("pmm"));
 		 * map.put("paycname",request.getParameter("paycname"));
 		 * map.put("payday",request.getParameter("payyy")+request.getParameter("paymm")+
 		 * request.getParameter("paytoday"));
 		 * map.put("payyymm",request.getParameter("payyy")+request.getParameter("paymm")
 		 * );
-		 */
+		 
 		HashMap<String, String> map = new HashMap<String, String>();
 
 		map.put("pyymm", params.get("pyy").toString() + params.get("pmm"));
@@ -88,10 +88,10 @@ public class PaycMenuController {
 
 		return "/SalManager/windowdefault";
 
-	}
+	}*/
 
-	@RequestMapping(value = "makePayc.ajax")
-	public @ResponseBody HashMap<String, String> ajaxFormSubmit( // �޽��� ������ ����
+	@RequestMapping(value = "makePayc.ajax")  //newPayc -> makePayc 급여대장 생성폼
+	public @ResponseBody HashMap<String, String> ajaxFormSubmit( //
 			@RequestParam HashMap<String, String> map) {
 
 		map.put("success", "true");
@@ -100,7 +100,7 @@ public class PaycMenuController {
 		map.put("payyymm", map.get("payyy") + map.get("paymm"));
 		map.put("payday", map.get("payyymm") + map.get("paytoday"));
 		// System.out.println("����");
-		logger.info("���������(controller) : " + map);
+		logger.info("(controller) : " + map);
 
 		ModelAndView mv = new ModelAndView();
 		paycMenuService.makePaycInsert(map);
@@ -111,8 +111,8 @@ public class PaycMenuController {
 
 	}
 
-	@RequestMapping(value = "/newPayc.ajax")
-	public @ResponseBody HashMap<String, String> ajaxnewPaycSubmit( // �޽��� ������ ����
+	@RequestMapping(value = "/newPayc.ajax")//급여대장 월별,이름,지급일 등록
+	public @ResponseBody HashMap<String, String> ajaxnewPaycSubmit( //
 			@RequestParam HashMap<String, String> map) {
 	
 		// mv.addObject("year", paycMenuService.getYear());
