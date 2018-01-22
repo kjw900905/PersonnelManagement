@@ -102,6 +102,10 @@
        <put-attribute name="body" value="/WEB-INF/views/attendance/vacation/vacationProgressList.jsp" />  
    </definition>
    
+<<<<<<< HEAD
+=======
+   
+>>>>>>> origin/유성실
    <!-- [근태관리]-[휴가관리]-[휴가조회](사원) -->
    <definition name="vacationList" extends="base-definition">  
        <put-attribute name="title" value="휴가조회(사원)" />

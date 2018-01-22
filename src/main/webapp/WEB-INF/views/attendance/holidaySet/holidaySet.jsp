@@ -8,6 +8,10 @@
 </head>
 
 <script>
+	$(function() { //½ºÅ©·Ñ¹Ù css
+		$('#vacationOptionTable').children('thead').css('width','calc(100% - 1em)');
+	});
+
 	$(document).on("click", "button[name=addTr]", function(){
 		var addStaffText =  '<tr name="vacationOption">'+
 							'<td class="w3"><label class="fancy-checkbox-inline"><input type="checkbox" name="chk"><span></span></label></td>' +
@@ -19,6 +23,16 @@
 							'<td class="w10"><label class="fancy-checkbox-inline"><input type="checkbox" name="UseOrFailureCheckbox"><span></span></label></td>' +
 							'<input type="hidden" name="UseOrFailure">' +
 							'<td class="w37"><input type="text" class="form-control w_300" name="note"></td>' +
+=======
+		var addStaffText =  "<tr name='vacationOption' style='display:table;width:100%;table-layout:fixed;'>"+
+							'<td><label class="fancy-checkbox-inline"><input type="checkbox" name="chk"><span></span></label></td>' +
+							'<td><input type="text" class="form-control" value="ÈÞ°¡"></td>' +
+							'<td><input type="text" class="form-control"></td>' +
+							'<td><input type="text" class="form-control"></td>' +
+							'<td><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
+							'<td><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
+							'<td><input type="text" class="form-control"></td>' +
+>>>>>>> origin/ìœ ì„±ì‹¤
 							'</tr>';
 							
 		$("#vacationOptionTable #headTr").before(addStaffText);
@@ -192,60 +206,81 @@
 		                              <col width="10%">
 		                              <col width="37%">
 		                           </colgroup>
-		                           <thead class="scrollHead">
+		                           <thead style="display:table;width:100%;table-layout:fixed;">
 		                              <tr>
-		                                 <th class="w3">
+		                                 <th>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="selectAll_chk" onClick="selectAll()">
 		                                       <span></span>
 		                                    </label>
 		                                 </th>
-		                                 <th class="text-center w10"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>±¸ºÐ</th>
-		                                 <th class="text-center w10"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>ÄÚµå</th>
-		                                 <th class="text-center w20"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>¸íÄª</th>
-		                                 <th class="text-center w10">¿¬Â÷¹Ý¿µ</th>
-		                                 <th class="text-center w10">»ç¿ë¿©ºÎ</th>
-		                                 <th class="text-center w37">ºñ°í</th>
+		                                 <th class="text-center"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>±¸ºÐ</th>
+		                                 <th class="text-center"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>ÄÚµå</th>
+		                                 <th class="text-center"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>¸íÄª</th>
+		                                 <th class="text-center">¿¬Â÷¹Ý¿µ</th>
+		                                 <th class="text-center">»ç¿ë¿©ºÎ</th>
+		                                 <th class="text-center">ºñ°í</th>
 		                              </tr>
 		                           </thead>
-		                           <tbody class="scrollBody">
-		                              <tr id="headTr">
-		                                 <td class="w3">
+		                           <tbody style="display:block;height:200px;overflow:auto;">
+		                              <tr id="headTr" style="display:table;width:100%;table-layout:fixed;">
+		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="notDeleteChk">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <td class="w10"><input type="text" class="form-control w_80" value="ÈÞ°¡" name="divide"></td>
 		                                 <td class="w10"><input type="text" class="form-control w_80" value="00" name="code"></td>
 		                                 <td class="w20"><input type="text" value="ÈÞ°¡(³âÂ÷)" class="form-control" name = "title"></td>
 		                                 <td class="w10">
+=======
+		                                 <td><input type="text" class="form-control" value="ÈÞ±â"></td>
+		                                 <td><input type="text" class="form-control" value="00"></td>
+		                                 <td><input type="text" value="ÈÞ°¡(³âÂ÷)" class="form-control" name = "title"></td>
+		                                 <td>
+>>>>>>> origin/ìœ ì„±ì‹¤
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <input type="hidden" name="AnnualLeaveReflection">
 		                                 <td class="w10">
+=======
+		                                 <td>
+>>>>>>> origin/ìœ ì„±ì‹¤
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="UseOrFailureCheckbox">
 		                                       
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <input type="hidden" name="UseOrFailure">
 		                                 <td class="w37"><input type="text" class="form-control w_300" name="note"></td>
+=======
+		                                 <td><input type="text" class="form-control" name="note"></td>
+>>>>>>> origin/ìœ ì„±ì‹¤
 		                              </tr>
-		                              <tr>
+		                              <tr style="display:table;width:100%;table-layout:fixed;">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="notDeleteChk">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <td class="w10"><input type="text" class="form-control w_80" value="ÈÞ°¡" name="divide"></td>
 		                                 <td><input type="text" class="form-control w_80" value="01" name="code"></td>
 		                                 <td><input type="text" value="»ý¸®ÈÞ°¡" class="form-control" name = "title"></td>
+=======
+		                                 <td><input type="text" class="form-control" value="ÈÞ±â"></td>
+		                                 <td><input type="text" class="form-control" value="01"></td>
+		                                 <td><input type="text" value="»ý¸®ÈÞ°¡" class="form-control"></td>
+>>>>>>> origin/ìœ ì„±ì‹¤
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
@@ -259,19 +294,29 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <input type="hidden" name="UseOrFailure">
 		                                 <td><input type="text" class="form-control w_300" name="note"></td>
+=======
+		                                 <td><input type="text" class="form-control"></td>
+>>>>>>> origin/ìœ ì„±ì‹¤
 		                              </tr>
-		                              <tr>
+		                              <tr style="display:table;width:100%;table-layout:fixed;">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="notDeleteChk">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <td><input type="text" class="form-control w_80" value="ÈÞ°¡" name="divide"></td>
 		                                 <td><input type="text" class="form-control w_80" value="02" name="code"></td>
 		                                 <td><input type="text" value="º´°¡" class="form-control" name = "title"></td>
+=======
+		                                 <td><input type="text" class="form-control" value="ÈÞ±â"></td>
+		                                 <td><input type="text" class="form-control" value="02"></td>
+		                                 <td><input type="text" value="º´°¡" class="form-control"></td>
+>>>>>>> origin/ìœ ì„±ì‹¤
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
@@ -285,19 +330,29 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <input type="hidden" name="UseOrFailure">
 		                                 <td><input type="text" class="form-control w_300" name="note"></td>
+=======
+		                                 <td><input type="text" class="form-control"></td>
+>>>>>>> origin/ìœ ì„±ì‹¤
 		                              </tr>
-		                              <tr>
+		                              <tr style="display:table;width:100%;table-layout:fixed;">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="notDeleteChk">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <td><input type="text" class="form-control w_80" value="ÈÞ°¡" name="divide"></td>
 		                                 <td><input type="text" class="form-control w_80" value="03" name="code"></td>
 		                                 <td><input type="text" value="°æÁ¶ÈÞ°¡" class="form-control" name = "title"></td>
+=======
+		                                 <td><input type="text" class="form-control" value="ÈÞ±â"></td>
+		                                 <td><input type="text" class="form-control" value="03"></td>
+		                                 <td><input type="text" value="°æÁ¶ÈÞ°¡" class="form-control"></td>
+>>>>>>> origin/ìœ ì„±ì‹¤
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
@@ -311,19 +366,29 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <input type="hidden" name="UseOrFailure">
 		                                 <td><input type="text" class="form-control w_300" name="note"></td>
+=======
+		                                 <td><input type="text" class="form-control"></td>
+>>>>>>> origin/ìœ ì„±ì‹¤
 		                              </tr>
-		                              <tr>
+		                              <tr style="display:table;width:100%;table-layout:fixed;">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="notDeleteChk">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <td><input type="text" class="form-control w_80" value="ÈÞ°¡" name="divide"></td>
 		                                 <td><input type="text" class="form-control w_80" value="04" name="code"></td>
 		                                 <td><input type="text" value="Ãâ»êÈÞ°¡" class="form-control" name = "title"></td>
+=======
+		                                 <td><input type="text" class="form-control" value="ÈÞ±â"></td>
+		                                 <td><input type="text" class="form-control" value="04"></td>
+		                                 <td><input type="text" value="Ãâ»êÈÞ°¡" class="form-control"></td>
+>>>>>>> origin/ìœ ì„±ì‹¤
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
@@ -337,19 +402,29 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <input type="hidden" name="UseOrFailure">
 		                                 <td><input type="text" class="form-control w_300" name="note"></td>       
+=======
+		                                 <td><input type="text" class="form-control"></td>
+>>>>>>> origin/ìœ ì„±ì‹¤
 		                              </tr>
-		                              <tr>
+		                              <tr style="display:table;width:100%;table-layout:fixed;">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="notDeleteChk">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <td><input type="text" class="form-control w_80" value="ÈÞ°¡" name="divide"></td>
 		                                 <td><input type="text" class="form-control w_80" value="05" name="code"></td>
 		                                 <td><input type="text" value="Æ÷»óÈÞ°¡" class="form-control" name = "title"></td>
+=======
+		                                 <td><input type="text" class="form-control" value="ÈÞ±â"></td>
+		                                 <td><input type="text" class="form-control" value="05"></td>
+		                                 <td><input type="text" value="Æ÷»óÈÞ°¡" class="form-control"></td>
+>>>>>>> origin/ìœ ì„±ì‹¤
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
@@ -362,9 +437,13 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <td><input type="text" class="form-control w_300" name="note"></td>
 		                                 <input type="hidden" name="AnnualLeaveReflection">
 		                                 <input type="hidden" name="UseOrFailure">
+=======
+		                                 <td><input type="text" class="form-control"></td>
+>>>>>>> origin/ìœ ì„±ì‹¤
 		                              </tr>
 		                           </tbody>
 		                        </table>
