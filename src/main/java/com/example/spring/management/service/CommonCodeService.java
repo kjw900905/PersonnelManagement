@@ -13,20 +13,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.example.spring.management.dao.CommonDao2;
+import com.example.spring.management.dao.CommonCodeDao;
 
 @Service
-public class CommonService2 {
+public class CommonCodeService {
 
-	private static Logger logger = LoggerFactory.getLogger(CommonService2.class);
+	private static Logger logger = LoggerFactory.getLogger(CommonCodeService.class);
 	
 	@Resource(name="CommonDao2")
-	private CommonDao2 commonDao;
+	private CommonCodeDao commonDao;
 	
 	int postNum;
 	int pageNum;
 	
-	public CommonService2() {
+	public CommonCodeService() {
 		this.postNum = 5;
 		this.pageNum = 5;
 	}

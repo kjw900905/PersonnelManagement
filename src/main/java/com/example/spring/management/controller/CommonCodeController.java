@@ -19,9 +19,9 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.example.spring.management.service.CommonService2;
 
 @Controller
-public class CommonController2 {
+public class CommonCodeController {
 
-	private static Logger logger = LoggerFactory.getLogger(CommonController2.class);
+	private static Logger logger = LoggerFactory.getLogger(CommonCodeController.class);
 
 	@Autowired
 	private CommonService2 commonService;

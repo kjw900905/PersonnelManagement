@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository("CommonDao2")
-public class CommonDao2 {
+public class CommonCodeDao {
 
-	private static Logger logger = LoggerFactory.getLogger(CommonDao2.class);
+	private static Logger logger = LoggerFactory.getLogger(CommonCodeDao.class);
 	
 	@Autowired
 	private SqlSession sqlSession;
