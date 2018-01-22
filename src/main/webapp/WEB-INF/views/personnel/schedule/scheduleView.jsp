@@ -102,22 +102,16 @@
 <script>
 	$(document).ready(function(){
 		var emno = "1111111111";
+		var data = "";
 		
-		/* $.ajax({
-			type : "POST",
-			url : "scheduleDb.ajax",
-			dataType : "json",
-			data : {"emno":emno},
-			success : function(data){
-				console.log("data : " + data);
-			},
-			error : function(xhr, status, err) {
-				alert(err);
-			}
-		}); */ 
-		//이부분 paging.js 함수로 바꿔사용하기
+		paging.ajaxSubmit("scheduleDb.ajax",{"emno":emno},function(rslt){
+			console.log("결과데이터 : " + JSON.stringify(rslt));
+			
+			calendarView(rslt); //캘린더함수호출
+		});
 		
-		calendarView(); //캘린더함수호출
+		
+		
 	});//페이지 로딩시 사용자의 db 일정정보를 가져온다
 
 	function mouseMove(){
@@ -136,7 +130,7 @@
 		});//마우스 이벤트
 	}
 	
-	function calendarView(){ //캘린더함수
+	function calendarView(data){ //캘린더함수
 		$('#calendar').fullCalendar({
 			header : {
 				left : '',
@@ -154,36 +148,7 @@
 				color : "#FFFFFF",
 				textColor : "#FF0000"
 			}],
-			events : [{
-				title : '(test)',
-				start : '2018-01-01T10:00:00',
-				end : ""
-			},{
-				title : '(test)',
-				start : '2018-01-01T10:00:00'
-			},{
-				title : '(test)',
-				start : '2018-02-02T10:00:00'
-			},{
-				title : '교육연수(test)',
-				start : '2018-01-15T10:00:00',
-				end : '2018-01-19T10:00:00'
-			},{
-				title : '회식(test)',
-				start : '2018-01-15T19:00:00'
-			},{
-				title : 'Meeting',
-				start : '2017-12-13T11:00:00',
-				constraint : 'availableForMeeting', // defined below
-				color : '#257e4a'
-			}, {
-				title : 'Conference',
-				start : '2017-12-18',
-				end : '2017-12-20'
-			}, {
-				title : 'Party',
-				start : '2017-12-29T20:00:00'
-			}],
+			events : data,
 			eventClick : function(calEvent, jsEvent, view){
 				/* alert('Event: ' + calEvent.title);
 		        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);

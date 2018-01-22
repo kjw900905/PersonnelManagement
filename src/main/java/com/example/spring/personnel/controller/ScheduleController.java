@@ -1,6 +1,7 @@
 package com.example.spring.personnel.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,11 +29,15 @@ public class ScheduleController {
 	
 	//사원 일정db
 	@RequestMapping(value="scheduleDb.ajax")
-	public @ResponseBody HashMap<String, String> scheduleDb(@RequestParam String emno){
+	public @ResponseBody List<String> scheduleDb(@RequestParam String emno){
 		
 		System.out.println("emno : " + emno);
 		
-		return null;
+		List<String> list = scheduleService.scheduleDb(emno);
+		
+		System.out.println("list(controller) : " + list);
+		
+		return list;
 	}
 	
 	//일정등록
@@ -45,5 +50,6 @@ public class ScheduleController {
 		
 		return reult;
 	}
+	
 	
 }

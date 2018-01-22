@@ -1,6 +1,7 @@
 package com.example.spring.personnel.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -22,6 +23,14 @@ public class ScheduleService {
 		int result = scheduleDao.scheduleInsert(map);
 		
 		return result;
+	}
+	
+	//사원 일정db service
+	public List<String> scheduleDb(String emno){
+		
+		List<String> list = scheduleDao.scheduleDb(emno);
+		
+		return list;
 	}
 	
 }
