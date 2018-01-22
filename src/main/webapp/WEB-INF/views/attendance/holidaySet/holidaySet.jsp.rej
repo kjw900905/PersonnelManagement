@@ -1,9 +1,0 @@
-diff a/src/main/webapp/WEB-INF/views/attendance/holidaySet/holidaySet.jsp b/src/main/webapp/WEB-INF/views/attendance/holidaySet/holidaySet.jsp	(rejected hunks)
-@@ -13,6 +13,7 @@
- 	});
- 
- 	$(document).on("click", "button[name=addTr]", function(){
-+<<<<<<< HEAD
- 		var addStaffText =  '<tr name="vacationOption">'+
- 							'<td class="w3"><label class="fancy-checkbox-inline"><input type="checkbox" name="chk"><span></span></label></td>' +
- 							'<td class="w10"><input type="text" class="form-control w_80" value="�ް�" name="divide"></td>' +
