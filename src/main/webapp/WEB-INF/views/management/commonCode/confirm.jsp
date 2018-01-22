@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script src="/Project/resources/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/spring/resources/common/js/jquery-3.2.1.min.js"></script>
 <script language="javascript">
 
 	$(document).ready(
@@ -15,10 +15,10 @@
 			
 			if(${result} === 1){
 				alert("작업 완료");
-				location.href = "/Project/commonList.do";
+				location.href = "/spring/commonList.do";
 			}else{
 				alert("작업 실패");
-				location.href = "/Project/commonList.do";
+				location.href = "/spring/commonList.do";
 			}//if
 			
 	});//insertConfirm

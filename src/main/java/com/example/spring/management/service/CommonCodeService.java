@@ -32,15 +32,14 @@ public class CommonCodeService {
 	}
 
 	
-	public int commonInsert(HashMap<String,String> paramMap) {
+	public int commonInsert(HashMap<String,Object> paramMap) {
 		
 		Calendar calendar = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String commCodeCrt = sdf.format(calendar.getTime());
 		
-		paramMap.put("commPrntCode", "");
-		paramMap.put("commPrntName", "");
-		paramMap.put("deptUpdtCode", "----");
+		paramMap.put("commPrntCode", 0);
+		paramMap.put("deptUpdtCode", 0);
 		paramMap.put("commCodeCrt", commCodeCrt);
 		paramMap.put("commCodeUpdt", "--------------");
 		paramMap.put("commDelYn", "N");
@@ -60,13 +59,9 @@ public class CommonCodeService {
 		String checkValue = "";
 		
 		if(list.size() > 0) {
-			
 			checkValue = "이미 사용 중인 코드입니다.";
-			
 		}else {
-			
 			checkValue = "사용 가능한 코드입니다.";
-			
 		}//if
 		
 		
@@ -81,7 +76,6 @@ public class CommonCodeService {
 		int postNum = this.postNum;
 		int pageNum = this.pageNum;
 		int selectPageNum = Integer.parseInt((String)paramMap.get("selectPageNum"));
-		//int selectPageNum = 1;
 		
 		int endPost = selectPageNum*postNum;
 			
@@ -98,18 +92,6 @@ public class CommonCodeService {
 		
 		List<HashMap<String,Object>> list = commonCodeDao.commonList(paramMap);
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
-		Date date = new Date();
-		String commCodeCrt ="";
-		
-		
-		for(int i=0; i<list.size(); i++) {
-			
-			commCodeCrt = String.valueOf(list.get(i).get("commCodeCrt"));
-			paramMap.put("commCodeCrt", commCodeCrt);
-			//logger.debug("%%%%%%%%%%%%%%%%%%%%%%%%%%commCodeCrt["+i+"]: " + commCodeCrt);
-			
-		}//for
 		
 		return list;
 		
@@ -162,7 +144,7 @@ public class CommonCodeService {
 	}//commonDelete
 	
 	
-	public int commonInfoInsert(HashMap<String,String> paramMap) {
+	public int commonInfoInsert(HashMap<String,Object> paramMap) {
 		
 		Calendar calendar = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmdd");
@@ -170,7 +152,8 @@ public class CommonCodeService {
 		
 		paramMap.put("commCodeCrt", commCodeCrt);
 		paramMap.put("commCodeUpdt", "--------------");
-		paramMap.put("deptUpdtCode", "----");
+		paramMap.put("commCodeUpdt", 0);
+		paramMap.put("deptUpdtCode", 0);
 		paramMap.put("commDelYn", "N");
 		
 		int result = commonCodeDao.commonInfoInsert(paramMap);
@@ -180,11 +163,11 @@ public class CommonCodeService {
 	}
 	
 	
-	public List<HashMap<String,String>> commonInfoList(String param){
+	public List<HashMap<String,Object>> commonInfoList(String param){
 		
 		int commPrntCode = Integer.parseInt(param);
 		
-		List<HashMap<String,String>> list = commonCodeDao.commonInfoList(commPrntCode);
+		List<HashMap<String,Object>> list = commonCodeDao.commonInfoList(commPrntCode);
 		
 		return list;
 		
@@ -212,7 +195,6 @@ public class CommonCodeService {
 		int postNum = this.postNum;
 		int pageNum = this.pageNum;
 		int selectPageNum = Integer.parseInt((String)paramMap.get("selectPageNum"));
-		//int selectPageNum = 1;
 		
 		int allPageNum = 0;
 		

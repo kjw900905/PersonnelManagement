@@ -58,7 +58,7 @@
 			C.DEPT_CODE AS deptCode,
 			C.DEPT_UPDT_CODE AS deptUpdtCode,
 			C.COMM_CODE_INFO AS commCodeInfo,
-			C.COMM_CODE_CRT AS commCodeCrt,
+			DATE_FORMAT(C.COMM_CODE_CRT, "%Y-%m-%d") AS commCodeCrt,
 			C.COMM_CODE_UPDT AS commCodeUpdt,
 			C.COMM_DEL_YN AS commDelYn
 		FROM 
@@ -167,8 +167,8 @@
 			COMM_CODE_INFO AS commCodeInfo,
 			DEPT_CODE AS deptCode,
 			DEPT_UPDT_CODE AS deptUpdtCode,
-			COMM_CODE_CRT AS commCodeCrt,
-			COMM_CODE_UPDT AS commCodeUpdt
+			DATE_FORMAT(COMM_CODE_CRT, "%Y-%m-%d") AS commCodeCrt,
+			DATE_FORMAT(COMM_CODE_UPDT, "%Y-%m-%d") AS commCodeUpdt
 		FROM
 			COMMON
 		WHERE COMM_PRNT_CODE = #{commPrntCode} AND COMM_DEL_YN = 'N'

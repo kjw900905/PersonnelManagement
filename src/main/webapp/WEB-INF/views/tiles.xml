@@ -130,7 +130,8 @@
  
    <definition name="commonList" extends="base-definition">
 		<put-attribute name="title" value="공통관리(관리자)" />
-		<put-attribute name="body" value="/WEB-INF/views/management/common/commonList.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/management/commonCode/commonList.jsp" />
+		<put-attribute name="scripts" value="/WEB-INF/views/management/commonCode/script/commonCode.jsp"/>
    </definition>
    
    <definition name="menuTreeMain" extends="base-definition">

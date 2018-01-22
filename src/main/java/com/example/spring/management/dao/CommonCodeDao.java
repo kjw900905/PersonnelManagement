@@ -20,7 +20,7 @@ public class CommonCodeDao {
 	private String nameSpaceName = "commonCode.";
 	
 	
-	public int commonInsert(HashMap<String,String> paramMap) {
+	public int commonInsert(HashMap<String,Object> paramMap) {
 		
 		int result = this.sqlSession.insert(nameSpaceName + "commonInsert", paramMap);
 
@@ -85,7 +85,7 @@ public class CommonCodeDao {
 	}//commonDelete
 	
 	
-	public int commonInfoInsert(HashMap<String,String> paramMap) {
+	public int commonInfoInsert(HashMap<String,Object> paramMap) {
 		
 		int result = this.sqlSession.insert(nameSpaceName + "commonInfoInsert", paramMap);
 		
@@ -94,9 +94,9 @@ public class CommonCodeDao {
 	}//commonInfoInsert
 	
 
-	public List<HashMap<String,String>> commonInfoList(int commPrntCode) {
+	public List<HashMap<String,Object>> commonInfoList(int commPrntCode) {
 		
-		List<HashMap<String,String>> list = this.sqlSession.selectList(nameSpaceName + "commonInfoList", commPrntCode);
+		List<HashMap<String,Object>> list = this.sqlSession.selectList(nameSpaceName + "commonInfoList", commPrntCode);
 		
 		
 		return list;

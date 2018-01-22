@@ -26,21 +26,22 @@ public class CommonCodeController {
 	@Autowired
 	private CommonCodeService commonCodeService;
 
-	private String PRE_VIEW_PATH = "/";
+	private String PRE_VIEW_PATH = "management/commonCode/";
 
 	
 	@RequestMapping(value = "commonInsert.do")
-	public ModelAndView commonInsert(@RequestParam HashMap<String, String> paramMap) {
+	public @ResponseBody int commonInsert(@RequestParam HashMap<String, Object> paramMap) {
 
 		int result = commonCodeService.commonInsert(paramMap);
 
+		/*
 		ModelAndView mv = new ModelAndView();
-
 		mv.addObject("result", result);
-		// mv.setView(new RedirectView("commonList.do"));
-		mv.setViewName("confirm");
-
-		return mv;
+		//mv.setView(new RedirectView("commonList.do"));
+		mv.setViewName("commonList");
+		*/
+		
+		return result;
 
 	}// commonInsert
 
@@ -104,16 +105,11 @@ public class CommonCodeController {
 	
 
 	@RequestMapping(value="commonUpdate.do")
-	public ModelAndView commonUpdate(@RequestParam HashMap<String,Object> paramMap) {
+	public @ResponseBody int commonUpdate(@RequestParam HashMap<String,Object> paramMap) {
 		
 		int result = commonCodeService.commonUpdate(paramMap);
 		
-		ModelAndView mv = new ModelAndView();
-		
-		mv.addObject("result",result);
-		mv.setViewName("confirm");
-		
-		return mv;
+		return result;
 		
 	}//commonUpdate
 	
@@ -134,18 +130,12 @@ public class CommonCodeController {
 	
 	
 	@RequestMapping(value="commonDelete.do")
-	public ModelAndView commonDelete(@RequestParam(value="commCode") String commCode,
+	public @ResponseBody int commonDelete(@RequestParam(value="commCode") String commCode,
 			@RequestParam HashMap<String, Object> paramMap) {
 
 		int result = commonCodeService.commonDelete(commCode);
 
-		ModelAndView mv = new ModelAndView();
-
-		mv.addObject("result", result);
-		mv.setViewName("confirm");
-		//mv.setView(new RedirectView("commonList.do"));
-
-		return mv;
+		return result;
 
 	}// commonDelete
 
@@ -154,25 +144,20 @@ public class CommonCodeController {
 /* ====================================== 공통코드 상세보기 관련 ======================================================== */
 	
 	@RequestMapping(value="commonInfoInsert.do")
-	public ModelAndView commonInfoInsert(@RequestParam HashMap<String, String> paramMap) {
+	public @ResponseBody int commonInfoInsert(@RequestParam HashMap<String, Object> paramMap) {
 
 		int result = commonCodeService.commonInfoInsert(paramMap);
 
-		ModelAndView mv = new ModelAndView();
-
-		mv.addObject("result", result);
-		mv.setViewName(PRE_VIEW_PATH + "confirm");
-
-		return mv;
+		return result;
 
 	}// commonInfoInsert
 
 	
 	
 	@RequestMapping(value="commonInfoList.do")
-	public @ResponseBody List<HashMap<String, String>> commonInfoList(@RequestParam(value="commPrntCode") String commPrntCode) {
+	public @ResponseBody List<HashMap<String, Object>> commonInfoList(@RequestParam(value="commPrntCode") String commPrntCode) {
 
-		List<HashMap<String, String>> list = commonCodeService.commonInfoList(commPrntCode);
+		List<HashMap<String, Object>> list = commonCodeService.commonInfoList(commPrntCode);
 
 		return list;
 
