@@ -9,15 +9,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository("CommonDao2")
-public class CommonDao2 {
+@Repository("CommonCodeDao")
+public class CommonCodeDao {
 
-	private static Logger logger = LoggerFactory.getLogger(CommonDao2.class);
+	private static Logger logger = LoggerFactory.getLogger(CommonCodeDao.class);
 	
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private String nameSpaceName = "common.";
+	private String nameSpaceName = "commonCode.";
 	
 	
 	public int commonInsert(HashMap<String,String> paramMap) {
