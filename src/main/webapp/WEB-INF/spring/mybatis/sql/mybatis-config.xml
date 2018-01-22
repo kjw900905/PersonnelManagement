@@ -18,6 +18,7 @@
 		<mapper resource="com/example/spring/personnel/schedule/scheduleMapper.xml"/>
 
 		<mapper resource="com/example/spring/common/commonMapper.xml"/>
+<<<<<<< HEAD
 <!-- 		<mapper resource="com/example/spring/attendance/attend/hdayExtnNightWorkInqrMapper.xml"/> -->
 <!-- 		<mapper resource="com/example/spring/attendance/attend/mnthngAttdCrtClsMapper.xml"/> -->
 		<mapper resource="com/example/spring/attendance/businessTrip/businessRequestMapper.xml"/>
@@ -29,6 +30,15 @@
 		
 		<mapper resource="com/example/spring/management/common/commonCodeMapper.xml"/>
 
+=======
+		
+		<!-- [급여관리] START  -->
+		<mapper resource="com/example/spring/salmanager/emp/EmpMenuMapper.xml"/>
+		
+		<mapper resource="com/example/spring/salmanager/payc/PaycMenuMapper.xml"/>
+		
+		<!-- [급여관리] END  -->
+>>>>>>> origin/mic
 	</mappers>
 		
 </configuration>

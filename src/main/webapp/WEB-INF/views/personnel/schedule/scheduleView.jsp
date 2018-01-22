@@ -85,11 +85,13 @@
 				<div class="modal-body">	
 					<div class="row">
 						<div class="col-md-10" style="padding-top:20px;">
-							<p><input type="hidden" name="emno">
-							제목<p><input type="text" name="title">
-							<p>내용<p><textarea rows="7" cols="70" name="content" style="resize:none"></textarea>
-							<p>날짜<p><input type="text" id="datepicker">~<input type="text" id="datepicker">
-							<p>시간<p><input type="text">
+							<p><input type="hidden" value="1111111111" name="emno">
+								제목<p><input type="text" name="title">
+								<p>내용<p><textarea rows="7" cols="70" name="content" style="resize:none"></textarea>
+								<p>날짜<p><input type="text" size=8 id="startDate" name="startDate">
+										<input type="text" name="startTime" value="" placeholder="시간선택" id="startTime" size="5">
+										~<input type="text" size=8 id="endDate" name="endDate">
+										<input type="text" name="endTime" value="" placeholder="시간선택" id="endTime" size="5">
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">수정</button>
 								<button type="button" class="btn btn-default" data-dismiss="modal">삭제</button>

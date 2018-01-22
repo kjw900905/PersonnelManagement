@@ -31,31 +31,38 @@
 			}],
 			events : data,
 			eventClick : function(calEvent, jsEvent, view){
-				/* alert('Event: ' + calEvent.title);
+				/*alert('Event: ' + calEvent.title);
 		        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-		        alert('View: ' + view.name); */
+		        alert('View: ' + view.name);*/
+		        
+		        var start = JSON.stringify(calEvent.start);
+		        var end = JSON.stringify(calEvent.end);
+		        
+		        console.log("start : " + start);
+		        console.log("end : " + end);
+		        console.log("emno : " + emno);
+		        
 		        if(calEvent.url != null){
 		        	return false;
-		        }
-		        alert(calEvent.title);
+		        }//구글에서 가져온 공휴일 이벤트 막기
+		        
+		        paging.ajaxSubmit("scheduleDetail.ajax",{"emno":emno,"start":start,"end":end},function(rslt){
+		        	console.log("결과데이터 : " + JSON.stringify(rslt));
+		        }); 
+		        
 		        $(this).attr("data-toggle","modal");
 		        $(this).attr("data-target","#viewModal");
-		        
 			},//일정상세보기
 			/* eventMouseover : function(event, jsEvent, view){
 				//alert("mouseover");
 			},//일정삭제 */
 			dayClick: function(date, jsEvent, view) {
-	
 		        /* alert('Clicked on: ' + date.format());
-	
 		        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-	
 		        alert('Current view: ' + view.name); */
 	
 		        $("table tr td.fc-day,table tr td.fc-day-top").attr("data-toggle","modal");
 				$("table tr td.fc-day,table tr td.fc-day-top").attr("data-target","#insertModal");
-	
 		    }//일정등록
 		});
 		
@@ -75,10 +82,6 @@
 		$("button.fc-today-button").click(function(){
 			mouseMove();
 		});
-		
-		/* $(function() {
-		    $().datepicker();
-		});//insert 날짜선택  */
 		
 	}//calendarView
 	

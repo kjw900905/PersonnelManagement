@@ -21,7 +21,6 @@ public class ScheduleService {
 	
 	//일정등록 service
 	public int scheduleInsert(HashMap<String, String> map) {
-		System.out.println("schedul insert(service) in");
 		
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -30,11 +29,21 @@ public class ScheduleService {
 		map.put("startDate", map.get("startDate")+"T"+map.get("startTime"));
 		map.put("endDate", map.get("endDate")+"T"+map.get("endTime"));
 		map.put("createDate", today);
+		map.put("updateDate", "");
 		map.put("delYN", "N");
 		
 		int result = scheduleDao.scheduleInsert(map);
 		
 		return result;
+	}
+	
+	//일정상세보기
+	public List<String> scheduleDetail(HashMap<String, String> map){
+		System.out.println("일정상세보기(service)");
+		
+		List<String> list = scheduleDao.scheduleDetail(map);
+		
+		return list;
 	}
 	
 	//사원 일정db service
