@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository("businessReqDao")
 public class BusinessReqDao {
 
-private static final Logger logger = LoggerFactory.getLogger(BusinessReqDao.class);
+	private static final Logger logger = LoggerFactory.getLogger(BusinessReqDao.class);
 	
 	@Autowired
 	private SqlSession sqlSession;

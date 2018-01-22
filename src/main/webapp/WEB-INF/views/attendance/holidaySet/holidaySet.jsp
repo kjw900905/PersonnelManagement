@@ -11,7 +11,7 @@
 	$(document).on("click", "button[name=addTr]", function(){
 		var addStaffText =  '<tr name="vacationOption">'+
 							'<td class="w3"><label class="fancy-checkbox-inline"><input type="checkbox" name="chk"><span></span></label></td>' +
-							'<td class="w10"><select name="attendanceDivision" class=" mgl_8 mgu_8"><option value="vacation">»ﬁ∞°</option></select></td>' +
+							'<td class="w10"><input type="text" class="form-control w_80" value="»ﬁ∞°"></td>' +
 							'<td class="w10"><input type="text" class="form-control w_80"></td>' +
 							'<td class="w20"><input type="text" class="form-control"></td>' +
 							'<td class="w10"><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
@@ -46,6 +46,47 @@
 			$obj3.prop("checked", false);
 		}
 	}
+	
+	function insertForm(){
+		$("#insertForm").submit();
+	}
+	
+	function tableToJson(){
+		var dataArray = new Array();
+		var title = document.getElementById("vacationOptionTable").value;  
+		var rowCount = $('#vacationOptionTable').length;
+		var mytable = document.getElementById("vacationOptionTable");
+		 
+		for(var i=0; i<rowCount; i++){
+		    var row = mytable.rows.item(i);
+		    var dataObj = new Object();
+		        for ( var j = 0; j<row.cells.length; j++ ) { 
+		            var col = row.cells.item(j);   
+		             if (col.firstChild.getAttribute('type') =="text"){   //≈ÿΩ∫∆Æ¿œ∞ÊøÏøÕ √º≈©π⁄Ω∫¿œ∞ÊøÏ ∞™¿ª ¥Ÿ∏£∞‘
+		                dataObj.question = col.firstChild.value;
+		            }else{
+		                dataObj.essential = col.firstChild.checked;  //√º≈©π⁄Ω∫¿« ∞ÊøÏ value∞™¿∫ √º≈©∞™¿Ã æ∆¥œ±‚ ∂ßπÆ
+		            }
+		        dataObj.title = title;
+		    }   
+		    dataArray.push(JSON.stringify(dataObj));   //µ•¿Ã≈Õ∏¶ json «¸Ωƒ¿∏∑Œ ∏∏µÈæÓ¡‹ stringify
+		}
+		
+		var result = {"'dataList'" : [dateArray]};
+		
+		var str='';
+		for(var i in result){
+		    if(result.hasOwnProperty(i)){
+		        str += i + ":[" + result[i]+"]";
+		    }
+		}
+		var dataParam = "{"+str+"}";
+
+		alert(dataParam);
+	}
+	
+	
+	
 </script>
 
 <body>
@@ -82,7 +123,7 @@
 							</span>
 						</div>	
 						<div class="panel-body mgu_15">
-							<form class="form-inline" name="f2">
+							<form class="form-inline" name="f2" action="/spring/holidaySetDBInset.do" id="insertForm">
 								
 								<table class="table table-bordered" id="vacationOptionTable" style="980px;">
    <!--                      <thead> -->
@@ -119,22 +160,22 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td class="w10">»ﬁ∞°</td>
-		                                 <td class="w10">00</td>
-		                                 <td class="w20"><input type="text" value="»ﬁ∞°(≥‚¬˜)" class="form-control"></td>
+		                                 <td class="w10"><input type="text" class="form-control w_80" value="»ﬁ±‚"></td>
+		                                 <td class="w10"><input type="text" class="form-control w_80" value="00"></td>
+		                                 <td class="w20"><input type="text" value="»ﬁ∞°(≥‚¬˜)" class="form-control" name = "title"></td>
 		                                 <td class="w10">
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="AnnualLeaveReflection">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
 		                                 <td class="w10">
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="UseOrFailure">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td class="w37"><input type="text" class="form-control w_300"></td>
+		                                 <td class="w37"><input type="text" class="form-control w_300" name="note"></td>
 		                              </tr>
 		                              <tr>
 		                                 <td>
@@ -143,8 +184,8 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td>»ﬁ∞°</td>
-		                                 <td>01</td>
+		                                 <td class="w10"><input type="text" class="form-control w_80" value="»ﬁ±‚"></td>
+		                                 <td><input type="text" class="form-control w_80" value="01"></td>
 		                                 <td><input type="text" value="ª˝∏Æ»ﬁ∞°" class="form-control"></td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
@@ -167,8 +208,8 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td>»ﬁ∞°</td>
-		                                 <td>02</td>
+		                                 <td><input type="text" class="form-control w_80" value="»ﬁ±‚"></td>
+		                                 <td><input type="text" class="form-control w_80" value="02"></td>
 		                                 <td><input type="text" value="∫¥∞°" class="form-control"></td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
@@ -191,8 +232,8 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td>»ﬁ∞°</td>
-		                                 <td>03</td>
+		                                 <td><input type="text" class="form-control w_80" value="»ﬁ±‚"></td>
+		                                 <td><input type="text" class="form-control w_80" value="03"></td>
 		                                 <td><input type="text" value="∞Ê¡∂»ﬁ∞°" class="form-control"></td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
@@ -215,8 +256,8 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td>»ﬁ∞°</td>
-		                                 <td>04</td>
+		                                 <td><input type="text" class="form-control w_80" value="»ﬁ±‚"></td>
+		                                 <td><input type="text" class="form-control w_80" value="04"></td>
 		                                 <td><input type="text" value="√‚ªÍ»ﬁ∞°" class="form-control"></td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
@@ -239,8 +280,8 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td>»ﬁ∞°</td>
-		                                 <td>05</td>
+		                                 <td><input type="text" class="form-control w_80" value="»ﬁ±‚"></td>
+		                                 <td><input type="text" class="form-control w_80" value="05"></td>
 		                                 <td><input type="text" value="∆˜ªÛ»ﬁ∞°" class="form-control"></td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
@@ -258,8 +299,8 @@
 		                              </tr>
 		                           </tbody>
 		                        </table>
-		                        
-		                        <button type="button" name="saveButton" class="btn btn-primary ftr" onClick="">¿˙¿Â</button>
+		                 
+		                        <button type="button" name="saveButton" class="btn btn-primary ftr" onClick="tableToJson()">¿˙¿Â</button>
 							</form>
 						</div>
 					</div>	
