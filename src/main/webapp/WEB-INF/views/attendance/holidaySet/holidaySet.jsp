@@ -1,23 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 
 <script>
+	$(function() { //Ïä§ÌÅ¨Î°§Î∞î css
+		$('#vacationOptionTable').children('thead').css('width','calc(100% - 1em)');
+	});
+
 	$(document).on("click", "button[name=addTr]", function(){
 		var addStaffText =  '<tr name="vacationOption">'+
 							'<td class="w3"><label class="fancy-checkbox-inline"><input type="checkbox" name="chk"><span></span></label></td>' +
-							'<td class="w10"><input type="text" class="form-control w_80" value="»ﬁ∞°"></td>' +
-							'<td class="w10"><input type="text" class="form-control w_80"></td>' +
-							'<td class="w20"><input type="text" class="form-control"></td>' +
-							'<td class="w10"><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
-							'<td class="w10"><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
-							'<td class="w37"><input type="text" class="form-control w_300"></td>' +
-							'</tr>';
+							'<td class="w10"><input type="text" class="form-control w_80" value="Ìú¥Í∞Ä" name="divide"></td>' +
+							'<td class="w10"><input type="text" class="form-control w_80" name="code"></td>' +
+							'<td class="w20"><input type="text" class="form-control" name = "title"></td>' +
+							'<td class="w10"><label class="fancy-checkbox-inline"><input type="checkbox" name="AnnualLeaveReflectionCheckbox"><span></span></label></td>' +
+							'<input type="hidden" name="AnnualLeaveReflection">' +
+							'<td class="w10"><label class="fancy-checkbox-inline"><input type="checkbox" name="UseOrFailureCheckbox"><span></span></label></td>' +
+							'<input type="hidden" name="UseOrFailure">' +
+							'<td class="w37"><input type="text" class="form-control w_300" name="note"></td>' +
 							
 		$("#vacationOptionTable #headTr").before(addStaffText);
 	});
@@ -50,42 +55,96 @@
 	function insertForm(){
 		$("#insertForm").submit();
 	}
-	
-	function tableToJson(){
-		var dataArray = new Array();
-		var title = document.getElementById("vacationOptionTable").value;  
-		var rowCount = $('#vacationOptionTable').length;
-		var mytable = document.getElementById("vacationOptionTable");
-		 
-		for(var i=0; i<rowCount; i++){
-		    var row = mytable.rows.item(i);
-		    var dataObj = new Object();
-		        for ( var j = 0; j<row.cells.length; j++ ) { 
-		            var col = row.cells.item(j);   
-		             if (col.firstChild.getAttribute('type') =="text"){   //≈ÿΩ∫∆Æ¿œ∞ÊøÏøÕ √º≈©π⁄Ω∫¿œ∞ÊøÏ ∞™¿ª ¥Ÿ∏£∞‘
-		                dataObj.question = col.firstChild.value;
-		            }else{
-		                dataObj.essential = col.firstChild.checked;  //√º≈©π⁄Ω∫¿« ∞ÊøÏ value∞™¿∫ √º≈©∞™¿Ã æ∆¥œ±‚ ∂ßπÆ
-		            }
-		        dataObj.title = title;
-		    }   
-		    dataArray.push(JSON.stringify(dataObj));   //µ•¿Ã≈Õ∏¶ json «¸Ωƒ¿∏∑Œ ∏∏µÈæÓ¡‹ stringify
-		}
-		
-		var result = {"'dataList'" : [dateArray]};
-		
-		var str='';
-		for(var i in result){
-		    if(result.hasOwnProperty(i)){
-		        str += i + ":[" + result[i]+"]";
-		    }
-		}
-		var dataParam = "{"+str+"}";
 
-		alert(dataParam);
+	function insertDB(formId){
+		var AnnualLeaveReflectionCheckbox = $("input[name='AnnualLeaveReflectionCheckbox']");
+		var UseOrFailureCheckbox = $("input[name='UseOrFailureCheckbox']");
+		var count = AnnualLeaveReflectionCheckbox.size();
+		
+		var AnnualLeaveReflectionCheckboxresult = $("input[name='AnnualLeaveReflectionCheckbox']").prop("checked");
+		var UseOrFailureCheckboxresult = $("input[name='UseOrFailureCheckbox']").prop("checked");
+		
+		var AnnualLeaveReflection = $("input[name='AnnualLeaveReflection']");
+		var UseOrFailure = $("input[name='UseOrFailure']");
+		
+		$("input[name='AnnualLeaveReflectionCheckbox']").val(AnnualLeaveReflectionCheckboxresult);
+		$("input[name='UseOrFailureCheckbox']").val(UseOrFailureCheckboxresult);
+		
+		//checkboxÏóê Ï≤¥ÌÅ¨ÎêòÏñ¥ÏûàÏúºÎ©¥ Ìï¥ÎãπÌïòÎäî hiddenÏóê trueÍ∞í ÎÑ£Ïñ¥Ï£ºÍ≥† ÏïÑÎãàÎ©¥ falseÍ∞í ÎÑ£Ïñ¥Ï§å.
+		for(var i = 0 ; i < count ; i++){
+			if(AnnualLeaveReflectionCheckbox.eq(i).is(":checked")){
+				AnnualLeaveReflection.eq(i).val('true');
+			}else{
+				AnnualLeaveReflection.eq(i).val('false');
+			}
+			
+			if(UseOrFailureCheckbox.eq(i).is(":checked")){
+				UseOrFailure.eq(i).val('true');
+			}else{
+				UseOrFailure.eq(i).val('false');
+			}
+		}
+		
+		
+		var json;
+		var obj = new Object();
+		var jsonObj = $("#" + formId).serializeArray();
+		var jobj = {};
+		var jArray = new Array();
+		
+		$(jsonObj).each(function(index, obj){
+
+			jobj[obj.name] = obj.value;
+			//index 0Ïóê divide : Ìú¥Í∞Ä  1Ïóê code : 00 Ïù¥Î†áÍ≤å Îì§Ïñ¥Í∞ê. Í∑∏ÎûòÏÑú json ÌïúÏÑ∏Ìä∏Ïóê 6Í∞ú Îì§Ïñ¥Í∞ÄÏÑú 6Í∞úÏî©  Ïß§ÎùºÏ§å.
+			//{"divide":"Ìú¥Í∞Ä","code":"00","title":"Ìú¥Í∞Ä(ÎÖÑÏ∞®)","AnnualLeaveReflection":"false","UseOrFailure":"false","note":""} 6Í∞ú ÎÑ£ÏúºÎ©¥ Ïù¥Î†áÍ≤å ÏôÑÏÑ±Îê®.
+			if((index+1) % 6 == 0 ){
+				jArray.push(jobj);
+				
+				//ÌïúÎ≤àÌïòÎ©¥ Ï¥àÍ∏∞ÌôîÌï¥Ï§òÏïºÎê®. Í∑∏ÎûòÏïº Îß®Î∞ëÏóêÏûàÎäîÍ∞íÎì§Î°úÎßå ÏïàÎì§Ïñ¥Í∞ê.
+				jobj = {};
+			}
+			
+			console.log(index + ":" + obj.name +":"+ obj.value);
+		});
+		
+		
+
+// 		for(var i = 0 ; i < jsonObj.length ; i++){
+// 			jArray[jsonObj[i]['name']] = jsonObj[i]['value'];
+// 		}
+
+		
+		$("#" + formId).ajaxForm({
+			
+			url:"/spring/holidaySetDBInset.ajax",
+			type:'GET',
+			data : jobj,
+			dataType:"JSON",
+			
+			success:function(data) {
+				
+				//window.opener.location.reload();
+				
+				if(data.success == "true") {
+					
+					alert("Ï†ÄÏû•ÏÑ±Í≥µ!");
+				}else {
+					
+					alert("Ï§ëÎ≥µÎêú Í∏âÏó¨ÎåÄÏû•Ïù¥ ÏûàÏäµÎãàÎã§.");
+				}
+				console.log("Í≤∞Í≥ºÎç∞Ïù¥ÌÑ∞ : "+ jsonObj);
+				console.log("Í≤∞Í≥ºÎç∞Ïù¥ÌÑ∞ : "+ JSON.stringify(jArray));
+		
+				self.close();
+			},
+			
+			error:function(jqXHR, textStatus, errorThrown){
+				alert("Ï§ëÎ≥µÎêú Í∏âÏó¨ÎåÄÏû•Ïù¥ ÏûàÏäµÎãàÎã§. \n" + textStatus + " : " + errorThrown);
+	            self.close();
+			}
+			
+		}).submit();
 	}
-	
-	
 	
 </script>
 
@@ -95,19 +154,19 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">»ﬁ∞°«◊∏Òº≥¡§</h3>
+					<h3 class="page-title">Ìú¥Í∞ÄÌï≠Î™©ÏÑ§Ï†ï</h3>
 					<!-- OVERVIEW -->
 						
 					<div class="panel panel-headline">
 						<div class="panel-body">
 							<form class="form-inline" name="searchForm">
-								<strong class="pdu_8 ftl">±Ÿ≈¬±∏∫–</strong>
+								<strong class="pdu_8 ftl">Í∑ºÌÉúÍµ¨Î∂Ñ</strong>
 								<select name="attendanceDivision" class="w_120 mgl_8 mgu_8">
-									<option value="vacation">»ﬁ∞°</option>
+									<option value="vacation">Ìú¥Í∞Ä</option>
 								</select>
 							
 								<span class="ftr">
-									<button type="button" class="btn btn-primary" onClick="">∞Àªˆ</button>
+									<button type="button" class="btn btn-primary" onClick="">Í≤ÄÏÉâ</button>
 								</span>
 							</form>
 						</div>
@@ -116,16 +175,16 @@
 					<!-- TABLE STRIPED -->
 					<div class="panel panel-headline">
 						<div class="boxArea text-center">
-							<strong class="pdu_8 ftl">»ﬁ∞°«◊∏Òº≥¡§ </strong>
+							<strong class="pdu_8 ftl">Ìú¥Í∞ÄÌï≠Î™©ÏÑ§Ï†ï </strong>
 							<span class="ftr">
-								<button type="button" name="addTr" class="btn btn-primary" onClick="">«‡√ﬂ∞°</button>
-								<button type="button" name="deleteTr" class="btn btn-primary" onClick="">«‡ªË¡¶</button>
+								<button type="button" name="addTr" class="btn btn-primary" onClick="">ÌñâÏ∂îÍ∞Ä</button>
+								<button type="button" name="deleteTr" class="btn btn-primary" onClick="">ÌñâÏÇ≠Ï†ú</button>
 							</span>
 						</div>	
 						<div class="panel-body mgu_15">
 							<form class="form-inline" name="f2" action="/spring/holidaySetDBInset.do" id="insertForm">
 								
-								<table class="table table-bordered" id="vacationOptionTable" style="980px;">
+								<table class="table table-bordered" id="vacationOptionTable">
    <!--                      <thead> -->
 		                           <colgroup>
 		                              <col width="3%">
@@ -136,171 +195,210 @@
 		                              <col width="10%">
 		                              <col width="37%">
 		                           </colgroup>
-		                           <thead class="scrollHead">
+		                           <thead style="display:table;width:100%;table-layout:fixed;">
 		                              <tr>
-		                                 <th class="w3">
+		                                 <th>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="selectAll_chk" onClick="selectAll()">
 		                                       <span></span>
 		                                    </label>
 		                                 </th>
-		                                 <th class="text-center w10"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>±∏∫–</th>
-		                                 <th class="text-center w10"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>ƒ⁄µÂ</th>
-		                                 <th class="text-center w20"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>∏Ìƒ™</th>
-		                                 <th class="text-center w10">ø¨¬˜π›øµ</th>
-		                                 <th class="text-center w10">ªÁøÎø©∫Œ</th>
-		                                 <th class="text-center w37">∫Ò∞Ì</th>
+		                                 <th class="text-center"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>Íµ¨Î∂Ñ</th>
+		                                 <th class="text-center"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>ÏΩîÎìú</th>
+		                                 <th class="text-center"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>Î™ÖÏπ≠</th>
+		                                 <th class="text-center">Ïó∞Ï∞®Î∞òÏòÅ</th>
+		                                 <th class="text-center">ÏÇ¨Ïö©Ïó¨Î∂Ä</th>
+		                                 <th class="text-center">ÎπÑÍ≥†</th>
 		                              </tr>
 		                           </thead>
-		                           <tbody class="scrollBody">
-		                              <tr id="headTr">
-		                                 <td class="w3">
+		                           <tbody style="display:block;height:200px;overflow:auto;">
+		                              <tr id="headTr" style="display:table;width:100%;table-layout:fixed;">
+		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="notDeleteChk">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td class="w10"><input type="text" class="form-control w_80" value="»ﬁ±‚"></td>
-		                                 <td class="w10"><input type="text" class="form-control w_80" value="00"></td>
-		                                 <td class="w20"><input type="text" value="»ﬁ∞°(≥‚¬˜)" class="form-control" name = "title"></td>
+		                                 <td class="w10"><input type="text" class="form-control w_80" value="Ìú¥Í∞Ä" name="divide"></td>
+		                                 <td class="w10"><input type="text" class="form-control w_80" value="00" name="code"></td>
+		                                 <td class="w20"><input type="text" value="Ìú¥Í∞Ä(ÎÖÑÏ∞®)" class="form-control" name = "title"></td>
 		                                 <td class="w10">
+		                                 <td><input type="text" class="form-control" value="Ìú¥Í∏∞"></td>
+		                                 <td><input type="text" class="form-control" value="00"></td>
+		                                 <td><input type="text" value="Ìú¥Í∞Ä(ÎÖÑÏ∞®)" class="form-control" name = "title"></td>
+		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="AnnualLeaveReflection">
+		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+		                                 <input type="hidden" name="AnnualLeaveReflection">
 		                                 <td class="w10">
+		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="UseOrFailure">
+		                                       <input type="checkbox" name="UseOrFailureCheckbox">
+		                                       
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+		                                 <input type="hidden" name="UseOrFailure">
 		                                 <td class="w37"><input type="text" class="form-control w_300" name="note"></td>
+		                                 <td><input type="text" class="form-control" name="note"></td>
 		                              </tr>
-		                              <tr>
+		                              <tr style="display:table;width:100%;table-layout:fixed;">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="notDeleteChk">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td class="w10"><input type="text" class="form-control w_80" value="»ﬁ±‚"></td>
-		                                 <td><input type="text" class="form-control w_80" value="01"></td>
-		                                 <td><input type="text" value="ª˝∏Æ»ﬁ∞°" class="form-control"></td>
+		                                 <td class="w10"><input type="text" class="form-control w_80" value="Ìú¥Í∞Ä" name="divide"></td>
+		                                 <td><input type="text" class="form-control w_80" value="01" name="code"></td>
+		                                 <td><input type="text" value="ÏÉùÎ¶¨Ìú¥Í∞Ä" class="form-control" name = "title"></td>
+		                                 <td><input type="text" class="form-control" value="Ìú¥Í∏∞"></td>
+		                                 <td><input type="text" class="form-control" value="01"></td>
+		                                 <td><input type="text" value="ÏÉùÎ¶¨Ìú¥Í∞Ä" class="form-control"></td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+		                                 <input type="hidden" name="AnnualLeaveReflection">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="UseOrFailureCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_300"></td>
+		                                 <input type="hidden" name="UseOrFailure">
+		                                 <td><input type="text" class="form-control w_300" name="note"></td>
+		                                 <td><input type="text" class="form-control"></td>
 		                              </tr>
-		                              <tr>
+		                              <tr style="display:table;width:100%;table-layout:fixed;">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="notDeleteChk">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_80" value="»ﬁ±‚"></td>
-		                                 <td><input type="text" class="form-control w_80" value="02"></td>
-		                                 <td><input type="text" value="∫¥∞°" class="form-control"></td>
+		                                 <td><input type="text" class="form-control w_80" value="Ìú¥Í∞Ä" name="divide"></td>
+		                                 <td><input type="text" class="form-control w_80" value="02" name="code"></td>
+		                                 <td><input type="text" value="Î≥ëÍ∞Ä" class="form-control" name = "title"></td>
+		                                 <td><input type="text" class="form-control" value="Ìú¥Í∏∞"></td>
+		                                 <td><input type="text" class="form-control" value="02"></td>
+		                                 <td><input type="text" value="Î≥ëÍ∞Ä" class="form-control"></td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+		                                 <input type="hidden" name="AnnualLeaveReflection">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="UseOrFailureCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_300"></td>
+		                                 <input type="hidden" name="UseOrFailure">
+		                                 <td><input type="text" class="form-control w_300" name="note"></td>
+		                                 <td><input type="text" class="form-control"></td>
 		                              </tr>
-		                              <tr>
+		                              <tr style="display:table;width:100%;table-layout:fixed;">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="notDeleteChk">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_80" value="»ﬁ±‚"></td>
-		                                 <td><input type="text" class="form-control w_80" value="03"></td>
-		                                 <td><input type="text" value="∞Ê¡∂»ﬁ∞°" class="form-control"></td>
+		                                 <td><input type="text" class="form-control w_80" value="Ìú¥Í∞Ä" name="divide"></td>
+		                                 <td><input type="text" class="form-control w_80" value="03" name="code"></td>
+		                                 <td><input type="text" value="Í≤ΩÏ°∞Ìú¥Í∞Ä" class="form-control" name = "title"></td>
+		                                 <td><input type="text" class="form-control" value="Ìú¥Í∏∞"></td>
+		                                 <td><input type="text" class="form-control" value="03"></td>
+		                                 <td><input type="text" value="Í≤ΩÏ°∞Ìú¥Í∞Ä" class="form-control"></td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+		                                 <input type="hidden" name="AnnualLeaveReflection">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="UseOrFailureCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_300"></td>
+		                                 <input type="hidden" name="UseOrFailure">
+		                                 <td><input type="text" class="form-control w_300" name="note"></td>
+		                                 <td><input type="text" class="form-control"></td>
 		                              </tr>
-		                              <tr>
+		                              <tr style="display:table;width:100%;table-layout:fixed;">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="notDeleteChk">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_80" value="»ﬁ±‚"></td>
-		                                 <td><input type="text" class="form-control w_80" value="04"></td>
-		                                 <td><input type="text" value="√‚ªÍ»ﬁ∞°" class="form-control"></td>
+		                                 <td><input type="text" class="form-control w_80" value="Ìú¥Í∞Ä" name="divide"></td>
+		                                 <td><input type="text" class="form-control w_80" value="04" name="code"></td>
+		                                 <td><input type="text" value="Ï∂úÏÇ∞Ìú¥Í∞Ä" class="form-control" name = "title"></td>
+		                                 <td><input type="text" class="form-control" value="Ìú¥Í∏∞"></td>
+		                                 <td><input type="text" class="form-control" value="04"></td>
+		                                 <td><input type="text" value="Ï∂úÏÇ∞Ìú¥Í∞Ä" class="form-control"></td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+		                                  <input type="hidden" name="AnnualLeaveReflection">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="UseOrFailureCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_300"></td>
+
+		                                 <input type="hidden" name="UseOrFailure">
+		                                 <td><input type="text" class="form-control w_300" name="note"></td>       
+		                                 <td><input type="text" class="form-control"></td>
 		                              </tr>
-		                              <tr>
+		                              <tr style="display:table;width:100%;table-layout:fixed;">
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="notDeleteChk">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_80" value="»ﬁ±‚"></td>
-		                                 <td><input type="text" class="form-control w_80" value="05"></td>
-		                                 <td><input type="text" value="∆˜ªÛ»ﬁ∞°" class="form-control"></td>
+		                                 <td><input type="text" class="form-control w_80" value="Ìú¥Í∞Ä" name="divide"></td>
+		                                 <td><input type="text" class="form-control w_80" value="05" name="code"></td>
+		                                 <td><input type="text" value="Ìè¨ÏÉÅÌú¥Í∞Ä" class="form-control" name = "title"></td>
+		                                 <td><input type="text" class="form-control" value="Ìú¥Í∏∞"></td>
+		                                 <td><input type="text" class="form-control" value="05"></td>
+		                                 <td><input type="text" value="Ìè¨ÏÉÅÌú¥Í∞Ä" class="form-control"></td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
-		                                       <input type="checkbox" name="">
+		                                       <input type="checkbox" name="UseOrFailureCheckbox">
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
-		                                 <td><input type="text" class="form-control w_300"></td>
+		                                 <td><input type="text" class="form-control w_300" name="note"></td>
+		                                 <input type="hidden" name="AnnualLeaveReflection">
+		                                 <input type="hidden" name="UseOrFailure">
+		                                 <td><input type="text" class="form-control"></td>
 		                              </tr>
 		                           </tbody>
 		                        </table>
-		                 
-		                        <button type="button" name="saveButton" class="btn btn-primary ftr" onClick="tableToJson()">¿˙¿Â</button>
+		                        <button type="button" name="saveButton" class="btn btn-primary ftr" onClick="insertDB('insertForm')">Ï†ÄÏû•</button>
 							</form>
 						</div>
 					</div>	

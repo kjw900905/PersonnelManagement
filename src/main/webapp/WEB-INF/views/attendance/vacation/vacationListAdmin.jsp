@@ -60,7 +60,7 @@
 	});
 	
 	
-	//휴가신청현황 페이지로 이동
+	/* 휴가신청현황 페이지로 이동 */
 	function vacationProgressList(){
 		window.location.href = "${pageContext.request.contextPath}/vacationProgressList";
 	}
@@ -81,21 +81,21 @@
 						<form class="form-inline">
 <!-- 							<i class="fa fa-asterisk-red" aria-hidden="true" ></i> -->
 							휴가항목 선택
-							<select name="vacationCategories" class="form-control">
-								<option value="dog">반차</option>
-								<option value="dog">연차</option>
-								<option value="cat">생리휴가</option>
-								<option value="pig">병가</option>
-								<option value="pig">경조휴가</option>
-								<option value="pig">출산휴가</option>
-								<option value="pig">포상휴가</option>
+							<select name="vastC" class="form-control" name="vastC" id="vastC" value="vastC" onchange="halfSelect(this.vacReqFrm)">
+								<option value="yearlyVac" selected="selected">선택</option>			
+								<option id="V1" name="vastC" value="V1">연차</option>										
+								<option id="V2" name="vastC" value="V2">반차</option>
+								<option id="V3" name="vastC" value="V3">생리휴가</option>
+								<option id="V4" name="vastC" value="V4">경조휴가</option>
+								<option id="V5" name="vastC" value="V5">출산휴가</option>
+								<option id="V6" name="vastC" value="V6">병가</option>
 							</select>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <!-- 							<i class="fa fa-asterisk-red" aria-hidden="true" ></i> -->
 							휴가 조회기간
 							<!-- 달력 -->
 							<div class="input-group date" id="startDate">
-								<input type="text" class="form-control" id="vastStartDate"/>
+								<input type="text" class="form-control" id="vastStartDate" name="vastStartDate"/>
 								<span class="input-group-addon">
 									<span class="glyphicon glyphicon-calendar"></span> <!-- 달력 아이콘 -->
 								</span>
@@ -103,7 +103,7 @@
 							~
 							<!-- 달력 -->
 							<div class="input-group date" id="endDate">
-						  	<input type="text" class="form-control" id="vastEndDate"/>
+						  	<input type="text" class="form-control" id="vastEndDate" name="vastEndDate"/>
 						    <span class="input-group-addon">
 							    <span class="glyphicon glyphicon-calendar"></span> <!-- 달력 아이콘 -->
 						    </span>
