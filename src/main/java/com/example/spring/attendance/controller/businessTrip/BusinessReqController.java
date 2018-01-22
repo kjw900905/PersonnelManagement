@@ -40,12 +40,12 @@ public class BusinessReqController {
 		
 		map.put("empList",list);
 
-//		if(list == null) {
-//			map.put("success", "Y");
-//		}else {
-//			map.put("empList",list);
-//			map.put("success", "Y");
-//		}
+		if(list == null) {
+			map.put("success", "N");
+		}else {
+			map.put("empList",list);
+			map.put("success", "Y");
+		}
 
 		return map;
 	}

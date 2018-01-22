@@ -19,8 +19,9 @@
 			RANK R
 		ON R.RANK_CODE = E.RANK_CODE
 		<where>
-			<if test="title != null">
-				
+			<if test="keyword != null"> #검색어
+			</if>
+			<if test="retr != null"> #퇴직여부
 			</if>
 		</where> 
 	

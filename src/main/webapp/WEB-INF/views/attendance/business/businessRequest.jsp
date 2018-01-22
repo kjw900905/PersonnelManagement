@@ -42,15 +42,13 @@
  
 	//달력
 	$(function() {
-		
+
 		//오늘 날짜로 보여주기
 		$('#btstCrtDate').val(moment().format('YYYY-MM-DD')); //출장신청일
 		$('#btstBtStartDate').val(moment().format('YYYY-MM-DD')); //출장시작일
 		$('#btstBtEndDate').val(moment().format('YYYY-MM-DD')); //출장종료일
-		
 		$('#busiNight').val('0'); //0박
 		$('#busiDay').val('1'); //1일
-		
 		
 		$('#crtCalender').datetimepicker({ //출장신청일 달력
 			viewMode : 'days',
@@ -91,7 +89,6 @@
 			$('#busiDay').val(endDate.diff(startDate, "days")+1);
 		});
 
-		
 //		$('#datetimepicker').datetimepicker('setDaysOfWeekDisabled', [0 , 6]); 
 		//Number(data_value).toLocaleString('en').split(".")[0]
 
@@ -123,32 +120,38 @@
  			console.log("결과데이터:"+JSON.stringify(rslt));
  			
  			$('#empModalTbody').empty(); //이전 리스트 삭제
- 			$('#empModalTable').children('thead').css('width','calc(100% - 1em)');
+ 			$('#empModalTable').children('thead').css('width','calc(100% - 1em)'); //테이블 스크롤 css
  			
- 			// 추가하기
- 			//조회된 데이터가 없습니다(리턴한 data 없으면)
- 			//테이블 tbody 스크롤
- 			
- 			$.each(rslt, function() {
- 				  $.each(this, function(k, v) {
- 	 					$('#empModalTbody').append(
- 	 	 						"<tr style='display:table;width:100%;table-layout:fixed;'>"+
- 	 								"<td>"+
-										"<label class='fancy-checkbox-inline'>"+
-											"<input type='checkbox' name='emnoChk'>"+ //checkbox
-											"<span></span>"+
-										"</label>"+
-									"</td>"+
-									"<td>"+ v.empEmno +"</td>"+
-									"<td>"+ v.empName +"</td>"+
-									"<td>"+ v.deptName +"</td>"+
-									"<td>"+ v.rankName +"</td>"+
-								"</tr>"
-							);
- 				  });
- 			});
+ 			if(rslt.success == "Y"){
+ 	 			$.each(rslt, function() {
+ 	 				  $.each(this, function(k, v) {
+ 	 					  if(v != "Y"){ //success 제외한 사원정보 data
+	 	 						$('#empModalTbody').append(
+	 	 	 	 					"<tr style='display:table;width:100%;table-layout:fixed;'>"+
+ 	 	 								"<td>"+
+ 											"<label class='fancy-checkbox-inline'>"+
+ 												"<input type='checkbox' name='emnoChk'>"+ //checkbox
+ 												"<span></span>"+
+ 											"</label>"+
+ 										"</td>"+
+ 										"<td>"+ v.empEmno +"</td>"+
+ 										"<td>"+ v.empName +"</td>"+
+ 										"<td>"+ v.deptName +"</td>"+
+ 										"<td>"+ v.rankName +"</td>"+
+ 									"</tr>"
+	 							);
+ 	 					  }
+	 	 				});
+ 	 			});
+ 			}else{
+ 				$('#empModalTbody').append( //리스트가 없을 경우 : 조회된 데이터가 없습니다
+					"<tr style='display:table;width:100%;table-layout:fixed;'>"+
+						"<td colspan='5' class='text-center'>조회된 데이터가 없습니다.</td>"+
+					"</tr>"
+				);
+ 			}
 
- 			
+ 	
 		 	//사원선택 체크박스 선택 1개로 제한(라디오버튼처럼)
 			$(function(){
 				$("input[type='checkbox'][name='emnoChk']").click(function(){
@@ -180,9 +183,9 @@
  		var empNameVal = chkTr.children().eq(2).text(); //tr 하부 3번째 td의 텍스트(이름)
  		var deptNameVal = chkTr.children().eq(3).text(); //tr 하부 4번째 td의 텍스트(부서)
  		var rankNameVal = chkTr.children().eq(4).text(); //tr 하부 5번째 td의 텍스트(직급)
- 		
+
 //  		console.log(emnoVal, nameVal, departmentVal, positionVal);
- 		
+
  		$('#empEmno').val(empEmnoVal);
  		$('#empName').val(empNameVal);
  		$('#deptName').val(deptNameVal);
@@ -295,9 +298,9 @@
 								<div class="modal-body">
 									<div class="search_wrap" style="padding: 0px 10px 20px 15px; ">
 										<form class="form-inline" name="empFrm">
-											검색어&nbsp;<input type="text" class="form-control">&nbsp;&nbsp;&nbsp;
+											검색어&nbsp;<input type="text" class="form-control" name="keyword">&nbsp;&nbsp;&nbsp;
 											<label class="fancy-checkbox-inline">
-												<input type="checkbox" name="">
+												<input type="checkbox" name="retr">
 												<span>퇴직자 포함</span>
 											</label>
 											<input type="button" class="btn btn-primary" style="float:right;" name="search" onclick="emnoSearch()" value="검색">
