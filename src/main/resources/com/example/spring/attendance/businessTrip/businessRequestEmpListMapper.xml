@@ -1,0 +1,29 @@
+<!--?xml version="1.0" encoding="UTF-8"? -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 출장신청 사원정보조회 -->
+<mapper namespace="business">
+	<select id="businessRequestEmpList" parameterType="HashMap" resultType="HashMap">
+		/* businessRequest Employee Select (출장신청 사원정보조회) */
+		
+		SELECT
+			E.EMP_EMNO AS empEmno, #사원번호
+			E.EMP_NAME AS empName, #사원명
+			D.DEPT_NAME AS deptName, #부서명
+			R.RANK_NAME AS rankName #직급명
+		FROM EMPLOYEE E
+		INNER JOIN
+			DEPARTMENT D
+		ON D.DEPT_CODE = E.DEPT_CODE
+		INNER JOIN
+			RANK R
+		ON R.RANK_CODE = E.RANK_CODE
+		<where>
+			<if test="keyword != null"> #검색어
+			</if>
+			<if test="retr != null"> #퇴직여부
+			</if>
+		</where> 
+	
+	</select>
+</mapper>

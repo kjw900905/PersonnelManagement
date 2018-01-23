@@ -26,11 +26,30 @@ public class BusinessReqController {
 	
 	//출장신청
 	@RequestMapping(value = "/businessRequest")
-	public String businessRequestPage() { 
+	public String businessRequestPage() {
 		return "businessRequest";
 	}
-	
-	
+
+	//출장신청 사원정보조회
+	@RequestMapping(value="/businessRequestEmpList.ajax")
+	public @ResponseBody HashMap<String, Object> businessRequestEmpList() {
+
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		
+		List<HashMap<String,Object>> list = businessReqService.businessRequestEmpList();
+		
+		map.put("empList",list);
+
+		if(list == null) {
+			map.put("success", "N");
+		}else {
+			map.put("empList",list);
+			map.put("success", "Y");
+		}
+
+		return map;
+	}
+
 	//출장신청 insert
 	@RequestMapping(value = "/businessRequestInsert.ajax")
 	public @ResponseBody HashMap<String,String> businessRequest(
@@ -41,10 +60,9 @@ public class BusinessReqController {
 		int list = businessReqService.businessRequest(map);
 
 		if(list == 0) {
-			map.put("success", "false");
+			map.put("success", "N");
 		}else {
-			map.put("success", "true");
-		//	map.put("url", "/studentList.do");
+			map.put("success", "Y");
 		}
 
 		return map;

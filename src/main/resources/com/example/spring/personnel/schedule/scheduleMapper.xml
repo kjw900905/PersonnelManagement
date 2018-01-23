@@ -13,6 +13,7 @@
 				,INPN_STRT_DATE 	/*시작날짜*/
 				,INPN_END_DATE 		/*종료날짜*/
 				,INPN_REG_DATE 		/*등록날짜*/
+				,INPN_UPDT_DATE		/*수정날짜*/
 				,INPN_DEL_YN 		/*삭제여부*/
 			)
 		VALUES
@@ -23,6 +24,7 @@
 				#{startDate},			/*시작날짜*/
 				#{endDate},				/*종료날짜*/
 				#{createDate},			/*등록날짜*/
+				#{updateDate},			/*수정날짜*/
 				#{delYN}				/*삭제여부*/			
 			) 
 	</insert>
@@ -39,17 +41,21 @@
 	</select>
 	
 	<!-- 일정상세보기 -->
-	<select id="scheduleDetail" parameterType="String" resultType="HashMap">
-		/* /personnel/schedule/scheduleMapper.xml - scheduleDb(사원일정 db) */
+	<select id="scheduleDetail" parameterType="HashMap" resultType="HashMap">
+		/* /personnel/schedule/scheduleMapper.xml - scheduleDetail(일정상세보기 db) */
 		SELECT 
-			EMP_EMNO AS empEmno											/*사원번호*/
-			,INPN_TIT AS inpnTit										/*제목*/
-			,INPN_CNTN AS inpnCntn										/*내용*/
-			,DATE_FORMAT(INPN_STRT_DATE,"%Y-%m-%d") AS inpnStrtDate		/*시작날짜*/
-			,DATE_FORMAT(INPN_END_DATE,"%Y-%m-%d") AS inpnEndDate		/*종료날짜*/
-			,INPN_REG_DATE AS inpnRegDate								/*등록날짜*/
-			,INPN_DEL_YN AS inpnDelYn 									/*삭제여부*/
+			EMP_EMNO AS empEmno					/*사원번호*/
+			,INPN_TIT AS inpnTit				/*제목*/
+			,INPN_CNTN AS inpnCntn				/*내용*/
+			,INPN_STRT_DATE AS inpnStrtDate		/*시작날짜*/
+			,INPN_END_DATE AS inpnEndDate		/*종료날짜*/
+			,INPN_REG_DATE AS inpnRegDate		/*등록날짜*/
+			,INPN_UPDT_DATE AS inpnUpdtDate     /*수정날짜*/
+			,INPN_DEL_YN AS inpnDelYn 			/*삭제여부*/
 		FROM INDIVIDUAL_PLAN
+		WHERE EMP_EMNO = ${emno} 
+			AND INPN_STRT_DATE = ${start}
+			AND INPN_END_DATE = ${end}
 	</select>
 	
 </mapper>

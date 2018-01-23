@@ -18,6 +18,20 @@ public class BusinessReqDao {
 	private SqlSession sqlSession;
 	private String nameSpaceName = "business.";
 
+	//출장신청 사원정보조회
+	public List<HashMap<String,Object>> businessRequestEmpList() {
+//		logger.debug("dao >>> "+map);
+		
+		List<HashMap<String,Object>> list
+			= this.sqlSession.selectList(nameSpaceName + "businessRequestEmpList");
+		
+		logger.debug("dao List: "+list);
+		
+		return list;
+	}
+	
+	
+	//출장신청 insert
 	public int businessRequest(HashMap<String,String> map) {
 		logger.debug("dao >>> "+map);
 		

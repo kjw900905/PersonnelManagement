@@ -17,12 +17,21 @@ public class ScheduleDao {
 	
 	//일정등록 dao
 	public int scheduleInsert(HashMap<String, String> map) {
-		System.out.println("scheduleInsert(dao) in");
-		System.out.println("map(dao) : " + map);
 		
 		int result = (int)this.sql.insert(namespace+"scheduleInsert",map);
 		
 		return result;
+	}
+	
+	//일정상세보기
+	public List<String> scheduleDetail(HashMap<String, String> map){
+		System.out.println("일정상세보기(dao)");
+		System.out.println("map : " + map);
+		List<String> list = this.sql.selectList(namespace+"scheduleDetail",map);
+		
+		System.out.println("db한 list : " + list);
+		
+		return list;
 	}
 	
 	//사원일정db dao

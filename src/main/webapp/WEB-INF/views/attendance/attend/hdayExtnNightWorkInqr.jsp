@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -74,7 +75,18 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
+									<c:forEach var="item" items="${resultList}">
+										<tr>
+											<td>${item.empEmno}</td>
+											<td>${item.empName}</td>
+											<td>${item.rankCode}</td>
+											<td>${item.depCode}</td>
+											<td>${item.attendanceType}</td>
+											<td>${item.costWrkTime}</td>
+											<td>${item.costWrkIn}</td>
+										</tr>
+									</c:forEach>
+									<!-- <tr>
 										<td>??</td>
 										<td>??</td>
 										<td>??</td>
@@ -82,7 +94,7 @@
 										<td>??</td>
 										<td>??</td>
 										<td>??</td>
-									</tr>
+									</tr> -->
 								</tbody>
 							</table>
 							<!-- paging 영역 -->

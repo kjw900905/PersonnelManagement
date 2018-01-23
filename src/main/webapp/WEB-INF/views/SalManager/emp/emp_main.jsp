@@ -62,7 +62,7 @@ $(document).ready(function(){
 			}
 		}
 	
-		if(checkcount !=new_checklength) {
+		if(checkcount != new_checklength) {
 			frm.action = "/spring/new_empcode.do";
 			frm.submit();
 		}
@@ -83,23 +83,23 @@ $(document).ready(function(){
 			}
 		}
 	
-		if(checkcount !=exi_checklength) {
+		if(checkcount != exi_checklength) {
 			frm.action = "/spring/exi_empcode.do";
 			frm.submit();
-		}
-		else{
+		}else{
 			alert("아무것도 체크하지 않았습니다.!");
 		}
    }  
 </script>
 </head>
 <body>
+<div class="main">
 	<div class="main-content">
 
 		<div class="container-fluid">
 			<h3 class="page-title">직원급여정보</h3>
 
-			<div class="col-sm-4">
+			<div class="col-xs-10">
 				
 				<div class="panel">
 					<div class="panel-heading">
@@ -144,7 +144,7 @@ $(document).ready(function(){
 				</div>
 			</div>
 			
-			<div class="col-sm-4">
+			<div class="col-xs-10">
 			   
 				<div class="panel">
 					<div class="panel-heading">
@@ -189,6 +189,7 @@ $(document).ready(function(){
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 
 </body>

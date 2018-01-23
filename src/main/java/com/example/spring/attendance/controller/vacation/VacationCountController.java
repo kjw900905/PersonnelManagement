@@ -17,12 +17,5 @@ public class VacationCountController {
 
 private static final Logger logger = LoggerFactory.getLogger(VacationCountController.class);
 	
-	@Autowired
-	private VacationCountService vacationCountService;
 	
-	
-	@RequestMapping(value="/vacationCount")
-	public String vacationCount() {
-		return "vacationCount";
-	}
 }
