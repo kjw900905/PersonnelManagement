@@ -1,10 +1,6 @@
 package com.example.spring.personnel.service;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -20,6 +16,7 @@ public class ScheduleService {
 	private ScheduleDao scheduleDao;
 	
 	//일정등록 service
+<<<<<<< HEAD
 	public int scheduleInsert(HashMap<String, String> map) {
 		
 		Calendar cal = Calendar.getInstance();
@@ -31,27 +28,14 @@ public class ScheduleService {
 		map.put("createDate", today);
 		map.put("updateDate", "");
 		map.put("delYN", "N");
+=======
+	public int scheduleInsert(HashMap<String, Object> map) {
+		System.out.println("schedul insert(service) in");
+>>>>>>> origin/제영호
 		
 		int result = scheduleDao.scheduleInsert(map);
 		
 		return result;
-	}
-	
-	//일정상세보기
-	public List<String> scheduleDetail(HashMap<String, String> map){
-		System.out.println("일정상세보기(service)");
-		
-		List<String> list = scheduleDao.scheduleDetail(map);
-		
-		return list;
-	}
-	
-	//사원 일정db service
-	public List<String> scheduleDb(String emno){
-		
-		List<String> list = scheduleDao.scheduleDb(emno);
-		
-		return list;
 	}
 	
 }

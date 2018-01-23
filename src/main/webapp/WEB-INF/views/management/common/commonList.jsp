@@ -167,25 +167,21 @@
 									<h4 class="panel-title" style="font-size:20px; padding-left:15px;">공통코드 조회</h4>
 								</div>
 								<div class="panel-body">
-									<form action="/Project/commonList.do" id="commonSearchForm">
 									<div class="col-md-2">
-										<select name="commonSelect" class="form-control">
-											<option value="default" selected>검색조건</option>
+										<select id="commonSel" class="form-control">
+											<option value="commPrntCode">그룹코드</option>
+											<option value="commPrntName">그룹명</option>
 											<option value="commCode">코드</option>
 											<option value="commName">코드명</option>
-											<option value="commCodeInfo">코드정보</option>
 											<option value="deptName">등록부서</option>
 										</select>
 									</div>
-									<div class="col-md-10">
-										<div class="input-group">
-											<input type="text" name="commonSearch" class="form-control">
-											<span class="input-group-btn">
-												<button type="button" class="btn btn-primary" onClick="commSearchListFunc()">검색</button>
-											</span>
-										</div>
+									<div class="input-group">
+										<input type="text" id="commonSearch" class="form-control">
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-primary" onClick="commonSubmit()">검색</button>
+										</span>
 									</div>
-									</form>
 								</div>
 							</div>
 						</div>
@@ -193,45 +189,40 @@
 					<div class="row">
 						<div class="col-md-10">
 						<!-- TABLE STRIPED -->
-							<div class="panel" id="commList">
-								<div class="panel-heading"></div>
-								<div class="row">
-									<div class="col-md-12 text-right" style="padding-right:60px">
-										<button type="button" class="btn btn-default" data-toggle="modal" data-target="#insertModal">등록</button>
-										<button type="button" class="btn btn-default" onclick="location.href='/Project/commonList.do'">목록</button>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
+							<div class="panel">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-md-10"></div>
+										<div class="col-md-2" align="right" style="margin-bottom:20px;">
+											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insertModal">등록</button>
+										</div>
 										<div class="panel-body">
-											<table class="table table-hover">
+											<table class="table table-hover" id="commListTable">
 												<thead>
 													<tr>
 														<th>그룹코드</th>
 														<th>그룹명</th>
 														<th>코드정보</th>
 														<th>등록부서</th>
-														<th>수정부서</th>
 														<th>생성일</th>
 														<th>수정일</th>
 														<th>사용여부</th>
 														<th>비고</th>
 													</tr>
 												</thead>
-												<tbody>
+												<tbody name="commTable">
 													<c:forEach var="l" items="${list}">
 														<tr name="commCodeInfo" onclick="commCodeInfoFunc($(this))" data-toggle="modal" style="cursor:pointer">
 															<td name="commCode">${l.commCode}</td>
 															<td name="commName">${l.commName}</td>
 															<td name="commCodeInfo">${l.commCodeInfo}</td>
 															<td name="deptCode">${l.deptCode}</td>
-															<td name="deptUpdtCode">${l.deptUpdtCode}</td>
 															<td name="commCodeCrt">${l.commCodeCrt}</td>
 															<td name="commCodeUpdt">${l.commCodeUpdt}</td>
 															<td name="commDelYn">${l.commDelYn}</td>
 															<td name="commUpdt" onClick="event.cancelBubble = true">
-																<button type="button" class="btn btn-default" name="updateBtn">수정</button>
-																<button type="button" class="btn btn-default" name="deleteBtn">삭제</button>
+																<button type="button" id="commUpdtBtn" class="btn btn-default">수정</button>
+																<button type="button" class="btn btn-default" id="commDelBtn">삭제</button>
 															</td>
 														</tr>
 													</c:forEach>
@@ -248,20 +239,20 @@
 											
 											<nav aria-label="Page navigation example" align="center">
 												<ul class="pagination">
-													<c:if test="${startPage+0 <= 1}">
+													<c:if test="${startPage <= 1}">
 														<li class="page-item">
-															<a class="page-link" href="/Project/commonList.do?selectPageNum="+${prevPage}>	
+															<a class="page-link" href="/Project/commonList.do?selectPageNum=${prevPage}">	
 																<span aria-hidden="true">&laquo;</span>
 																<span class="sr-only">Previous</span>
 															</a>													
 														</li>
 													</c:if>
 													<c:forEach var="p" varStatus="status" begin="${startPage}" end="${endPage}">
-														<li class="page-item"><a class="page-link" href="/Project/commonList.do?selectPageNum="+${status.count}>${status.count}</a></li>
+														<li class="page-item"><a class="page-link" href="/Project/commonList.do?selectPageNum=${status.count}">${status.count}</a></li>
 													</c:forEach>
-													<c:if test="${endPage+0 < allPageNum+0}">
+													<c:if test="${endPage < allPageNum}">
 														<li class="page-item">
-															<a class="page-link" href="/Project/commonList.do?selectPageNum="+${nextPage} aria-label="Next">
+															<a class="page-link" href="/Project/commonList.do?selectPageNum=${nextPage}" aria-label="Next">
 																<span aria-hidden="true">&raquo;</span>
 																<span class="sr-only">Next</span>
 															</a>
@@ -273,10 +264,11 @@
 									</div>
 								</div>
 							</div>
-						<!-- END TABLE STRIPED -->
+							<!-- END TABLE STRIPED -->
 						</div>
 					</div>
 				</div>
+				
 			</div>
 			<!-- END MAIN CONTENT -->
 		</div>
@@ -292,7 +284,7 @@
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-md-11" style="padding-top:20px;">
-								<form action="/Project/commonInsert.do" id="insertForm">
+								<form action="/Project/commonInsert.do" id="commInsertForm">
 									<table class="table table-hover" align="center">
 										<tr>
 											<td> &nbsp;그룹코드</td>
@@ -319,7 +311,47 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" id="insertBtn" class="btn btn-default" data-dismiss="modal">등록</button>
+						<button type="button" id="commInsert" class="btn btn-default" data-dismiss="modal">등록</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- INFO MODAL -->
+		<div id="commonInfoModal" class="modal" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h3 class="modal-title">공통코드 상세보기</h3>
+						<div id="commPrntCodeLine">
+							commCode commName
+						</div>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-11" style="padding-top:20px;">
+								<table class="table table-hover" style="padding-left:30px;">
+									<thead>
+										<tr>
+											<th>코드</th>
+											<th>코드명</th>
+											<th>등록부서</th>
+											<th>등록일</th>
+											<th>수정일</th>
+											<th>비고</th>
+										</tr>
+									</thead>
+									<tbody id="commonInfoBody">
+										<!-- <form id="commonInfoForm">
+										</form> -->
+									</tbody>
+								</table>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-target="#infoInsertModal" data-toggle="modal">등록</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -335,11 +367,11 @@
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-md-11" style="padding-top:20px;">
-								<form action="/Project/commonUpdate.do" id="updateForm">
+								<form action="/Project/commonUpdate.do" id="commUpdateForm">
 									<table class="table table-hover" align="center">
 										<tr>
 											<td> &nbsp;그룹코드</td>
-											<td><input type="text" name="commCode" readOnly></td>
+											<td><input type="text" name="commCode"></td>
 										</tr>
 										<tr>
 											<td> &nbsp;그룹코드명</td>
@@ -359,56 +391,13 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" name="submitBtn">저장</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- INFO MODAL -->
-		<div id="infoModal" class="modal fade" role="dialog">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h3 class="modal-title">공통코드 상세보기</h3>
-						<div id="commPrntCodeLine">
-							commCode commName
-						</div>
-					</div>
-					<div class="modal-body">
-						<div class="row">
-							<div class="col-md-12" style="padding-top:20px;">
-								<table class="table table-hover" style="padding-left:30px;">
-									<thead>
-										<tr>
-											<th>코드</th>
-											<th>코드명</th>
-											<th>코드정보</th>
-											<th>등록부서</th>
-											<th>수정부서</th>
-											<th>등록일</th>
-											<th>수정일</th>
-											<th>비고</th>
-										</tr>
-									</thead>
-									<tbody>
-										<!-- <form id="commonInfoForm">
-										</form> -->
-									</tbody>
-								</table>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-target="#infoInsertModal" data-toggle="modal">등록</button>
-									<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-								</div>
-							</div>
-						</div>
+						<button type="button" class="btn btn-default">저장</button>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- INFO INSERT MODAL -->
-		<div id="infoInsertModal" class="modal fade" role="dialog">
+		<div id="infoInsertModal" class="modal" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -418,7 +407,7 @@
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-md-11" style="padding-top:20px">
-								<form action="/Project/commonInfoInsert.do" id="infoInsertForm">
+								<form action="/Project/commonInfoInsert.do" id="commonInfoInsertForm">
 									<table class="table table-hover" align="center">
 										<tr>
 											<td> &nbsp;소속부서</td>
@@ -442,7 +431,7 @@
 									</table>
 								</form>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-default" id="infoInsertBtn" data-toggle="modal">등록</button>
+									<button type="button" class="btn btn-default" id="commonInfoInsertBtn" data-toggle="modal">등록</button>
 									<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 								</div>
 							</div>
@@ -462,11 +451,11 @@
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-md-11" style="padding-top:20px;">
-								<form action="/Project/commonUpdate.do" id="infoUpdateForm">
+								<form action="/Project/commonUpdate.do" id="commInfoUpdateForm">
 									<table class="table table-hover" align="center">
 										<tr>
 											<td> &nbsp;코드</td>
-											<td><input type="text" name="commCode" readOnly></td>
+											<td><input type="text" name="commCode"></td>
 										</tr>
 										<tr>
 											<td> &nbsp;코드명</td>
@@ -486,8 +475,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" name="submitBtn">저장</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-default">저장</button>
 					</div>
 				</div>
 			</div>
@@ -514,10 +502,10 @@
 	/* ================================ 메인 공통코드 관련  ========================================== */		
 		
 			// 메인 공통코드 insert시 중복체크  //
-			$("form[id='insertForm'] input[name='commCodeCheck']").on("click", function(){	
+			$("form[id='commInsertForm'] input[name='commCodeCheck']").on("click", function(){	
 				
 				var url = "/Project/commCodeCheck.do";
-				var commCode = $("#insertForm input[name='commCode']").val();
+				var commCode = $("#commInsertForm input[name='commCode']").val();
 				var data = {"commCode":commCode};
 				
 				commCodeCheckAjaxSubmit(url, data);
@@ -526,8 +514,12 @@
 			
 			function commCodeCheckAjaxSubmit(url, data){
 				
+				console.log("들어옴"+data);
+				
 				paging.ajaxSubmit(url, data, function(result){
-					$("form[id='insertForm'] span[name='checkValue']").text(result.commCode);
+
+					$("form[id='commInsertForm'] span[name='checkValue']").text(result.commCode);
+					
 				});
 					
 			}//ajaxSubmit
@@ -535,10 +527,10 @@
 			
 			
 			// 메인 공통코드 등록 //
-			$("#insertBtn").on("click",function(){
+			$("#commInsert").on("click",function(){
 				
 				if(confirm("등록 하시겠습니까?") == true){
-					$("#insertForm").submit();
+					$("#commInsertForm").submit();
 				}else{
 					return;
 				}//if
@@ -546,68 +538,41 @@
 			});
 			// 메인 공통코드 등록 //
 			
-			
-			
-			// 메인 공통코드 검색조건 목록 //
-			function commSearchListFunc(){
-				
-				var url = "/Project/commonList.do";
-				var commonSelect = $("select[name='commonSelect'] option:selected").val();
-				var commonSearch = $("input[name='commonSearch']").val();
-				
-				console.log("commonSelect: " + commonSearch);
-				
-				if(commonSelect == ('default')){
-					alert("검색조건을 선택해주세요.");
-					return false;
-				}else if(commonSearch == ("")){
-					alert("검색내용을 입력해주세요.");
-					return false;
-				}else{
-					$("#commonSearchForm").submit();
-					
-				}
-				
-				var data = {"commonSelect":commonSelect,"commonSearch":commonSearch};
-				
-				//location.href = "/Project/commonList.do?commonSelect="+commonSelect+"&commonSearch="+commonSearch;
-				//commSearchListajaxSubmit(url,data);
-				
-			}//commSearchListFunc
-			// 메인 공통코드 검색조건 목록 //
-			
 
 			
 			// 메인 공통코드 수정 //
-			$("div[id='commList'] table button[name='updateBtn']").on("click", function(){
+			$("#commListTable button[id='commUpdtBtn']").on("click", function(){
 				
-				$("updateModal form[id='updateForm']").find("tr").find("td").each(function(){
+				$("updateModal form[id='commUpdateForm']").find("tr").find("td").each(function(){
+					
 					$(this).val().remove();
+					
 				});
-				 
 				
+				 
 				var commCode = $(this).closest("tr").children("td[name='commCode']").text();
 				var commName = $(this).closest("tr").children("td[name='commName']").text();
 				var commCodeInfo = $(this).closest("tr").children("td[name='commCodeInfo']").text();
-				var deptUpdtCode = $(this).closest("tr").children("td[name='deptCode']").text();
 				
-				$("#updateModal form[id='updateForm']").find("tr").find("td").children("input[name='commCode']").val(commCode);
-				$("#updateModal form[id='updateForm']").find("tr").find("td").children("input[name='commName']").val(commName);
-				$("#updateModal form[id='updateForm']").find("tr").find("td").children("input[name='commCodeInfo']").val(commCodeInfo);
-				$("#updateModal form[id='updateForm']").find("tr").find("td").children("input[name='deptUpdtCode']").val(deptUpdtCode);
+				console.log("commCode: " + commCode);
+				console.log("commName: " + commName);
+				console.log("commCodeInfo: " + commCodeInfo);
+				
+				$("#updateModal form[id='commUpdateForm']").find("tr").find("td").children("input[name='commCode']").val(commCode);
+				$("#updateModal form[id='commUpdateForm']").find("tr").find("td").children("input[name='commName']").val(commName);
+				$("#updateModal form[id='commUpdateForm']").find("tr").find("td").children("input[name='commCodeInfo']").val(commCodeInfo);
+				
 				
 				$("#updateModal").modal('show');
 				
+				//var data = {"commCode":commCode, "commName":commName, "commCodeInfo":commCodeInfo};
+			
 			});
 			
 			
-			$("#updateModal .modal-footer button[name='submitBtn']").on("click",function(){
+			$("#updateModal .modal-footer").find("button").on("click",function(){
 				
-				if(confirm("정말로 수정하시겠습니까?") == true){
-					$("#updateModal form[id='updateForm']").submit();
-				}else{
-					return;
-				}
+				$("#updateModal form[id='commUpdateForm']").submit();
 				
 			});
 			// 메인 공통코드 수정 //
@@ -615,7 +580,7 @@
 			
 			
 			// 메인 공통코드 삭제 //
-			$("div[id='commList'] table button[name='deleteBtn']").on("click", function(){
+			$("#commListTable button[id='commDelBtn']").on("click", function(){
 				
 				var commCode = $(this).closest("tr").children("td[name='commCode']").text();
 				
@@ -624,10 +589,11 @@
 					var url = "/Project/commonDeleteCheck.do";
 					var data = {"commCode":commCode};
 					
+					//location.href = url;
 					commDeleteCheckFunc(url,data);
 					
 				}else{
-					return false;
+					return;
 				}
 				
 			});
@@ -637,10 +603,11 @@
 				paging.ajaxSubmit(url,data,function(result){
 
 					if(result.listSize == 0 || result.listSize == "0"){
+						alert("정상적으로 삭제하였습니다.");
 						location.href = "/Project/commonDelete.do?commCode="+data.commCode;
 					}else{
 						alert("해당 코드는 삭제할 수 없습니다.");
-						return false;
+						location.href = "/Project/commonList.do";
 					}
 					
 				});
@@ -648,30 +615,7 @@
 			// 메인 공통코드 삭제 //
 			
 			
-/* ================================ 하위 공통코드 관련(공통코드 상세보기) ========================================== */
-
-			
-			// 공통코드 상세보기에서 공통코드 insert시 중복체크 START //
-			$("form[id='infoInsertForm'] input[name='commCodeCheck']").on("click", function(){	
-				
-				var url = "/Project/commCodeCheck.do";
-				var commCode = $("#infoInsertForm input[name='commCode']").val();
-				var data = {"commCode":commCode};
-				
-				commCodeInfoCheckAjaxSubmit(url, data);
-				
-			});
-			
-			function commCodeInfoCheckAjaxSubmit(url, data){
-				
-				paging.ajaxSubmit(url, data, function(result){
-					$("#infoInsertForm span[name='checkValue']").text(result.commCode);
-				});
-					
-			}//ajaxSubmit
-			// 공통코드 상세보기에서 공통코드 insert시 중복체크 START //
-			
-			
+/* ================================ 하위 공통코드 관련(공통코드 상세보기) ========================================== */	
 			
 			// 공통코드 상세보기 목록 //
 			function commCodeInfoFunc(obj){
@@ -686,17 +630,21 @@
 				var commPrntCode = $(obj).find("td[name='commCode']").text();
 				var commPrntName = $(obj).find("td[name='commName']").text();
 				
+				//console.log("path: " + $(obj).html() + "commPrntCode: " + commPrntCode + "commPrntName: " + commPrntName);
 				
-				if($("#infoInsertModal form[id='infoInsertForm']").find($("input[type='hidden']"))){
+				if($("#infoInsertModal form[id='commonInfoInsertForm']").find($("input[type='hidden']"))){
 					
-					$("#infoInsertModal form[id='infoInsertForm']").find($("input[type='hidden']")).each(function(){
+					$("#infoInsertModal form[id='commonInfoInsertForm']").find($("input[type='hidden']")).each(function(){
+						
+						console.log("thisssssss: " + $(this));
 						$(this).remove();
+						
 					});
 					
 				}//if
 				
-				$("#infoInsertModal form[id='infoInsertForm']").prepend("<input type='hidden' name='commPrntName' value='" + commPrntName + "'>");
-				$("#infoInsertModal form[id='infoInsertForm']").prepend("<input type='hidden' name='commPrntCode' value='" + commPrntCode + "'>");
+				$("#infoInsertModal form[id='commonInfoInsertForm']").prepend("<input type='hidden' name='commPrntName' value='" + commPrntName + "'>");
+				$("#infoInsertModal form[id='commonInfoInsertForm']").prepend("<input type='hidden' name='commPrntCode' value='" + commPrntCode + "'>");
 				// 해당 부모코드의 하위코드 생성할 때 필요한 작업  //
 				
 				commCodeInfoAjaxSubmit(url,data);
@@ -711,23 +659,23 @@
 						
 						console.log("목록없음");
 						
-						if($("div[id='infoModal'] tbody").find("tr")){	//기존에 생성 되어있던 목록 삭제
+						if($("div[id='commonInfoModal'] tbody[id='commonInfoBody']").find("tr")){	//기존에 생성 되어있던 목록 삭제
 							
-							$("div[id='infoModal'] tbody").find("tr").each(function(){
+							$("div[id='commonInfoModal'] tbody[id='commonInfoBody']").find("tr").each(function(){
 								$(this).remove();
 							});
 							
 						}//if
 						
-						$("#infoModal").modal('show');	//상세보기 모달띄움
+						$("#commonInfoModal").modal('show');	//상세보기 모달띄움
 					
 					}else{	//상세보기 목록 값이 있으면
 						
 						console.log("목록있음");
 						
-						if($("div[id='infoModal'] tbody").find("tr")){	//이미 생성되있었던 목록 삭제
+						if($("div[id='commonInfoModal'] tbody[id='commonInfoBody']").find("tr")){	//이미 생성되있었던 목록 삭제
 							
-							$("div[id='infoModal'] tbody").find("tr").each(function(){
+							$("div[id='commonInfoModal'] tbody[id='commonInfoBody']").find("tr").each(function(){
 								$(this).remove();
 							});
 							
@@ -735,25 +683,21 @@
 						
 						$.each(result, function(idx,value){	//해당 부모코드의 하위코드 목록 개수만큼 동적 생성
 							
-							$("div[id='infoModal'] tbody").append(
-									"<tr>" +
+							$("div[id='commonInfoModal'] tbody[id='commonInfoBody']").append(
+									"<tr name='commonInfoList'>" +
 										"<td name='commCode'>" + result[idx].commCode + "</td>" +
 										"<td name='commName'>" + result[idx].commName + "</td>" +
-										"<td name='commCodeInfo'>" + result[idx].commCodeInfo + "</td>" + 
 										"<td name='deptCode'>" + result[idx].deptCode + "</td>" +
-										"<td name='deptUpdtCode'>" + result[idx].deptUpdtCode + "</td>" + 
 										"<td name='commCodeCrt'>" + result[idx].commCodeCrt + "</td>" +
 										"<td name='commCodeUpdt'>" + result[idx].commCodeUpdt + "</td>" +
-										"<td name='commInfoBtn'>" + 
-											"<button type='button' name='infoUpdateBtn' class='btn btn-default' onClick='commInfoUpdateFunc($(this))'>수정</button>" +
-											"<button type='button' name='infoDeleteBtn' class='btn btn-default' onClick='commInfoDeleteFunc($(this))'>삭제</button></td>" + 
-										"</td>" + 
+										"<td name='commInfoUpdt'><button type='button' name='commInfoUpdtBtn' class='btn btn-default' onClick='commInfoUpdtFunc()'>수정</button></td>" +
+										"<td name='commInfoDel'><button type='button' name='commInfoDelBtn' class='btn btn-default'>삭제</button></td>" + 
 									"</tr>"
 								);
 							
 						});//each
 
-						$("#infoModal").modal('show');
+						$("#commonInfoModal").modal('show');
 						
 					}//if
 					
@@ -764,11 +708,37 @@
 			
 			
 			
+			// 공통코드 상세보기에서 공통코드 insert시 중복체크 START //
+			$("form[id='commonInfoInsertForm'] input[name='commCodeCheck']").on("click", function(){	
+				
+				var url = "/Project/commCodeCheck.do";
+				var commCode = $("#commonInfoInsertForm input[name='commCode']").val();
+				var data = {"commCode":commCode};
+				
+				commCodeInfoCheckAjaxSubmit(url, data);
+				
+			});
+			
+			function commCodeInfoCheckAjaxSubmit(url, data){
+				
+				console.log("들어옴"+data);
+				
+				paging.ajaxSubmit(url, data, function(result){
+					
+					$("#commonInfoInsertForm span[name='checkValue']").text(result.commCode);
+					
+				});
+					
+			}//ajaxSubmit
+			// 공통코드 상세보기에서 공통코드 insert시 중복체크 START //
+			
+			
+			
 			// 공통코드 상세보기에서 코드 등록 //
-			$("#infoInsertBtn").on("click", function(){
+			$("#commonInfoInsertBtn").on("click", function(){
 				
 				if(confirm("등록 하시겠습니까?") == true){
-					$("#infoInsertForm").submit();
+					$("#commonInfoInsertForm").submit();
 				}else{
 					return;
 				}
@@ -779,47 +749,13 @@
 			
 			
 			// 공통코드 상세보기에서 코드 수정 //
-			function commInfoUpdateFunc(obj){
-				
-				var commCode = obj.closest("tr").find("td[name='commCode']").text();
-				var commName = obj.closest("tr").find("td[name='commName']").text();
-				var commCodeInfo = obj.closest("tr").find("td[name='commCodeInfo']").text();
-				var deptUpdtCode = obj.closest("tr").find("td[name='deptCode']").text();
-				
-				$("#infoUpdateModal form[id='infoUpdateForm']").find("input[name='commCode']").val(commCode);
-				$("#infoUpdateModal form[id='infoUpdateForm']").find("input[name='commName']").val(commName);
-				$("#infoUpdateModal form[id='infoUpdateForm']").find("input[name='commCodeInfo']").val(commCodeInfo);
-				$("#infoUpdateModal form[id='infoUpdateForm']").find("input[name='deptUpdtCode']").val(deptUpdtCode);
+			function commInfoUpdtFunc(){
 				
 				$("#infoUpdateModal").modal('show');
+
 				
-			}//commInfoUpdateFunc
-			
-			$("#infoUpdateModal div[class='modal-footer'] button[name='submitBtn']").on("click",function(){
-				
-				if(confirm("정말로 수정하시겠습니까?") == true){
-					$("#infoUpdateModal form[id='infoUpdateForm']").submit();
-				}else{
-					return false;
-				}
-				
-			});
+			}//commInfoUpdtFunc
 			// 공통코드 상세보기에서 코드 수정 //
-			
-			
-			
-			// 공통코드 상세보기에서 코드 삭제 //
-			function commInfoDeleteFunc(obj){
-				
-				var commCode = obj.parents("tr").find("td[name='commCode']").html();
-				
-				if(confirm("정말로 삭제하시겠습니까?") == true){
-					location.href = "/Project/commonDelete.do?commCode="+commCode;
-				}else{
-					return false;
-				}
-			}//commInfoDeleteFunc
-			// 공통코드 상세보기에서 코드 삭제 //
 			
 			
 			

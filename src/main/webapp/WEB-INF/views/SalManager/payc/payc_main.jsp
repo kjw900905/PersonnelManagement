@@ -5,6 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<<<<<<< HEAD
 <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -12,13 +13,26 @@
 <script src="resources/common/js/jquery-3.2.1.js"></script> -->
 <!-- <script src="http://malsup.github.com/jquery.form.js"></script> -->
 <!-- <script src="resources/common/js/paging.js"></script> -->
+=======
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<script src="resources/common/js/jquery-3.2.1.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<script src="resources/common/js/paging.js"></script>
+>>>>>>> origin/제영호
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
 
 <%-- <link rel="stylesheet"
-	href="<c:url value="/resources/common/assets/vendor/bootstrap/css/bootstrap.min.css"/>">
-<link rel="stylesheet"
+	href="<c:url value="/resources/common/assets/vendor/bootstrap/css/bootstrap.min.css"/>"> --%>
+<%-- <link rel="stylesheet"
 	href="<c:url value="/resources/common/assets/vendor/font-awesome/css/font-awesome.min.css"/>">
 <link rel="stylesheet"
 	href="<c:url value="/resources/common/assets/vendor/linearicons/style.css"/>">
@@ -44,14 +58,8 @@
 <style type="text/css">
 .panel-body .tbl01 td {
 	vertical-align: middle;
-
 }
-.modal-content.modal-fullsize {
-  height: auto;
-  min-height: 100%;
-  border-radius: 0; 
-  
-}
+<<<<<<< HEAD
 .modal-dialog.modal-fullsize { 
   width: 100%; height: 100%; margin: 0; padding: 0; 
   
@@ -66,10 +74,94 @@
 
 
 
-
+=======
+</style>
 
 <script type="text/javascript">
+	/* function newPayc() {
+		var url = "/spring/newPayc.do"
+		window
+				.open(
+						"",
+						"fn",
+						"toolbar=no, width=540, height=467, directories=no, status=no, scrollorbars=no, resizable=no");
+
+		frm.action = url;
+		frm.target = "fn";
+		frm.submit();
+	}
+>>>>>>> origin/제영호
+
+	function payc_inquiry() {
+		var url = "/spring/payc_inquiry.do"
+		window
+				.open(
+						"",
+						"tb",
+						"toolbar=no, width=1000, height=500, directories=no, status=no, scrollorbars=no, resizable=no");
+
+		table.action = url;
+		table.target = "tb";
+		table.submit();
+
+	} */
+	/* 	function wrapWindowByMask() {
+	 // 화면의 높이와 너비를 변수로 만듭니다.
+	 var maskHeight = $(document).height();
+	 var maskWidth = $(window).width();
+
+	 // 마스크의 높이와 너비를 화면의 높이와 너비 변수로 설정합니다.
+	 $('.mask').css({
+	 'width' : maskWidth,
+	 'height' : maskHeight
+	 });
+
+	 // fade 애니메이션 : 1초 동안 검게 됐다가 80%의 불투명으로 변합니다.
+	 $('.mask').fadeIn(1000);
+	 $('.mask').fadeTo("slow", 0.5);
+
+	 // 레이어 팝업을 가운데로 띄우기 위해 화면의 높이와 너비의 가운데 값과 스크롤 값을 더하여 변수로 만듭니다.
+	 var left = ($(window).scrollLeft() + ($(window).width() - $('.window')
+	 .width()) / 2);
+	 var top = ($(window).scrollTop() + ($(window).height() - $('.window')
+	 .height()) / 2);
+
+	 // css 스타일을 변경합니다.
+	 $('.window').css({
+	 'left' : left,
+	 'top' : top,
+	 'position' : 'absolute'
+	 });
 	
+	 // 레이어 팝업을 띄웁니다.
+	 $('.window').show();
+	 }
+
+	 $(document).ready(function() {
+	 var url = "/spring/newPayc.do";
+	 // showMask를 클릭시 작동하며 검은 마스크 배경과 레이어 팝업을 띄웁니다.
+	 $('#showMask').click(function(e) {
+	 // preventDefault는 href의 링크 기본 행동을 막는 기능입니다.
+	 e.preventDefault();
+	
+	
+	 wrapWindowByMask();
+	
+	
+	 });
+
+	 // 닫기(close)를 눌렀을 때 작동합니다.
+	 $('.window .close').click(function(e) {
+	 e.preventDefault();
+	 $('.mask, .window').hide();
+	 });
+
+	 // 뒤 검은 마스크를 클릭시에도 모두 제거하도록 처리합니다.
+	 $('.mask').click(function() {
+	 $(this).hide();
+	 $('.window').hide();
+	 });
+	 }); */
 	function newPayc() {
 		var arr = new Array();
 		var json;
@@ -216,8 +308,13 @@
 
 </head>
 <body>
+<<<<<<< HEAD
 
 <div class="main">
+=======
+<% String pyy;%>
+
+>>>>>>> origin/제영호
 	<div class="main-content">
 
 		<div class="container-fluid">
@@ -261,18 +358,24 @@
 
 											<td align="center" rowspan="2"> 
 											
+<<<<<<< HEAD
 											<!-- data-backdrop="static" -->
 												<button type="button" class = "btn btn-success btn-xxs"data-backdrop="static" data-keyboard="false" 
+=======
+											
+												<button type="button" class="label label-success" data-backdrop="static" data-keyboard="false"
+>>>>>>> origin/제영호
 												data-toggle="modal" data-target="#myModal1"
 												data-title="Test Title" >조회</button>
 												
-											<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
-												aria-labelledby="myModalLabel" aria-hidden="true">
-												<div class="modal-dialog modal-fullsize" role="document">
-													  <div class="modal-content modal-fullsize">
+												<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+													aria-labelledby="myModalLabel" aria-hidden="true">
+				
+													<div class="modal-dialog">
 														<div class="modal-content">
 														
 															<div class="modal-body">
+<<<<<<< HEAD
 													
 																<table class="table table-bordered">
 																	 
@@ -322,7 +425,10 @@
 																		</tr>
 																
 																</table>
+=======
+>>>>>>> origin/제영호
 																
+																${regi.SREG_YYMM}
 															</div>
 				
 															<div class="modal-footer">
@@ -335,7 +441,7 @@
 														</div>
 													</div>
 												</div>
-											</div>
+											
 											<br>명세서<br>확정<br>삭제
 											</td>
 
@@ -354,7 +460,11 @@
 
 							<form id="frm" name="fn">
 							<div>
+<<<<<<< HEAD
 								<button type="button"  class="btn btn-primary" data-backdrop="static" data-keyboard="false"
+=======
+								<button type="button" class="btn btn-primary btn-lg" data-backdrop="static" data-keyboard="false"
+>>>>>>> origin/제영호
 									data-toggle="modal" data-target="#myModal"
 									data-title="Test Title" onclick="newPayc()">신규</button>
 
@@ -367,7 +477,8 @@
 										
 											<div class="modal-header">
 												<!-- 모달버튼 헤더 -->
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
 													<span aria-hidden="true">×</span>
 												</button>
 												<h4 class="modal-title" id="myModalLabel">신규 급여대장</h4>
@@ -390,7 +501,10 @@
 															</td>
 
 														</thead>	
-							
+
+
+														
+
 														<thead>
 															<th>대상기간</th>
 
@@ -456,6 +570,6 @@
 		
 
 	</div>
-</div>	
+	
 </body>
 </html>

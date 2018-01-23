@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.spring.salmanager.Board_Member;
 import com.example.spring.salmanager.emp.service.EmpMenuService;
 
-
+//Á÷¿ø±Ş¿©Á¤º¸
 @Controller
 public class EmpMenuController {
 
@@ -25,9 +25,9 @@ public class EmpMenuController {
 
 	@Autowired
 	private EmpMenuService empMenuService;
-	//private String PRE_VIEW_PATH = "/SalManager/emp/";
+	private String PRE_VIEW_PATH = "/SalManager/emp/";
 
-	@RequestMapping(value = "/emp_main.do")  					//ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½
+	@RequestMapping(value = "/emp_main.do")  					//¸ŞÀÎÈ­¸é
 	public ModelAndView goEmpMenu(HttpServletRequest request) {
 
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -39,14 +39,14 @@ public class EmpMenuController {
 		mv.addObject("listExi", empMenuService.exiEmpList(map));
 		mv.addObject("countexi",empMenuService.exiEmpList(map).size());
 		
-		mv.setViewName("emp_main");
+		mv.setViewName(PRE_VIEW_PATH + "emp_main");
 		return mv;
 
 	}
 
-
-	// ï¿½Ï±ï¿½++++++++++++++++++++++++++++++++++++++++++++++++++++
-	@RequestMapping(value = "/new_empcode.do", method = RequestMethod.GET)	//emp_main -> emp_newsali()
+	// +++++++++++++++++++++++++checkbox¼±ÅÃµÈ°Í¸¸ÀÌ jsp ¿¡ º¸¿©Áö°Ô
+	// ÇÏ±â++++++++++++++++++++++++++++++++++++++++++++++++++++
+	@RequestMapping(value = "/new_empcode.do", method = RequestMethod.GET)	//emp_main -> emp_newsali(Ã¼Å©ÇÑ ½Å±Ô°è»ê ÀÎ¿øÀ» ³ªÅ¸³»ÁÖ´Â Æû)
 	public ModelAndView new_emp(@RequestParam HashMap<String, Object> params, Model model) throws Exception {
 
 		ModelAndView mv = new ModelAndView();
@@ -55,12 +55,12 @@ public class EmpMenuController {
 		mv.addObject("list", empMenuService.checkbox_Choice(params));
 		mv.addObject("count",empMenuService.checkbox_Choice(params).size());
 		
-		mv.setViewName("emp_newsali");
+		mv.setViewName(PRE_VIEW_PATH + "emp_newsali");
 		return mv;
 
 	}
 	
-	@RequestMapping(value = "/exi_empcode.do", method = RequestMethod.GET)//emp_main -> emp_exisali()
+	@RequestMapping(value = "/exi_empcode.do", method = RequestMethod.GET)//emp_main -> emp_exisali(Ã¼Å©ÇÑ ±âÁ¸°è»ê ÀÎ¿øÀ» ³ªÅ¸³»´ÂÆû)
 	public ModelAndView exi_emp(@RequestParam HashMap<String, String> params, Model model) throws Exception {
 
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -71,38 +71,23 @@ public class EmpMenuController {
 		mv.addObject("list",empMenuService.exi_checkbox_Choice(params));
 		mv.addObject("count",empMenuService.exi_checkbox_Choice(params).size());
 		
-		mv.setViewName("emp_exisali");
+		mv.setViewName(PRE_VIEW_PATH + "emp_exisali");
 		return mv;
 
 	}
 	
-	@RequestMapping(value = "insert_sal_empcode.do")  //ì‹ ê·œì…ë ¥ post(ë°©ì‹)
+	@RequestMapping(value = "insert_sal_empcode.do",method = RequestMethod.POST)  //½Å±Ô°è»ê insert (post)¹æ½Ä
 	public ModelAndView i_sal_emp(@RequestParam HashMap<String, String> map) {
 		ModelAndView mv = new ModelAndView();
 		
 		empMenuService.insert_newEmp_code(map);
 		
 		//System.out.println("insertsal map: "+map);
-		/*mv.addObject("listNew", empMenuService.newEmpList(map));
+		mv.addObject("listNew", empMenuService.newEmpList(map));
 		mv.addObject("count",empMenuService.newEmpList(map).size());
 		mv.addObject("listExi", empMenuService.exiEmpList(map));
-		*/
-		mv.setViewName("mainMove");
-		//empMenuService.insert_newEmp_code(map);
-		return mv;
-	}
-	
-	@RequestMapping(value = "update_sal_empcode.do")  //ê¸°ì¡´ì…ë ¥ post(ë°©ì‹)
-	public ModelAndView u_sal_emp(@RequestParam HashMap<String, String> map) {
-		ModelAndView mv = new ModelAndView();
 		
-		empMenuService.update_newEmp_code(map);
-		//System.out.println("insertsal map: "+map);
-		/*mv.addObject("listNew", empMenuService.newEmpList(map));
-		mv.addObject("count",empMenuService.newEmpList(map).size());
-		mv.addObject("listExi", empMenuService.exiEmpList(map));*/
-		
-		mv.setViewName("mainMove");
+		mv.setViewName(PRE_VIEW_PATH + "emp_main");
 		//empMenuService.insert_newEmp_code(map);
 		return mv;
 	}
@@ -120,13 +105,15 @@ public class EmpMenuController {
 	 * HashMap<String , String> map = new HashMap<String , String>(); ModelAndView
 	 * mv = new ModelAndView();
 	 * 
+	 * logger.info("¸î°³¸¦ ¼±ÅÃÇß´ÂÁö : " + params.get("chk").size());
+	 * logger.info("¹«¾ùÀ» ¼±ÅÃÇß´ÂÁö : " + params.get("chk").toString() );
 	 * 
 	 * for(int i=0; i<params.get("chk").size(); i++ ){ map.put(String.valueOf(i),
-	 * params.get("chk").toString());//db ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ·ï¿½ï¿½Ö´Â°ï¿½ }
+	 * params.get("chk").toString());//db ¿¡ °ªÀ» »Ñ·ÁÁÖ´Â°Å }
 	 * 
 	 * 
-	 * model.addAttribute("checkbox",boardService.checkbox_Choice(map));//ï¿½Ì°É·ï¿½ dbï¿½ï¿½ ï¿½Ö´ï¿½
-	 * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¾ï¿½. model.addAttribute("params",params);
+	 * model.addAttribute("checkbox",boardService.checkbox_Choice(map));//ÀÌ°É·Î db¿¡ ÀÖ´Â
+	 * °ªÀ» °¡Áö°í ¿Ô¾î. model.addAttribute("params",params);
 	 * 
 	 * return "board/checkbox_Delivery";
 	 * 

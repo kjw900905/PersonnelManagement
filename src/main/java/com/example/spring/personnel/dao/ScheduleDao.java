@@ -1,7 +1,6 @@
 package com.example.spring.personnel.dao;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,33 +12,15 @@ public class ScheduleDao {
 	
 	@Autowired
 	private SqlSession sql; 
-	private String namespace = "schedule.";
+	private String namespace = ".schedule";
 	
-	//일정등록 dao
-	public int scheduleInsert(HashMap<String, String> map) {
+	//일정등록
+	public int scheduleInsert(HashMap<String, Object> map) {
+		System.out.println("scheduleInsert(dao) in");
 		
-		int result = (int)this.sql.insert(namespace+"scheduleInsert",map);
+		int result = 0;//(int)this.sql.insert(namespace+"schedule");
 		
 		return result;
-	}
-	
-	//일정상세보기
-	public List<String> scheduleDetail(HashMap<String, String> map){
-		System.out.println("일정상세보기(dao)");
-		System.out.println("map : " + map);
-		List<String> list = this.sql.selectList(namespace+"scheduleDetail",map);
-		
-		System.out.println("db한 list : " + list);
-		
-		return list;
-	}
-	
-	//사원일정db dao
-	public List<String> scheduleDb(String emno){
-		
-		List<String> list = this.sql.selectList(namespace+"scheduleDb",emno);
-		
-		return list;
 	}
 	
 }

@@ -17,6 +17,8 @@ public class EmpMenuService {
 	
 	public List newEmpList(HashMap<String, String> map) {
 		List<HashMap<String,Object>> list = empMenuDao.newEmpList(map);
+		System.out.println("---------Service_List 연결 성공------------");
+		
 		
 		return list;
 	}
@@ -42,9 +44,5 @@ public class EmpMenuService {
 	
 	public void insert_newEmp_code(HashMap<String, String> map) {
 		empMenuDao.insert_newEmp_code(map);
-	} 
-	
-	public void update_newEmp_code(HashMap<String, String> map) {
-		empMenuDao.update_newEmp_code(map);
 	} 
 }

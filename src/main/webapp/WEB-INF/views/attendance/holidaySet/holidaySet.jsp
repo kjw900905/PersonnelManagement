@@ -1,9 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<<<<<<< HEAD
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+=======
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+>>>>>>> origin/Ï†úÏòÅÌò∏
 <title>Insert title here</title>
 </head>
 
@@ -11,6 +15,7 @@
 	$(document).on("click", "button[name=addTr]", function(){
 		var addStaffText =  '<tr name="vacationOption">'+
 							'<td class="w3"><label class="fancy-checkbox-inline"><input type="checkbox" name="chk"><span></span></label></td>' +
+<<<<<<< HEAD
 							'<td class="w10"><input type="text" class="form-control w_80" value="Ìú¥Í∞Ä" name="divide"></td>' +
 							'<td class="w10"><input type="text" class="form-control w_80" name="code"></td>' +
 							'<td class="w20"><input type="text" class="form-control" name = "title"></td>' +
@@ -19,6 +24,14 @@
 							'<td class="w10"><label class="fancy-checkbox-inline"><input type="checkbox" name="UseOrFailureCheckbox"><span></span></label></td>' +
 							'<input type="hidden" name="UseOrFailure">' +
 							'<td class="w37"><input type="text" class="form-control w_300" name="note"></td>' +
+=======
+							'<td class="w10"><select name="attendanceDivision" class=" mgl_8 mgu_8"><option value="vacation">»ﬁ∞°</option></select></td>' +
+							'<td class="w10"><input type="text" class="form-control w_80"></td>' +
+							'<td class="w20"><input type="text" class="form-control"></td>' +
+							'<td class="w10"><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
+							'<td class="w10"><label class="fancy-checkbox-inline"><input type="checkbox" name=""><span></span></label></td>' +
+							'<td class="w37"><input type="text" class="form-control w_300"></td>' +
+>>>>>>> origin/Ï†úÏòÅÌò∏
 							'</tr>';
 							
 		$("#vacationOptionTable #headTr").before(addStaffText);
@@ -27,6 +40,7 @@
 	$(document).on("click", "button[name=deleteTr]", function(){
 		var $obj = $("input[name='chk']");
 		var checkCount = $obj.size();
+<<<<<<< HEAD
 		
 		for(var i = 0 ; i < checkCount ; i++){
 			if($obj.eq(i).is(":checked")){
@@ -66,22 +80,22 @@
 		
 		$("input[name='AnnualLeaveReflectionCheckbox']").val(AnnualLeaveReflectionCheckboxresult);
 		$("input[name='UseOrFailureCheckbox']").val(UseOrFailureCheckboxresult);
+=======
+>>>>>>> origin/Ï†úÏòÅÌò∏
 		
-		//checkboxÏóê Ï≤¥ÌÅ¨ÎêòÏñ¥ÏûàÏúºÎ©¥ Ìï¥ÎãπÌïòÎäî hiddenÏóê trueÍ∞í ÎÑ£Ïñ¥Ï£ºÍ≥† ÏïÑÎãàÎ©¥ falseÍ∞í ÎÑ£Ïñ¥Ï§å.
-		for(var i = 0 ; i < count ; i++){
-			if(AnnualLeaveReflectionCheckbox.eq(i).is(":checked")){
-				AnnualLeaveReflection.eq(i).val('true');
-			}else{
-				AnnualLeaveReflection.eq(i).val('false');
-			}
-			
-			if(UseOrFailureCheckbox.eq(i).is(":checked")){
-				UseOrFailure.eq(i).val('true');
-			}else{
-				UseOrFailure.eq(i).val('false');
+		for(var i = 0 ; i < checkCount ; i++){
+			if($obj.eq(i).is(":checked")){
+				$obj.eq(i).parent().parent().parent().remove();
 			}
 		}
+	});
+	
+	function selectAll(){
+		var $obj = $("input[name='selectAll_chk']");
+		var $obj2 = $("input[name='chk']");
+		var $obj3 = $("input[name='notDeleteChk']");
 		
+<<<<<<< HEAD
 		
 		var json;
 		var obj = new Object();
@@ -145,6 +159,16 @@
 		}).submit();
 	}
 	
+=======
+		if($obj.is(":checked")){
+			$obj2.prop("checked", true);
+			$obj3.prop("checked", true);
+		}else{
+			$obj2.prop("checked", false);
+			$obj3.prop("checked", false);
+		}
+	}
+>>>>>>> origin/Ï†úÏòÅÌò∏
 </script>
 
 <body>
@@ -153,12 +177,17 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
+<<<<<<< HEAD
 					<h3 class="page-title">Ìú¥Í∞ÄÌï≠Î™©ÏÑ§Ï†ï</h3>
+=======
+					<h3 class="page-title">»ﬁ∞°«◊∏Òº≥¡§</h3>
+>>>>>>> origin/Ï†úÏòÅÌò∏
 					<!-- OVERVIEW -->
 						
 					<div class="panel panel-headline">
 						<div class="panel-body">
 							<form class="form-inline" name="searchForm">
+<<<<<<< HEAD
 								<strong class="pdu_8 ftl">Í∑ºÌÉúÍµ¨Î∂Ñ</strong>
 								<select name="attendanceDivision" class="w_120 mgl_8 mgu_8">
 									<option value="vacation">Ìú¥Í∞Ä</option>
@@ -166,6 +195,15 @@
 							
 								<span class="ftr">
 									<button type="button" class="btn btn-primary" onClick="">Í≤ÄÏÉâ</button>
+=======
+								<strong class="pdu_8 ftl">±Ÿ≈¬±∏∫–</strong>
+								<select name="attendanceDivision" class="w_120 mgl_8 mgu_8">
+									<option value="vacation">»ﬁ∞°</option>
+								</select>
+							
+								<span class="ftr">
+									<button type="button" class="btn btn-primary" onClick="">∞Àªˆ</button>
+>>>>>>> origin/Ï†úÏòÅÌò∏
 								</span>
 							</form>
 						</div>
@@ -174,6 +212,7 @@
 					<!-- TABLE STRIPED -->
 					<div class="panel panel-headline">
 						<div class="boxArea text-center">
+<<<<<<< HEAD
 							<strong class="pdu_8 ftl">Ìú¥Í∞ÄÌï≠Î™©ÏÑ§Ï†ï </strong>
 							<span class="ftr">
 								<button type="button" name="addTr" class="btn btn-primary" onClick="">ÌñâÏ∂îÍ∞Ä</button>
@@ -182,6 +221,16 @@
 						</div>	
 						<div class="panel-body mgu_15">
 							<form class="form-inline" name="f2" action="/spring/holidaySetDBInset.do" id="insertForm">
+=======
+							<strong class="pdu_8 ftl">»ﬁ∞°«◊∏Òº≥¡§ </strong>
+							<span class="ftr">
+								<button type="button" name="addTr" class="btn btn-primary" onClick="">«‡√ﬂ∞°</button>
+								<button type="button" name="deleteTr" class="btn btn-primary" onClick="">«‡ªË¡¶</button>
+							</span>
+						</div>	
+						<div class="panel-body mgu_15">
+							<form class="form-inline" name="f2">
+>>>>>>> origin/Ï†úÏòÅÌò∏
 								
 								<table class="table table-bordered" id="vacationOptionTable" style="980px;">
    <!--                      <thead> -->
@@ -202,12 +251,21 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </th>
+<<<<<<< HEAD
 		                                 <th class="text-center w10"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>Íµ¨Î∂Ñ</th>
 		                                 <th class="text-center w10"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>ÏΩîÎìú</th>
 		                                 <th class="text-center w20"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>Î™ÖÏπ≠</th>
 		                                 <th class="text-center w10">Ïó∞Ï∞®Î∞òÏòÅ</th>
 		                                 <th class="text-center w10">ÏÇ¨Ïö©Ïó¨Î∂Ä</th>
 		                                 <th class="text-center w37">ÎπÑÍ≥†</th>
+=======
+		                                 <th class="text-center w10"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>±∏∫–</th>
+		                                 <th class="text-center w10"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>ƒ⁄µÂ</th>
+		                                 <th class="text-center w20"><i class="fa fa-asterisk-red" aria-hidden="true" ></i>∏Ìƒ™</th>
+		                                 <th class="text-center w10">ø¨¬˜π›øµ</th>
+		                                 <th class="text-center w10">ªÁøÎø©∫Œ</th>
+		                                 <th class="text-center w37">∫Ò∞Ì</th>
+>>>>>>> origin/Ï†úÏòÅÌò∏
 		                              </tr>
 		                           </thead>
 		                           <tbody class="scrollBody">
@@ -218,6 +276,7 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <td class="w10"><input type="text" class="form-control w_80" value="Ìú¥Í∞Ä" name="divide"></td>
 		                                 <td class="w10"><input type="text" class="form-control w_80" value="00" name="code"></td>
 		                                 <td class="w20"><input type="text" value="Ìú¥Í∞Ä(ÎÖÑÏ∞®)" class="form-control" name = "title"></td>
@@ -237,6 +296,24 @@
 		                                 </td>
 		                                 <input type="hidden" name="UseOrFailure">
 		                                 <td class="w37"><input type="text" class="form-control w_300" name="note"></td>
+=======
+		                                 <td class="w10">»ﬁ∞°</td>
+		                                 <td class="w10">00</td>
+		                                 <td class="w20"><input type="text" value="»ﬁ∞°(≥‚¬˜)" class="form-control"></td>
+		                                 <td class="w10">
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td class="w10">
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td class="w37"><input type="text" class="form-control w_300"></td>
+>>>>>>> origin/Ï†úÏòÅÌò∏
 		                              </tr>
 		                              <tr>
 		                                 <td>
@@ -245,6 +322,7 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <td class="w10"><input type="text" class="form-control w_80" value="Ìú¥Í∞Ä" name="divide"></td>
 		                                 <td><input type="text" class="form-control w_80" value="01" name="code"></td>
 		                                 <td><input type="text" value="ÏÉùÎ¶¨Ìú¥Í∞Ä" class="form-control" name = "title"></td>
@@ -263,6 +341,24 @@
 		                                 </td>
 		                                 <input type="hidden" name="UseOrFailure">
 		                                 <td><input type="text" class="form-control w_300" name="note"></td>
+=======
+		                                 <td>»ﬁ∞°</td>
+		                                 <td>01</td>
+		                                 <td><input type="text" value="ª˝∏Æ»ﬁ∞°" class="form-control"></td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td><input type="text" class="form-control w_300"></td>
+>>>>>>> origin/Ï†úÏòÅÌò∏
 		                              </tr>
 		                              <tr>
 		                                 <td>
@@ -271,6 +367,7 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <td><input type="text" class="form-control w_80" value="Ìú¥Í∞Ä" name="divide"></td>
 		                                 <td><input type="text" class="form-control w_80" value="02" name="code"></td>
 		                                 <td><input type="text" value="Î≥ëÍ∞Ä" class="form-control" name = "title"></td>
@@ -289,6 +386,24 @@
 		                                 </td>
 		                                 <input type="hidden" name="UseOrFailure">
 		                                 <td><input type="text" class="form-control w_300" name="note"></td>
+=======
+		                                 <td>»ﬁ∞°</td>
+		                                 <td>02</td>
+		                                 <td><input type="text" value="∫¥∞°" class="form-control"></td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td><input type="text" class="form-control w_300"></td>
+>>>>>>> origin/Ï†úÏòÅÌò∏
 		                              </tr>
 		                              <tr>
 		                                 <td>
@@ -297,6 +412,7 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <td><input type="text" class="form-control w_80" value="Ìú¥Í∞Ä" name="divide"></td>
 		                                 <td><input type="text" class="form-control w_80" value="03" name="code"></td>
 		                                 <td><input type="text" value="Í≤ΩÏ°∞Ìú¥Í∞Ä" class="form-control" name = "title"></td>
@@ -315,6 +431,24 @@
 		                                 </td>
 		                                 <input type="hidden" name="UseOrFailure">
 		                                 <td><input type="text" class="form-control w_300" name="note"></td>
+=======
+		                                 <td>»ﬁ∞°</td>
+		                                 <td>03</td>
+		                                 <td><input type="text" value="∞Ê¡∂»ﬁ∞°" class="form-control"></td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td><input type="text" class="form-control w_300"></td>
+>>>>>>> origin/Ï†úÏòÅÌò∏
 		                              </tr>
 		                              <tr>
 		                                 <td>
@@ -323,6 +457,7 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <td><input type="text" class="form-control w_80" value="Ìú¥Í∞Ä" name="divide"></td>
 		                                 <td><input type="text" class="form-control w_80" value="04" name="code"></td>
 		                                 <td><input type="text" value="Ï∂úÏÇ∞Ìú¥Í∞Ä" class="form-control" name = "title"></td>
@@ -341,6 +476,24 @@
 		                                 </td>
 		                                 <input type="hidden" name="UseOrFailure">
 		                                 <td><input type="text" class="form-control w_300" name="note"></td>       
+=======
+		                                 <td>»ﬁ∞°</td>
+		                                 <td>04</td>
+		                                 <td><input type="text" value="√‚ªÍ»ﬁ∞°" class="form-control"></td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td><input type="text" class="form-control w_300"></td>
+>>>>>>> origin/Ï†úÏòÅÌò∏
 		                              </tr>
 		                              <tr>
 		                                 <td>
@@ -349,17 +502,27 @@
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
+<<<<<<< HEAD
 		                                 <td><input type="text" class="form-control w_80" value="Ìú¥Í∞Ä" name="divide"></td>
 		                                 <td><input type="text" class="form-control w_80" value="05" name="code"></td>
 		                                 <td><input type="text" value="Ìè¨ÏÉÅÌú¥Í∞Ä" class="form-control" name = "title"></td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
 		                                       <input type="checkbox" name="AnnualLeaveReflectionCheckbox">
+=======
+		                                 <td>»ﬁ∞°</td>
+		                                 <td>05</td>
+		                                 <td><input type="text" value="∆˜ªÛ»ﬁ∞°" class="form-control"></td>
+		                                 <td>
+		                                    <label class="fancy-checkbox-inline">
+		                                       <input type="checkbox" name="">
+>>>>>>> origin/Ï†úÏòÅÌò∏
 		                                       <span></span>
 		                                    </label>
 		                                 </td>
 		                                 <td>
 		                                    <label class="fancy-checkbox-inline">
+<<<<<<< HEAD
 		                                       <input type="checkbox" name="UseOrFailureCheckbox">
 		                                       <span></span>
 		                                    </label>
@@ -372,6 +535,18 @@
 		                        </table>
 		                 
 		                        <button type="button" name="saveButton" class="btn btn-primary ftr" onClick="insertDB('insertForm')">Ï†ÄÏû•</button>
+=======
+		                                       <input type="checkbox" name="">
+		                                       <span></span>
+		                                    </label>
+		                                 </td>
+		                                 <td><input type="text" class="form-control w_300"></td>
+		                              </tr>
+		                           </tbody>
+		                        </table>
+		                        
+		                        <button type="button" name="saveButton" class="btn btn-primary ftr" onClick="">¿˙¿Â</button>
+>>>>>>> origin/Ï†úÏòÅÌò∏
 							</form>
 						</div>
 					</div>	

@@ -17,10 +17,16 @@
 		<!-- [인사관리]-[일정관리] -->
 		<mapper resource="com/example/spring/personnel/schedule/scheduleMapper.xml"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<!-- [인사관리] END -->
 		
 		<!-- [근태관리]-[출결관리] -->
 =======
+=======
+		<!-- [인사관리] END -->
+		
+		<!-- [근태관리]-[출결관리] -->
+>>>>>>> origin/master
 
 		<mapper resource="com/example/spring/common/commonMapper.xml"/>
 
@@ -32,7 +38,11 @@
 		
 		<!-- [급여관리] END  -->
 
+<<<<<<< HEAD
 >>>>>>> origin/mic
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 <!-- 		<mapper resource="com/example/spring/attendance/attend/hdayExtnNightWorkInqrMapper.xml"/> -->
 <!-- 		<mapper resource="com/example/spring/attendance/attend/mnthngAttdCrtClsMapper.xml"/> -->
 		
@@ -43,6 +53,9 @@
 		<mapper resource="com/example/spring/attendance/attend/mnthngAttdCrtClsMapper.xml"/>
 		<mapper resource="com/example/spring/attendance/businessTrip/businessRequestMapper.xml"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
 		<mapper resource="com/example/spring/attendance/vacation/vacationRequestMapper.xml"/><!-- 휴가신청 -->
 		<mapper resource="com/example/spring/attendance/vacation/vacationListAdminMapper.xml"/><!-- 휴가리스트조회-관리자용 -->
 		<mapper resource="com/example/spring/attendance/vacation/vacationProgCntMapper.xml"/><!-- 휴가 승인대기 카운트 -->
@@ -58,7 +71,10 @@
 		<mapper resource="com/example/spring/salmanager/payc/PaycMenuMapper.xml"/>
 		
 		<!-- [급여관리] END  -->
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/master
 
 		<mapper resource="com/example/spring/attendance/vacation/vacationRequestMapper.xml"/><!-- 휴가신청 -->
 		<mapper resource="com/example/spring/attendance/vacation/vacationListAdminMapper.xml"/><!-- 휴가리스트조회-관리자용 -->
@@ -70,7 +86,13 @@
 
 		<mapper resource="com/example/spring/management/common/commonCodeMapper.xml"/>
 
+<<<<<<< HEAD
 >>>>>>> origin/mic
+=======
+=======
+		<mapper resource="com/example/spring/common/commonMapper.xml"/>
+>>>>>>> origin/제영호
+>>>>>>> origin/master
 	</mappers>
 		
 </configuration>

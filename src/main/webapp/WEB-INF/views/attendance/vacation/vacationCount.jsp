@@ -14,10 +14,6 @@ $(document).ready(function() {
 
 //년도 달력
 $(function () {
-	//올해 년도 보여줌
-	$('#baseYear').val(moment().format('YYYY'));
-	
-	
     $('#yearDateTimePicker').datetimepicker({
     	viewMode: 'years',
     	format: 'YYYY'
