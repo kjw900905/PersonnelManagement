@@ -46,9 +46,9 @@
 		        	return false;
 		        }//구글에서 가져온 공휴일 이벤트 막기
 		        
-		        paging.ajaxSubmit("scheduleDetail.ajax",{"emno":emno,"start":start,"end":end},function(rslt){
+		       /*  paging.ajaxSubmit("scheduleDetail.ajax",{"emno":emno,"start":start,"end":end},function(rslt){
 		        	console.log("결과데이터 : " + JSON.stringify(rslt));
-		        }); 
+		        }); */ 
 		        
 		        $(this).attr("data-toggle","modal");
 		        $(this).attr("data-target","#viewModal");
