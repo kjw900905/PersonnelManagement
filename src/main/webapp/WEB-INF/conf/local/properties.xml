@@ -36,4 +36,5 @@
 	
 	<entry key="dbms.timeBERM"			>60000</entry>										<!-- 해당 밀리초마다 validationQuery 를 이용하여 유효성 검사 진행 -->
 
+
 </properties>

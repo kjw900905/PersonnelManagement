@@ -35,10 +35,13 @@
    <!-- [인사관리]-[일정관리]-[일정보기] -->
    <definition name="scheduleView" extends="base-definition">  
        <put-attribute name="title" value="일정보기" />
+<<<<<<< HEAD
        <put-attribute name="body" value="/WEB-INF/views/personnel/schedule/scheduleView.jsp" />
        <put-attribute name="scripts" value="/WEB-INF/views/personnel/schedule/script/schedule.jsp"/>
 
        <put-attribute name="title" value="" />
+=======
+>>>>>>> origin/제영호
        <put-attribute name="body" value="/WEB-INF/views/personnel/schedule/scheduleView.jsp" />  
 
        <put-attribute name="title" value="일정보기" />
@@ -48,36 +51,6 @@
    </definition>
    
    <!-- [인사관리] END -->
-  
-   <!--  START [급여관리] -->
-   
-   <!-- [직원급여관리 등록] [신규계산,등록] [기존계산,수정] -->
-     <definition name="emp_main" extends="base-definition">  
-       <put-attribute name="title" value="" />
-       <put-attribute name="body" value="/WEB-INF/views/SalManager/emp/emp_main.jsp" />  
-     </definition>
-  	
-  	  <!-- [신규계산,등록]  -->
-  	 <definition name="emp_exisali" extends="base-definition">  
-       <put-attribute name="title" value="" />
-       <put-attribute name="body" value="/WEB-INF/views/SalManager/emp/emp_exisali.jsp" />  
-     </definition>
-     
-     <!-- [기존계산,수정]  -->
-     <definition name="emp_newsali" extends="base-definition">  
-       <put-attribute name="title" value="" />
-       <put-attribute name="body" value="/WEB-INF/views/SalManager/emp/emp_newsali.jsp" />  
-     </definition>
-     
-     <!-- [급여대장] -->
-     <definition name="payc_main" extends="base-definition">  
-       <put-attribute name="title" value="" />
-       <put-attribute name="body" value="/WEB-INF/views/SalManager/payc/payc_main.jsp" />  
-     </definition>
-   
-   
-   <!--  [급여관리] END -->
-   
    
    <!-- START [근태관리] -->
    <!-- [근태관리]-[출결관리]-[일일근태등록] -->
@@ -134,6 +107,7 @@
        <put-attribute name="body" value="/WEB-INF/views/attendance/vacation/vacationListAdmin.jsp" />  
    </definition>
    
+<<<<<<< HEAD
    <!-- [근태관리]-[휴가관리]-[휴가조회](관리자)-휴가신청현황 -->
    <definition name="vacationProgressList" extends="base-definition">  
        <put-attribute name="title" value="휴가신청현황" />
@@ -141,6 +115,8 @@
    </definition>
    
 
+=======
+>>>>>>> origin/제영호
    <!-- [근태관리]-[휴가관리]-[휴가조회](사원) -->
    <definition name="vacationList" extends="base-definition">  
        <put-attribute name="title" value="휴가조회(사원)" />
@@ -158,17 +134,6 @@
        <put-attribute name="title" value="휴가항목설정" />
        <put-attribute name="body" value="/WEB-INF/views/attendance/holidaySet/holidaySet.jsp" />  
    </definition>
-   
-   
-   
-    <!-- [근태관리]-[근태기초정보설정/조회]-[휴가항목설정](사원) -->
-   <definition name="holiDyMng" extends="base-definition">  
-       <put-attribute name="title" value="휴가항목설정" />
-       <put-attribute name="body" value="/WEB-INF/views/attendance/holidaySet/holiDyMng.jsp" />  
-   </definition>
-   
-   
-   
    
    <!-- END [근태관리] -->
    

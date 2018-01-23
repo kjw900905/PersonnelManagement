@@ -30,6 +30,7 @@
 		
 		<!-- [급여관리] END  -->
 
+<<<<<<< HEAD
 <!-- 		<mapper resource="com/example/spring/attendance/attend/hdayExtnNightWorkInqrMapper.xml"/> -->
 <!-- 		<mapper resource="com/example/spring/attendance/attend/mnthngAttdCrtClsMapper.xml"/> -->
 		
@@ -65,6 +66,9 @@
 
 		<mapper resource="com/example/spring/management/common/commonCodeMapper.xml"/>
 
+=======
+		<mapper resource="com/example/spring/common/commonMapper.xml"/>
+>>>>>>> origin/제영호
 	</mappers>
 		
 </configuration>

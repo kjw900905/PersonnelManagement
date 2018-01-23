@@ -98,3 +98,29 @@ buildNumber.properties
 !/.mvn/wrapper/maven-wrapper.jar
 
 # End of https://www.gitignore.io/api/java,maven,eclipse
+src/main/webapp/resources/common/js/bootstrap2-toggle.min.js
+src/main/webapp/resources/common/fullcalendar/js/jquery.timepicker.min.js
+src/main/webapp/resources/common/fullcalendar/css/jquery.timepicker.css
+src/main/webapp/resources/common/css/bootstrap2-toggle.min.css
+src/main/webapp/WEB-INF/views/personnel/schedule/script/schedule.jsp
+src/main/webapp/WEB-INF/views/management/common/confirm.jsp
+src/main/webapp/WEB-INF/views/attendance/vacation/vacationProgressList.jsp
+src/main/webapp/WEB-INF/views/attendance/holidaySet/holiDyMng.jsp
+src/main/webapp/WEB-INF/views/attendance/business/businessRequest.jsp
+src/main/webapp/WEB-INF/views/SalManager/emp/mainMove.jsp
+src/main/resources/com/example/spring/management/common/commonCodeMapper.xml
+src/main/resources/com/example/spring/attendance/vacation/vacationRequestMapper.xml
+src/main/resources/com/example/spring/attendance/vacation/vacationProgCntMapper.xml
+src/main/resources/com/example/spring/attendance/vacation/vacationListAdminMapper.xml
+src/main/resources/com/example/spring/attendance/businessTrip/businessRequestMapper.xml
+src/main/resources/com/example/spring/attendance/businessTrip/businessRequestEmpListMapper.xml
+src/main/java/com/example/spring/management/service/CommonCodeService.java
+src/main/java/com/example/spring/management/dao/CommonCodeDao.java
+src/main/java/com/example/spring/management/controller/CommonCodeController.java
+src/main/java/com/example/spring/attendance/service/vacation/VacationProgCntService.java
+src/main/java/com/example/spring/attendance/service/holidaySet/HolidaySetService.java
+src/main/java/com/example/spring/attendance/dao/vacation/VacationProgCntDao.java
+src/main/java/com/example/spring/attendance/dao/holidaySet/HolidaySetDao.java
+src/main/java/com/example/spring/attendance/controller/vacation/VacationProgCntController.java
+src/main/java/com/example/spring/attendance/controller/holidaySet/HolidaySetController.java
+src/main/java/com/example/spring/attendance/controller/businessTrip/BusinessReqController.java

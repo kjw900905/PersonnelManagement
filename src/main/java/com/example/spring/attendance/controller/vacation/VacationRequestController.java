@@ -1,7 +1,6 @@
 package com.example.spring.attendance.controller.vacation;
 
 import java.util.HashMap;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,37 +26,35 @@ public class VacationRequestController {
 	@Autowired
 	private VacationRequestService vacationRequestService;
 	
-	private String PRE_VIEW_PATH = "/vacation/";
 	
-	/* 휴가 신청 */
 	@RequestMapping(value="vacationRequest")
 	public String vacationRequest() {
 		return "vacationRequest";
 	}
 	
 	
-	/* 휴가 신청 insert */
-	@RequestMapping(value = "/vacationRequestInsert.ajax")
-	public @ResponseBody HashMap<String,String> vatacionRequestInsert(
-			@RequestParam HashMap<String,String> map){ 
+	/*
+	
+	//휴가신청
+	@RequestMapping(value = "/vacationRequest.do")
+	public ModelAndView vatacionRequest(HttpServletRequest request) { 
 		
-		logger.info("vacationRequest CONTROLL>>>" + map);
+		HashMap<String,String> map = new HashMap<String,String>();
 		
+	//	map.put("", request.getParameter());
 		
-		int list = vacationRequestService.vacationRequestInsert(map);
-			if(list == 0) {
-				map.put("success", "N");
-			} else{
-				map.put("success", "Y");
-			}//if
-
-			logger.info("vacationREQ CONTROLLER LIST>>>>" + list);
-		return map;
+		vacRequestService.vacationRequest(map);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("vacationList");
+		return null;
 	}
+
+*/
 	
 	
 	
-/*	
+	
 	@RequestMapping(value="ajaxFormSubmit.ajax")
 	public @ResponseBody HashMap<String,String> ajaxFormSubmit(
 			@RequestParam HashMap<String,String> map){
@@ -66,6 +63,6 @@ public class VacationRequestController {
 		
 		return map;
 	}
-*/	
+	
 	
 }
