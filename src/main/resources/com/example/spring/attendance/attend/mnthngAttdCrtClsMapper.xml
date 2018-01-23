@@ -2,6 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mnthngAttdCrtCls">
+<<<<<<< HEAD
 	<select id="" parameterType="" resultType="">
+=======
+	<select id="readMnthngAttdCrtCls" parameterType="HashMap" resultType="HashMap">
+			SELECT DISTINCT 
+				   E.EMP_EMNO  								AS empEmno 	/*사원번호*/
+			     , E.EMP_NAME  								AS empName	/*사원이름*/	
+			     , E.RANK_CODE 								AS rankCode	/*직위/직급코드*/		
+			     , E.DEPT_CODE 								AS depCode  /*부서코드*/
+			     , E.EMP_ANL								AS empAnl   /*연차*/
+			  FROM COMM_STM C
+   LEFT OUTER JOIN EMPLOYEE E
+		        ON C.EMP_EMNO = E.EMP_EMNO   
+			 WHERE 1=1
+			 <if test="workYyMm != null and workYyMm != ''">
+			   AND SUBSTRING(C.COST_WRK_IN, 1, 6) = REPLACE(#{workYyMm}, '-', '')
+			 </if>
+>>>>>>> origin/제영호
 	</select>
 </mapper>

@@ -28,13 +28,13 @@ public class HdayExtnNightWorkInqrController {
 	//CRUD - R
 	@RequestMapping(value="/readHdayExtnNightWorkInqr")
 	public ModelAndView readHdayExtnNightWorkInqr(
-			@RequestParam HashMap<String, String> map) {
+			@RequestParam HashMap<String, String> paramMap) {
 		
-		logger.debug("workYyMm : " + map.get("workYyMm"));
-		logger.debug("empEmno : " + map.get("empEmno"));
+		logger.debug("workYyMm : " + paramMap.get("workYyMm"));
+		logger.debug("empEmno : " + paramMap.get("empEmno"));
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("resultList", hdayExtnNightWorkInqrService.readHdayExtnNightWorkInqr(map));
+		mv.addObject("resultList", hdayExtnNightWorkInqrService.readHdayExtnNightWorkInqr(paramMap));
 		mv.setViewName("hdayExtnNightWorkInqr");
 		return mv;
 	}
