@@ -18,9 +18,9 @@ public class HdayExtnNightWorkInqrService {
 	@Autowired
 	HdayExtnNightWorkInqrDao hhayExtnNightWorkInqrDao;
 	
-	public List<HashMap<String, Object>> readHdayExtnNightWorkInqr(HashMap<String, String> map) {
+	public List<HashMap<String, Object>> readHdayExtnNightWorkInqr(HashMap<String, String> paramMap) {
 		// TODO Auto-generated method stub
-		return hhayExtnNightWorkInqrDao.readHdayExtnNightWorkInqr(map);
+		return hhayExtnNightWorkInqrDao.readHdayExtnNightWorkInqr(paramMap);
 	}
 
 }
