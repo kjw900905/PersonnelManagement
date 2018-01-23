@@ -61,10 +61,23 @@
 		
 		<foreach collection="empcode" item="item" index="index">
 				
-				 #{item}
+			#{item}
 				
 		</foreach>
 		
 	</update>
+	
+	<update id="exi_empcode_update">
+	
+		UPDATE SAL_EMPLOYEE 
+			SET  SEMP_SAL = #{sal}
+				,SEMP_TAMT = #{tam}
+				,SEMP_FDEX = #{fde}
+				,SEMP_CMC = #{cmc}
+				
+			WHERE EMP_EMNO =  #{code}
+		
+	</update>
+	
 
 </mapper>

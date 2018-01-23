@@ -28,14 +28,27 @@ public class ScheduleService {
 		map.put("createDate", today);
 		map.put("updateDate", "");
 		map.put("delYN", "N");
-=======
-	public int scheduleInsert(HashMap<String, Object> map) {
-		System.out.println("schedul insert(service) in");
->>>>>>> origin/제영호
 		
 		int result = scheduleDao.scheduleInsert(map);
 		
 		return result;
+	}
+	
+	//일정상세보기
+	public List<String> scheduleDetail(HashMap<String, String> map){
+		System.out.println("일정상세보기(service)");
+		
+		List<String> list = scheduleDao.scheduleDetail(map);
+		
+		return list;
+	}
+	
+	//사원 일정db service
+	public List<String> scheduleDb(String emno){
+		
+		List<String> list = scheduleDao.scheduleDb(emno);
+		
+		return list;
 	}
 	
 }

@@ -8,16 +8,21 @@ import org.springframework.stereotype.Repository;
 
 /* 휴가 신청하기 DAO */
 
-@Repository("VacationReqestDao")
+@Repository("vacationRequestDao")
 public class VacationRequestDao {
 	
-//	private static final Logger logger = LoggerFactory.getLogger(VacationRequestDao.class);
-//	
-//	@Autowired
-//	private SqlSession sqlSession;
-//	private String nameSpaceName = "";
-//
-//	public String vacationRequest() {
-//		return "";
-//	}
+	private static final Logger logger = LoggerFactory.getLogger(VacationRequestDao.class);
+	
+	@Autowired
+	private SqlSession sqlSession;
+	private String nameSpaceName = "vacation.";
+
+	public int vacationRequestInsert(HashMap<String,String> map) {
+		
+		logger.info("vacationREQ DAO 진입>>>>" + map);
+		
+		int list = this.sqlSession.insert(nameSpaceName + "vacationRequestInsert", map); 
+			logger.info("vacationREQ DAO LIST>> " + list);
+		return list;
+	}
 }
