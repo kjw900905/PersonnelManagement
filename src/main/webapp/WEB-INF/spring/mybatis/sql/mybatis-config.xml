@@ -13,13 +13,16 @@
 	</typeAliases>
 	
 	<mappers>
+		<!-- [인사관리] START -->
+		<!-- [인사관리]-[일정관리] -->
+		<mapper resource="com/example/spring/personnel/schedule/scheduleMapper.xml"/>
+		<!-- [인사관리] END -->
+		
 		<!-- [근태관리]-[출결관리] -->
 		<mapper resource="com/example/spring/attendance/attend/hdayExtnNightWorkInqrMapper.xml"/>
 		<mapper resource="com/example/spring/attendance/attend/mnthngAttdCrtClsMapper.xml"/>
 		
 		<mapper resource="com/example/spring/management/menuTree/menuTreeMapper.xml"/>
-		
-		<mapper resource="com/example/spring/personnel/schedule/scheduleMapper.xml"/>
 
 		<mapper resource="com/example/spring/common/commonMapper.xml"/>
 <!-- 		<mapper resource="com/example/spring/attendance/attend/hdayExtnNightWorkInqrMapper.xml"/> -->
