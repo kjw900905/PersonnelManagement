@@ -26,8 +26,8 @@ public class ScheduleService {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		
 		String today = sdf.format(cal.getTime());
-		map.put("startDate", map.get("startDate")+"T"+map.get("startTime"));
-		map.put("endDate", map.get("endDate")+"T"+map.get("endTime"));
+		map.put("startDate", map.get("startDate")+"T"+map.get("startTime")+":00");
+		map.put("endDate", map.get("endDate")+"T"+map.get("endTime")+":00");
 		map.put("createDate", today);
 		map.put("updateDate", "");
 		map.put("delYN", "N");

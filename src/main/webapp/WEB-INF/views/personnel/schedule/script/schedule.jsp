@@ -46,9 +46,30 @@
 		        	return false;
 		        }//구글에서 가져온 공휴일 이벤트 막기
 		        
-		       /*  paging.ajaxSubmit("scheduleDetail.ajax",{"emno":emno,"start":start,"end":end},function(rslt){
+		       	paging.ajaxSubmit("scheduleDetail.ajax",{"emno":emno,"start":start,"end":end},function(rslt){
 		        	console.log("결과데이터 : " + JSON.stringify(rslt));
-		        }); */ 
+	
+		        	$.each(rslt,function(index){
+		        		var emno = rslt[index].empEmno; 				//사원번호
+		        		var title = rslt[index].inpnTit;				//제목
+		        		var content = rslt[index].inpnCntn;				//내용
+						var inpnStrtDate = rslt[index].inpnStrtDate;	//db에 있는 시작날짜													        		
+		        		var inpnEndDate = rslt[index].inpnEndDate;		//db에 있는 종료날짜
+		        		var startDate = inpnStrtDate.substring(0,10); 	//시작날짜
+		        		var startTime = inpnStrtDate.substring(11);	 	//시작시간
+		        		var endDate = inpnEndDate.substring(0,10);		//종료날짜
+		        		var endTime = inpnEndDate.substring(11);		//종료시간
+		        		
+		        		$("#viewModal").find("form[id='viewForm']").find("input[name='emno']").val(emno); 
+		        		$("#viewModal").find("form[id='viewForm']").find("input[name='title']").val(title);
+		        		$("#viewModal").find("form[id='viewForm']").find("textarea[name='content']").text(content);
+		        		$("#viewModal").find("form[id='viewForm']").find("input[name='startDate']").val(startDate);
+		        		$("#viewModal").find("form[id='viewForm']").find("input[name='startTime']").val(startTime);
+		        		$("#viewModal").find("form[id='viewForm']").find("input[name='endDate']").val(endDate);
+		        		$("#viewModal").find("form[id='viewForm']").find("input[name='endTime']").val(endTime);
+		        	});
+		        		
+		        }); 	
 		        
 		        $(this).attr("data-toggle","modal");
 		        $(this).attr("data-target","#viewModal");
@@ -103,22 +124,22 @@
 	
 	//insert 달력
 	$(function() {
-		$('#startDate').datetimepicker({ //시작날짜 달력
+		$("[name='startDate']").datetimepicker({ //시작날짜 달력
 			viewMode : 'days',
 			format : 'YYYY-MM-DD'
 		});
-		$('#endDate').datetimepicker({ //종료날짜 달력
+		$("[name='endDate']").datetimepicker({ //종료날짜 달력
 			viewMode : 'days',
 			format : 'YYYY-MM-DD'
 		});
 	});//달력
 	
 	//insert 시간선택
-	$("#startTime").timepicker({
+	$("[name='startTime']").timepicker({
 		step: 30,            //시간간격 : 30분
 		timeFormat: "H:i"    //시간:분 으로표시
 	});
-	$("#endTime").timepicker({
+	$("[name='endTime']").timepicker({
 		step: 30,            //시간간격 : 30분
 		timeFormat: "H:i"    //시간:분 으로표시
 	});
