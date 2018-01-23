@@ -5,17 +5,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<!-- <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
-<!-- <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+ <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+ <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script src="resources/common/js/jquery-3.2.1.js"></script>
-<script src="http://malsup.github.com/jquery.form.js"></script>
-<script src="resources/common/js/paging.js"></script>
+<script src="resources/common/js/jquery-3.2.1.js"></script> -->
+<!-- <script src="http://malsup.github.com/jquery.form.js"></script> -->
+<!-- <script src="resources/common/js/paging.js"></script> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
@@ -60,11 +56,14 @@
   width: 100%; height: 100%; margin: 0; padding: 0; 
   
 }
+.btn-group-xxs > .btn, .btn-xxs {
+    padding: 1px 1px;
+}
 
 
 </style>
 
-}
+
 
 
 
@@ -217,7 +216,7 @@
 
 </head>
 <body>
-<% String pyy;%>
+
 <div class="main">
 	<div class="main-content">
 
@@ -227,7 +226,8 @@
 			<div class="col-md-10">
 				<div class="panel">
 					<div class="panel-heading">
-
+					
+					</div>
 						<div class="panel-body">
 
 							<table class="table table-bordered tbl01">
@@ -262,7 +262,7 @@
 											<td align="center" rowspan="2"> 
 											
 											<!-- data-backdrop="static" -->
-												<button type="button" data-backdrop="static" data-keyboard="false"
+												<button type="button" class = "btn btn-success btn-xxs"data-backdrop="static" data-keyboard="false" 
 												data-toggle="modal" data-target="#myModal1"
 												data-title="Test Title" >조회</button>
 												
@@ -273,9 +273,8 @@
 														<div class="modal-content">
 														
 															<div class="modal-body">
-															<!--  	 -->
-																
-																<table class="table table-condensed">
+													
+																<table class="table table-bordered">
 																	 
 															 			<tr>
 																			<td align="center">성명</td>
@@ -308,9 +307,19 @@
 																			
 																		</tr>
 																	
-																	
-																		<td>직급</td>
-																	
+																		<tr>
+																			<td align="center">직급</td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																		</tr>
 																
 																</table>
 																
@@ -345,7 +354,7 @@
 
 							<form id="frm" name="fn">
 							<div>
-								<button type="button"  data-backdrop="static" data-keyboard="false"
+								<button type="button"  class="btn btn-primary" data-backdrop="static" data-keyboard="false"
 									data-toggle="modal" data-target="#myModal"
 									data-title="Test Title" onclick="newPayc()">신규</button>
 
@@ -444,7 +453,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		
 
 	</div>
 </div>	

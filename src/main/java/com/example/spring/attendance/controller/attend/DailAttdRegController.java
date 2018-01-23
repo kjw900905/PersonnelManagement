@@ -10,7 +10,7 @@ public class DailAttdRegController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(DailAttdRegController.class);
 	
-	//Ãâ°á°ü¸® - ÀÏÀÏ±ÙÅÂµî·Ï
+	//ì¶œê²°ê´€ë¦¬ - ì¼ì¼ê·¼íƒœë“±ë¡
 	@RequestMapping(value = "/dailAttdReg")
 	public String dailAttdReg() {
 		return "dailAttdReg";

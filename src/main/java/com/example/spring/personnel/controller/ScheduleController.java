@@ -1,9 +1,8 @@
 package com.example.spring.personnel.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +15,6 @@ import com.example.spring.personnel.service.ScheduleService;
 @Controller
 public class ScheduleController {
 	
-	private static Logger logger = LoggerFactory.getLogger(ScheduleController.class);
-
 	@Autowired
 	private ScheduleService scheduleService;
 	
@@ -31,15 +28,27 @@ public class ScheduleController {
 		
 	}
 	
+	//사원 일정db
+	@RequestMapping(value="scheduleDb.ajax")
+	public @ResponseBody List<String> scheduleDb(@RequestParam String emno){
+		
+		System.out.println("emno : " + emno);
+		
+		List<String> list = scheduleService.scheduleDb(emno);
+		
+		return list;
+	}
+	
 	//일정등록
 	@RequestMapping(value="scheduleInsert.do")
-	public @ResponseBody int scheduleInsert(@RequestParam HashMap<String, Object> map) {
-		logger.debug("scheduleInsert(controller) In");
-		logger.debug("파라미터로 넘겨온 맵 : " + map);
+	public @ResponseBody int scheduleInsert(@RequestParam HashMap<String, String> map) {
+		System.out.println("scheduleInsert(controller) In");
+		System.out.println("파라미터map : " + map);
 		
-		int reult = scheduleService.scheduleInsert(map);
+		int result = scheduleService.scheduleInsert(map);
 		
-		return reult;
+		return result;
 	}
+	
 	
 }

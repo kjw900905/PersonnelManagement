@@ -34,8 +34,14 @@
    <!-- START [인사관리] -->
    <!-- [인사관리]-[일정관리]-[일정보기] -->
    <definition name="scheduleView" extends="base-definition">  
+
        <put-attribute name="title" value="" />
        <put-attribute name="body" value="/WEB-INF/views/personnel/schedule/scheduleView.jsp" />  
+
+       <put-attribute name="title" value="일정보기" />
+       <put-attribute name="body" value="/WEB-INF/views/personnel/schedule/scheduleView.jsp" />
+       <put-attribute name="scripts" value="/WEB-INF/views/personnel/schedule/script/schedule.jsp"/>
+
    </definition>
    
    <!-- [인사관리] END -->
@@ -101,6 +107,12 @@
        <put-attribute name="body" value="/WEB-INF/views/attendance/business/businessRequest.jsp" />  
    </definition>  
    
+     <!-- [근태관리]-[출장관리]-[출장정산] -->
+   <definition name="businessAdj" extends="base-definition">  
+       <put-attribute name="title" value="출장정산" />
+       <put-attribute name="body" value="/WEB-INF/views/attendance/business/businessAdj.jsp" />  
+   </definition>
+   
    <!-- [근태관리]-[휴가관리]-[휴가개수설정] -->
    <definition name="vacationCount" extends="base-definition">  
        <put-attribute name="title" value="휴가개수설정" />
@@ -119,6 +131,14 @@
        <put-attribute name="body" value="/WEB-INF/views/attendance/vacation/vacationListAdmin.jsp" />  
    </definition>
    
+   <!-- [근태관리]-[휴가관리]-[휴가조회](관리자)-휴가신청현황 -->
+   <definition name="vacationProgressList" extends="base-definition">  
+       <put-attribute name="title" value="휴가신청현황" />
+       <put-attribute name="body" value="/WEB-INF/views/attendance/vacation/vacationProgressList.jsp" />  
+   </definition>
+   
+
+
    <!-- [근태관리]-[휴가관리]-[휴가조회](사원) -->
    <definition name="vacationList" extends="base-definition">  
        <put-attribute name="title" value="휴가조회(사원)" />
@@ -136,6 +156,17 @@
        <put-attribute name="title" value="휴가항목설정" />
        <put-attribute name="body" value="/WEB-INF/views/attendance/holidaySet/holidaySet.jsp" />  
    </definition>
+   
+   
+   
+    <!-- [근태관리]-[근태기초정보설정/조회]-[휴가항목설정](사원) -->
+   <definition name="holiDyMng" extends="base-definition">  
+       <put-attribute name="title" value="휴가항목설정" />
+       <put-attribute name="body" value="/WEB-INF/views/attendance/holidaySet/holiDyMng.jsp" />  
+   </definition>
+   
+   
+   
    
    <!-- END [근태관리] -->
    

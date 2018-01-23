@@ -49,7 +49,7 @@
 						  </div>
 							
 							
-							<input type="button" class="btn btn-primary" style="float:right;"name="search" value="검색">
+							<input type="button" class="btn btn-primary" style="float:right;" name="search" value="검색">
 						</form>
 					</div>
 				</div>

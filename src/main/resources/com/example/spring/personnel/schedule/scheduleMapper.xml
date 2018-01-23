@@ -4,6 +4,52 @@
 <mapper namespace="schedule">
 	<!-- 일정등록 -->
 	<insert id="scheduleInsert" parameterType="HashMap">
-		/**/
+		/* /personnel/schedule/scheduleMapper.xml - scheduleInsert(일정 등록 ) */
+		INSERT INTO INDIVIDUAL_PLAN
+			(
+				EMP_EMNO 			/*사원번호*/
+				,INPN_TIT 			/*제목*/
+				,INPN_CNTN 			/*내용*/
+				,INPN_STRT_DATE 	/*시작날짜*/
+				,INPN_END_DATE 		/*종료날짜*/
+				,INPN_REG_DATE 		/*등록날짜*/
+				,INPN_DEL_YN 		/*삭제여부*/
+			)
+		VALUES
+			(
+				#{emno},				/*사원번호*/
+				#{title},				/*제목*/
+				#{content},				/*내용*/
+				#{startDate},			/*시작날짜*/
+				#{endDate},				/*종료날짜*/
+				#{createDate},			/*등록날짜*/
+				#{delYN}				/*삭제여부*/			
+			) 
 	</insert>
+	
+	<!-- 일정가져오기 -->
+	<select id="scheduleDb" parameterType="String" resultType="HashMap">
+		/* /personnel/schedule/scheduleMapper.xml - scheduleDb(사원일정 db) */
+		SELECT 
+			INPN_TIT AS title			/*제목*/
+			,INPN_STRT_DATE AS start	/*시작날짜*/
+			,INPN_END_DATE AS end		/*종료날짜*/
+		FROM INDIVIDUAL_PLAN
+		WHERE EMP_EMNO = #{emno} AND INPN_DEL_YN = 'N'
+	</select>
+	
+	<!-- 일정상세보기 -->
+	<select id="scheduleDetail" parameterType="String" resultType="HashMap">
+		/* /personnel/schedule/scheduleMapper.xml - scheduleDb(사원일정 db) */
+		SELECT 
+			EMP_EMNO AS empEmno											/*사원번호*/
+			,INPN_TIT AS inpnTit										/*제목*/
+			,INPN_CNTN AS inpnCntn										/*내용*/
+			,DATE_FORMAT(INPN_STRT_DATE,"%Y-%m-%d") AS inpnStrtDate		/*시작날짜*/
+			,DATE_FORMAT(INPN_END_DATE,"%Y-%m-%d") AS inpnEndDate		/*종료날짜*/
+			,INPN_REG_DATE AS inpnRegDate								/*등록날짜*/
+			,INPN_DEL_YN AS inpnDelYn 									/*삭제여부*/
+		FROM INDIVIDUAL_PLAN
+	</select>
+	
 </mapper>

@@ -98,8 +98,24 @@
 }
 
 /* 테이블 헤더 컬러 (오름차순 기능 있는 것)*/
-.tablㄷColor{
+.tableColor{
 	color: #2D559F; 
 }
 
+/* 테이블 스크롤바 */
+/*
+tbody {
+    display:block;
+    height:200px;
+    overflow:auto;
+}
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
 
+thead {
+    width: calc(100% - 1em);
+}
+*/
