@@ -2,9 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="hdayExtnNightWorkInqr">
-<<<<<<< HEAD
 	<select id="" parameterType="" resultType="">
-=======
 	<select id="readHdayExtnNightWorkInqr" parameterType="HashMap" resultType="HashMap">
 			SELECT E.EMP_EMNO  								AS empEmno 	/*사원번호*/
 			     , E.EMP_NAME  								AS empName	/*사원이름*/	
@@ -28,6 +26,5 @@
 			 </if>
 			   AND C.ATTENDANCE_C IN ('W2', 'W3', 'W4')
 			 ;
->>>>>>> origin/제영호
 	</select>
 </mapper>
