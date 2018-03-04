@@ -21,7 +21,6 @@
         $.fn.extend({
         	//data append menu tree
             ssTree:function(data){
-            	console.log(data);
             	//menu icon class name	
                 var openedClass= 'glyphicon-folder-open',
                     closedClass= 'glyphicon-folder-close';
@@ -40,16 +39,12 @@
                     if($("#tree #"+mnPrntNo).find("ul").length==0){
                         $("#tree #"+mnPrntNo).append("<ul></ul>");
                     }//if
+
+                    var lastLiMnIdx =  ""+$("#tree #"+mnPrntNo).find("ul:eq(0)>li:last").attr("name");
                     
                     //li append
-                    
-                    //index 적용 if else
-                    if($("#tree #"+mnPrntNo).find("ul:eq(0)>li").length>mnIdx){
-                    	$("#tree #"+mnPrntNo).find("ul:eq(0)>li:eq("+mnIdx+")").before("<li id='"+dataThis.mnNo+"'><span>"+dataThis.mnName+"</span></li>");
-                    }else{
-                    	$("#tree #"+mnPrntNo).find("ul:eq(0)").append("<li id='"+dataThis.mnNo+"'><span>"+dataThis.mnName+"</span></li>");
-                    }//if else
-                    
+                    $("#tree #"+mnPrntNo).find("ul:eq(0)").append("<li id='"+dataThis.mnNo+"' name='mnIdx"+mnIdx+"'><span>"+dataThis.mnName+"</span></li>");
+                 
                 });//data each
 
                 var tree = $(this);
@@ -108,7 +103,7 @@
                 //menu open
                 if($(this).has("ul").children('i:first.glyphicon-folder-close').length>0){
                     $(this).has("ul").openMenu();
-                }
+                }//if
                 
                 //li append
                 $(this).children("ul").append("<li name='new' class='current'><span>new</span></li>");
@@ -116,22 +111,15 @@
                 $("[name='new']").clickEvent();
                 
                 //form html append ajax
-                $.ajax({
-                    type:"GET",
-                    url:"menuInsertForm.do", //html
-                    dataType:"html",
-                    success:function(html){
-                        $("[name='detail']").html(html);
-                        var newMenu = $("[name='new']");
-                        var prnt = newMenu.parents('li:eq(0)');
-                        
-                        $("input[name='mnPrntNo']").val(prnt.attr("id"));
-                        $("input[name='mnIdx']").val(newMenu.siblings().length); 
-                    }
-                    ,error:function(){
-                        console.log("error");
-                    }
-                });//ajax
+                paging.ajaxSubmit("menuInsertForm.do","",function(html){
+                	$("[name='detail']").html(html);
+                    var newMenu = $("[name='new']");
+                    var prnt = newMenu.parents('li:eq(0)');
+                    
+                    $("input[name='mnPrntNo']").val(prnt.attr("id"));
+                    $("input[name='mnIdx']").val(newMenu.siblings().length); 
+                },true,"html");//paging.ajaxSubmit
+       
             },//end addMenu
             //menu click event 
             clickEvent : function(){
@@ -146,18 +134,9 @@
                    
                     //기본 루트 li 제외 if
                     if($(this).attr("id")!="0"){
-                    	$.ajax({
-                        	type:"POST",
-                        	url:"menuDetail.do",
-                        	data:{mnNo:$(this).attr("id")},
-                        	dataType:"html",
-                            success:function(html){
-                                 $("[name='detail']").html(html);
-                             }
-                             ,error:function(){
-                                 console.log("error");
-                             }	
-                        });//ajax
+                    	paging.ajaxSubmit("menuDetail.do",{mnNo:$(this).attr("id")},function(html){
+                    		 $("[name='detail']").html(html);
+                    	},true,"html");//paging.ajaxSubmit
                     }//if
                 });//on click event
             },//end clickEvent

@@ -17,21 +17,18 @@
 		var menuUpdateForm = function(){
 	
 		     var mnNo = $("[name='mnNo']").text(); //가져올 menu code 변수
+		     
+		     var obj={}; 
+		     obj.mnNo = mnNo;
+	
 		    //form html append ajax
-		    $.ajax({
-		        type:"GET",
-		        url:"menuUpdateForm.do?mnNo="+mnNo, //html
-		        dataType:"html",
-		        success:function(html){
-		            //panel에 html append
-		            $("[name='detail']").html(html);
-		            //카테고리 이동 버튼 이벤트 등록
-		            moveEvent();
-		        }
-		        ,error:function(){
-		            console.log("error");
-		        }
-		    });//ajax
+		    paging.ajaxSubmit("menuUpdateForm.do",obj,function(html){
+		    	 //panel에 html append
+	            $("[name='detail']").html(html);
+	            //카테고리 이동 버튼 이벤트 등록
+	            moveEvent();
+		    },true,"html");//paging.ajaxSubmit
+		    
 		};//menuUpdateForm
 	
 		//menu update 함수
@@ -95,8 +92,22 @@
 		    commMenu();
 		};//menuInsert
 	
+		//menu 삭제 함수
 		var menuDelete = function(){
-		    var mnNoData = {"mnNo" : $("[name='mnNo']").text()}; //가져올 menu code 변수
+		    var mnNoData = {};
+		    mnNoData.mnNoList =  []; //가져올 menu code 배열 저장 변수
+		    
+		    var mnNo = $("[name='mnNo']").text();
+		    var mnAllNode = $("#"+mnNo+" li"); 
+		    
+		    mnNoData.mnNoList.push(mnNo);
+		    
+		    //자식 노드 mnNo 저장
+		   	mnAllNode.each(function(index){
+		   		mnNoData.mnNoList.push($(this).attr("id"));
+		   	});//each
+		    
+		    $("[name='mnNo']").text();
 		    paging.ajaxSubmit("/spring/menuDelete.do",mnNoData,"resultData",true);
 		}//menuDelete
 	
@@ -114,7 +125,6 @@
 		//가져온 menu list 를 menu Tree에 배치하는 함수
 		var menuTree = function menuTree(result){
 		    //ssTree 호출
-		    console.log(result);
 		    $("#tree").ssTree(result.data);
 		    //클릭 이벤트 등록
 		    $("#tree li").clickEvent();

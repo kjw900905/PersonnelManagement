@@ -5,7 +5,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<<<<<<< HEAD
 <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -13,26 +12,13 @@
 <script src="resources/common/js/jquery-3.2.1.js"></script> -->
 <!-- <script src="http://malsup.github.com/jquery.form.js"></script> -->
 <!-- <script src="resources/common/js/paging.js"></script> -->
-=======
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-<script src="resources/common/js/jquery-3.2.1.js"></script>
-<script src="http://malsup.github.com/jquery.form.js"></script>
-<script src="resources/common/js/paging.js"></script>
->>>>>>> origin/제영호
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
 
 <%-- <link rel="stylesheet"
-	href="<c:url value="/resources/common/assets/vendor/bootstrap/css/bootstrap.min.css"/>"> --%>
-<%-- <link rel="stylesheet"
+	href="<c:url value="/resources/common/assets/vendor/bootstrap/css/bootstrap.min.css"/>">
+<link rel="stylesheet"
 	href="<c:url value="/resources/common/assets/vendor/font-awesome/css/font-awesome.min.css"/>">
 <link rel="stylesheet"
 	href="<c:url value="/resources/common/assets/vendor/linearicons/style.css"/>">
@@ -58,8 +44,18 @@
 <style type="text/css">
 .panel-body .tbl01 td {
 	vertical-align: middle;
+
 }
-<<<<<<< HEAD
+.modal-content.modal-fullsize {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0; 
+  
+}
+.table-bordered .tbmiddle td {
+	vertical-align: middle;
+	text-align:center;
+}
 .modal-dialog.modal-fullsize { 
   width: 100%; height: 100%; margin: 0; padding: 0; 
   
@@ -71,102 +67,22 @@
 
 </style>
 
-
-
-
-=======
-</style>
-
 <script type="text/javascript">
-	/* function newPayc() {
-		var url = "/spring/newPayc.do"
-		window
-				.open(
-						"",
-						"fn",
-						"toolbar=no, width=540, height=467, directories=no, status=no, scrollorbars=no, resizable=no");
-
-		frm.action = url;
-		frm.target = "fn";
-		frm.submit();
-	}
->>>>>>> origin/제영호
-
-	function payc_inquiry() {
-		var url = "/spring/payc_inquiry.do"
-		window
-				.open(
-						"",
-						"tb",
-						"toolbar=no, width=1000, height=500, directories=no, status=no, scrollorbars=no, resizable=no");
-
-		table.action = url;
-		table.target = "tb";
-		table.submit();
-
-	} */
-	/* 	function wrapWindowByMask() {
-	 // 화면의 높이와 너비를 변수로 만듭니다.
-	 var maskHeight = $(document).height();
-	 var maskWidth = $(window).width();
-
-	 // 마스크의 높이와 너비를 화면의 높이와 너비 변수로 설정합니다.
-	 $('.mask').css({
-	 'width' : maskWidth,
-	 'height' : maskHeight
-	 });
-
-	 // fade 애니메이션 : 1초 동안 검게 됐다가 80%의 불투명으로 변합니다.
-	 $('.mask').fadeIn(1000);
-	 $('.mask').fadeTo("slow", 0.5);
-
-	 // 레이어 팝업을 가운데로 띄우기 위해 화면의 높이와 너비의 가운데 값과 스크롤 값을 더하여 변수로 만듭니다.
-	 var left = ($(window).scrollLeft() + ($(window).width() - $('.window')
-	 .width()) / 2);
-	 var top = ($(window).scrollTop() + ($(window).height() - $('.window')
-	 .height()) / 2);
-
-	 // css 스타일을 변경합니다.
-	 $('.window').css({
-	 'left' : left,
-	 'top' : top,
-	 'position' : 'absolute'
-	 });
 	
-	 // 레이어 팝업을 띄웁니다.
-	 $('.window').show();
+	function paycExcelExport(){
+	    $("[id=lookpayc]").excelexportjs({
+	       containerid: 'lookpayc',
+	       datatype: 'table'
+	    });
 	 }
-
-	 $(document).ready(function() {
-	 var url = "/spring/newPayc.do";
-	 // showMask를 클릭시 작동하며 검은 마스크 배경과 레이어 팝업을 띄웁니다.
-	 $('#showMask').click(function(e) {
-	 // preventDefault는 href의 링크 기본 행동을 막는 기능입니다.
-	 e.preventDefault();
+		
 	
-	
-	 wrapWindowByMask();
-	
-	
-	 });
-
-	 // 닫기(close)를 눌렀을 때 작동합니다.
-	 $('.window .close').click(function(e) {
-	 e.preventDefault();
-	 $('.mask, .window').hide();
-	 });
-
-	 // 뒤 검은 마스크를 클릭시에도 모두 제거하도록 처리합니다.
-	 $('.mask').click(function() {
-	 $(this).hide();
-	 $('.window').hide();
-	 });
-	 }); */
-	function newPayc() {
+	function newPayc() { //----------------------급여대장폼
 		var arr = new Array();
 		var json;
 		var yac = 12;
 		var count = 0;
+		var selectrcount = 0;
 		$.ajax({
 
 			url : "/spring/newPayc.ajax",
@@ -227,13 +143,13 @@
 			},
 
 			error : function(jqXHR, textStatus, errorThrown) {
-				alert("중복된 급여대장이 있습니다. \n" + textStatus + " : " + errorThrown);
+				alert("날짜 정보를 받아올 수 없습니다.");
 
 			}
 
 		});
 	 }
-	function makePayc(formId) {
+	function makePayc(formId) {//--------------------- 급여대장 생성
 			
 		var json;
 		//var json = {"pyymm":pyymm, "paycname":paycname, "payday":payyy+paymm+paytoday, "payyymm":payyy+paymm}; 
@@ -257,24 +173,128 @@
 				},
 						
 				error:function(jqXHR, textStatus, errorThrown){
-					alert("중복된 급여대장이 있습니다. \n" + textStatus + " : " + errorThrown);         
+					alert("중복된 급여대장이 있습니다. \n");         
 				}
 						
 		}).submit();
 	} 
-		
-	function selectPayc() {
+//---------------------------------  급여대장 조회   ------------------------------------------
+	function selectPayc(i) {		
+		var yymm = $("input[name=yymm"+i+"]").val();	
+		var json={"yymm" :yymm};
+		$("[id=paycyymm]").text(yymm+" 급여대장 ");
+		//alert(yymm);
+		$.ajax({
+
+			url : "/spring/payc_select.ajax",
+			type : 'GET',
+			data : json,
+
+			success : function(data) {
+				console.log("결과데이터 : "+JSON.stringify(data));
+				selectrcount = data.list.length;
+				
+				var color;
+				
+				for(var i=0; i<data.list.length; i++) {
+					
+					if(i%2==0){
+						
+						color = "<tr class='active'>";
+					}else{
+						color = "<tr>";
+					}
+					 $("[id=select_list]").append(color
+					 								  +"<td id=sempname"+i+">"+ data.list[i].EMP_NAME +"</td>"
+					 								  +"<td class=align-right id=ssal"+i+">"+ data.list[i].SCAL_SAL +"</td>"
+					 								  +"<td class=align-right id=sfdex"+i+">"+ data.list[i].SCAL_FDEX +"</td>"
+					 								  +"<td>"+data.list[i].SCAL_CMC+"</td>"
+					 								  +"<td></td>"
+					 								  +"<td class=align-right></td>"
+					 								  +"<td>"+data.list[i].SCAL_ITAX+"</td>"
+					 								  +"<td>"+data.list[i].SCAL_LTAX+"</td>"
+					 								  +"<td>"+ data.list[i].SCAL_NPEN +"</td>"
+					 								  +"<td>"+ data.list[i].SCAL_HFEE +"</td>"
+					 								  +"<td></td>"
+					 								
+					 							+"</tr>");
 			
-		var json;
-	
-		$.ajax({
+					 $("[id=select_list]").append(color
+							 						+"<td id=sempcode"+i+">"+data.list[i].EMP_EMNO+"</td>"
+													+"<td></td>"
+													+"<td></td>"
+													+"<td></td>"
+													+"<td>"+data.list[i].SCAL_TAMT+"</td>"
+													+"<td></td>"
+													+"<td>"+ data.list[i].SCAL_EFEE +"</td>"
+													+"<td></td>"
+													+"<td></td>"
+													+"<td></td>"
+													+"<td></td>"
 
-			url : "/spring/selectPayc.ajax",
-			type : 'GET',
-			data : json,
+												+"</tr>");
+					 
+					 $("[id=select_list]").append(color
+							 						+"<td id=sempcode"+i+"></td>"
+													+"<td></td>"
+													+"<td></td>"
+													+"<td></td>"
+													+"<td></td>"
+													+"<td> <strong>"+data.list[i].SCAL_AAMT+"</strong></td>"
+													+"<td></td>"
+													+"<td></td>"
+													+"<td></td>"
+													+"<td> <strong>"+data.list[i].SCAL_DAMT+"</strong></td>"
+													+"<td> <strong>"+data.list[i].SCAL_FAMT+"</strong></td>"
 
-			success : function(data) {
+												+"</tr>");
+					//console.log(data.list[i].SCAL_EMYM);
 					
+					
+				}
+				/*  $("[id=total]").append("<tr>"
+						 					+"<td rowspan='3'>합계</td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+				 						+"</tr>"
+				 						
+				 						+"<tr>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					
+			 							+"</tr>"
+			 						
+			 							+"<tr>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					+"<td></td>"
+						 					
+		 						  +"</tr>"
+				 ); */
+				
 			},
 				
 			error:function(jqXHR, textStatus, errorThrown){
@@ -283,38 +303,69 @@
 			}
 		});
 	}
-	
-	function acalPayc() {
+//-------------------------------------  전체계산	----------------------------------------
+	function acalPayc(i) {	
+		var yymm = $("input[name=yymm"+i+"]").val();
+		var json ={"yymm":yymm}
 		
-		var json;
-	
-		$.ajax({
+		if(confirm("직원급여 정보를 바탕으로 계산됩니다.")){
+			
+			//alert(yymm);
+			
+			$.ajax({
 
-			url : "/spring/payc_acal.ajax",
-			type : 'GET',
-			data : json,
+				url : "/spring/payc_acal.ajax",
+				type : 'GET',
+				data : json,
 
-			success : function(data) {
+				success : function(data) {
+					console.log("결과데이터 : "+JSON.stringify(data));
 					
-			},
-				
-			error:function(jqXHR, textStatus, errorThrown){
-					//alert("중복된 급여대장이 있습니다. \n" + textStatus + " : " + errorThrown);
-				            
-			}
-		});
+					$("[id=totalaamt"+data.yymm+"]").text(numberWithCommas(data.totalaamt));
+				},
+					
+				error:function(jqXHR, textStatus, errorThrown){
+						alert("에러 \n" + textStatus + " : " + errorThrown);
+					            
+				}
+			});
+		}else{
+			
+		}
+		//alert("직원급여 정보를 바탕으로 계산됩니다.");
+		
 	}
+//--------------------------------------------------------------------------------	
+//------------------------ 		급여 조회 리스트 삭제 	 ---------------------------------	
+	function removeSelect(){
+		
+		/* alert(selectrcount);
+		for(var i=0; i<selectrcount; i++) {
+			
+			alert($("td [name=sempname"+i+"]").val());
+			$("#ssal"+i).remove;
+			$("#sfdex"+i).remove;
+		} */
+		$("[id=select_list]").children().remove();
+		$("[id=total]").children().remove();
+	/* 	$("td[id*=sempname]").remove();
+		$("td[id*=ssal]").remove();
+		$("td[id*=sfdex]").remove();
+	    $("td[id*=sempcode]").remove(); */
+		
+	}
+	
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
+//----------------------------------------------------------------------------------	
 </script>
 
 </head>
 <body>
-<<<<<<< HEAD
 
 <div class="main">
-=======
-<% String pyy;%>
-
->>>>>>> origin/제영호
 	<div class="main-content">
 
 		<div class="container-fluid">
@@ -326,7 +377,7 @@
 					
 					</div>
 						<div class="panel-body">
-
+							
 							<table class="table table-bordered tbl01">
 								
 									<thead>
@@ -344,6 +395,9 @@
 									<c:forEach var="regi" items="${list}" varStatus="status">
 										<tr>
 											<td rowspan="2">${regi.SREG_YYMM}</td> 
+											<form id="cal" name="yymm">
+												<input type="hidden" name="yymm${status.index}" value="${regi.SREG_YYMM}">
+											</form> 
 											<td rowspan="2">${regi.SREG_NAME}</td>
 											<td align="center" rowspan="2">${regi.SREG_PDAY }</td>
 											<td align="center" rowspan="2">${regi.SREG_PYYMM }</td>
@@ -352,100 +406,98 @@
 											<td align="center"></td>
 											<td align="center">근무기록확정</td>
 											<td align="center" rowspan="2"></td>
-											<td align="center" rowspan="2"><a href="#">전체계산</a>
+											<td align="center" rowspan="2"><a href="#" onclick="acalPayc('${status.index}'); return false" >전체계산</a>
 												<p>수정
 											</td>
 
 											<td align="center" rowspan="2"> 
 											
-<<<<<<< HEAD
 											<!-- data-backdrop="static" -->
 												<button type="button" class = "btn btn-success btn-xxs"data-backdrop="static" data-keyboard="false" 
-=======
-											
-												<button type="button" class="label label-success" data-backdrop="static" data-keyboard="false"
->>>>>>> origin/제영호
-												data-toggle="modal" data-target="#myModal1"
-												data-title="Test Title" >조회</button>
+												data-toggle="modal" data-target="#myModal1" 
+												data-title="Test Title" onclick="selectPayc('${status.index}')">조회</button>
 												
-												<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
-													aria-labelledby="myModalLabel" aria-hidden="true">
-				
-													<div class="modal-dialog">
+											<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+												aria-labelledby="myModalLabel" aria-hidden="true">
+												<div class="modal-dialog modal-fullsize" role="document">
+													  <div class="modal-content modal-fullsize">
 														<div class="modal-content">
-														
-															<div class="modal-body">
-<<<<<<< HEAD
-													
-																<table class="table table-bordered">
-																	 
-															 			<tr>
-																			<td align="center">성명</td>
-																			<td align="center">급여</td>
-																			<td align="center">식대</td>
-																			<td align="center">차량유지비</td>
-																			<td align="center">직책수당</td>
-																			<td align="center">야간근로수당</td>
-																			<td align="center">소득세</td>
-																			<td align="center">주민세</td>
-																			<td align="center">국민연금</td>
-																			<td align="center">건강보험</td>
-																			<td align="center">장기요양</td>
+
+															<div class="modal-body" data-spy="scroll" style="position: relative;">
+																<h1 id="paycyymm"></h1>
+																<table id="lookpayc" class="table table-bordered tbmiddle" >
+																	 		
+															 			<tr class="info">
+																			<td>성명</td>
+																			<td>급여</td>
+																			<td>식대</td>
+																			<td>차량유지비</td>
+																			<td>직책수당</td>
+																			<td>휴가</td>
+																			<td>소득세</td>
+																			<td>주민세</td>
+																			<td>국민연금</td>
+																			<td>건강보험</td>
+																			<td>장기요양</td>
 																		</tr>
 																	
-																	
-																	
-																		<tr>
-																			<td align="center">사번</td>
-																			<td align="center">휴일근무수당</td>
-																			<td align="center">휴가</td>
-																			<td align="center">지각</td>
-																			<td align="center">조퇴</td>
-																			<td align="center">상여금</td>
-																			<td align="center">고용보험</td>
-																			<td align="center">기타공제</td>
-																			<td align="center">정산환급금</td>
-																			<td align="center">공제총액</td>
-																			<td align="center">실지급액</td>
+																		<tr class="info">
+																			<td>사번</td>
+																			<td>휴일근무수당</td>
+																			<td>야간근로수당</td>
+																			<td>지각,조퇴</td>
+																			<td>교통비</td>
+																		    <td>상여금</td>
+																			<td>고용보험</td>
+																			<td>기타공제</td>
+																			<td>정산환급금</td>
+																			<td></td>
+																			<td></td>
 																			
 																		</tr>
 																	
-																		<tr>
-																			<td align="center">직급</td>
+																		<tr class="info">
+																			<td>직급</td>
 																			<td></td>
 																			<td></td>
 																			<td></td>
 																			<td></td>
+																			<td><strong>지급총액</strong></td>
 																			<td></td>
 																			<td></td>
 																			<td></td>
-																			<td></td>
-																			<td></td>
-																			<td></td>
+																			<td><strong>공제총액</strong></td>
+																			<td><strong>실지급액</strong></td>
 																		</tr>
-																
+																		
+																		<tbody id="select_list">
+																		
+																		</tbody>
+																		
+																		<tbody id="total">
+																		
+																		</tbody>
 																</table>
-=======
->>>>>>> origin/제영호
 																
-																${regi.SREG_YYMM}
 															</div>
 				
 															<div class="modal-footer">
 																
 																<button type="button" class="btn btn-default pull-left"
-																	data-dismiss="modal">닫기</button>
-														
+																	data-dismiss="modal" onclick="removeSelect();">닫기</button>
+																
+																<button type="button" id ="exceldown" class="btn btn-info pull-left"
+														  			 onclick="paycExcelExport();">엑셀 다운</button>
 																
 															</div>	
 														</div>
 													</div>
 												</div>
-											
+											</div>
 											<br>명세서<br>확정<br>삭제
 											</td>
 
-											<td rowspan="2" align="right">0</td>
+											<td id="totalaamt${regi.SREG_YYMM}" rowspan="2" align="right">${regi.SREG_AAMT}</td>
 
 										</tr>
 
@@ -460,11 +512,7 @@
 
 							<form id="frm" name="fn">
 							<div>
-<<<<<<< HEAD
 								<button type="button"  class="btn btn-primary" data-backdrop="static" data-keyboard="false"
-=======
-								<button type="button" class="btn btn-primary btn-lg" data-backdrop="static" data-keyboard="false"
->>>>>>> origin/제영호
 									data-toggle="modal" data-target="#myModal"
 									data-title="Test Title" onclick="newPayc()">신규</button>
 
@@ -477,8 +525,7 @@
 										
 											<div class="modal-header">
 												<!-- 모달버튼 헤더 -->
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 													<span aria-hidden="true">×</span>
 												</button>
 												<h4 class="modal-title" id="myModalLabel">신규 급여대장</h4>
@@ -501,10 +548,7 @@
 															</td>
 
 														</thead>	
-
-
-														
-
+							
 														<thead>
 															<th>대상기간</th>
 
@@ -570,6 +614,6 @@
 		
 
 	</div>
-	
+</div>	
 </body>
 </html>

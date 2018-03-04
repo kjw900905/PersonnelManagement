@@ -126,7 +126,7 @@ paging.ajaxFormSubmit = function( url, formId, callbackFunc ){
  * </pre>
  * @author LSJ
  */
-paging.ajaxSubmit = function( url, dataNode, callbackFunc, asyncType  ) {
+paging.ajaxSubmit = function( url, dataNode, callbackFunc, asyncType, dataType ) {
 	var isReturn = false;
 	if( url == "" || url == null || url == undefined ) {
 		alert( "처리할 URL이 없습니다.\n\n> 입력한 URL : " + url );
@@ -141,6 +141,9 @@ paging.ajaxSubmit = function( url, dataNode, callbackFunc, asyncType  ) {
 		asyncType = true;
 	} // if
 	
+	if( dataType == "" || dataType == null || dataType == undefined ) {
+		dataType = "json";
+	} // if
 	
 	$.ajax({
 		beforeSend: function( xmlHttpRequest ){					// Interceptor에서 ajax를 판독하기 위함
@@ -148,7 +151,7 @@ paging.ajaxSubmit = function( url, dataNode, callbackFunc, asyncType  ) {
 		},
 		async: eval( asyncType ),
 		type: "post",
-		dataType : "json",
+		dataType : dataType,
 //		contentType : "application/json; charset=UTF-8",		// 넣으면 데이터가 안넘어감..
 		cache: false,
 		url: url,

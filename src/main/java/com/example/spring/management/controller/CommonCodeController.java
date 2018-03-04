@@ -26,99 +26,94 @@ public class CommonCodeController {
 	@Autowired
 	private CommonCodeService commonCodeService;
 
-	private String PRE_VIEW_PATH = "/";
+	private String PRE_VIEW_PATH = "management/commonCode/";
 
 	
+	//공통코드 등록
 	@RequestMapping(value = "commonInsert.do")
-	public ModelAndView commonInsert(@RequestParam HashMap<String, String> paramMap) {
+	public @ResponseBody int commonInsert(@RequestParam HashMap<String, Object> paramMap) {
 
 		int result = commonCodeService.commonInsert(paramMap);
 
-		ModelAndView mv = new ModelAndView();
-
-		mv.addObject("result", result);
-		// mv.setView(new RedirectView("commonList.do"));
-		mv.setViewName("confirm");
-
-		return mv;
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("result", result);
+//		//mv.setView(new RedirectView("commonList.do"));
+//		mv.setViewName("commonList");
+		
+		return result;
 
 	}// commonInsert
 
 	
-	
-	@RequestMapping(value="commCodeCheck.do")
-	public @ResponseBody HashMap<String, String> commCodeCheck(@RequestParam(value = "commCode") String commCode) {
-
-		String checkValue = commonCodeService.commCodeCheck(commCode);
-
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("commCode", checkValue);
-
-		return map;
-
-	}// commCodeCheck
-
-	
-	
+	//공통코드 목록
 	@RequestMapping(value="commonList.do")
 	public ModelAndView commonList(HttpServletRequest request, @RequestParam HashMap<String, Object> paramMap) {
 
-		logger.debug("-----------------------------------------commonList 들어왔다");
-		
 		String selectPageNum = request.getParameter("selectPageNum");
 
 		if (selectPageNum == null || selectPageNum == "") {
 			selectPageNum = "1";
-		}
-
-		paramMap.put("selectPageNum", selectPageNum);
-		
+		}//if
+		logger.debug("##########################################selectPageNum: " + selectPageNum);
 		String commonSelect = request.getParameter("commonSelect");
 		String commonSearch = request.getParameter("commonSearch");
-		
+
+		paramMap.put("selectPageNum", selectPageNum);
 		paramMap.put("commonSelect",commonSelect);
 		paramMap.put("commonSearch",commonSearch);
 		
-
 		List<HashMap<String, Object>> list = commonCodeService.commonList(paramMap);
-		List<HashMap<String, Integer>> pagingList = commonCodeService.paging(paramMap);
-
-		HashMap<String,List> map = new HashMap<String,List>();
-		
-		//map.put("list",list);
-		//map.put("pagingList",pagingList);
-		
 		
 		ModelAndView mv = new ModelAndView();
 
 		mv.addObject("list", list);
-		mv.addObject("pagingList", pagingList);
 		mv.setViewName("commonList");
-		
 		
 		return mv;
 
 	}// commonList
 	
 	
-	
+	//공통코드 검색목록
+	@RequestMapping(value="commonSearchList.do")
+	public @ResponseBody List<HashMap<String,Object>> commonSearchList(HttpServletRequest request,
+																	@RequestParam(value="commonSelect") String commonSelect,
+																	@RequestParam(value="commonSearch") String commonSearch){
+		
+		String selectPageNum = request.getParameter("selectPageNum");
 
+		if (selectPageNum == null || selectPageNum == "") {
+			selectPageNum = "1";
+		}//if
+		
+		HashMap<String,Object> paramMap = new HashMap<String,Object>();
+		
+		paramMap.put("selectPageNum",selectPageNum);
+		
+		if(commonSelect != null && commonSearch != null) {
+			paramMap.put("commonSelect",commonSelect);
+			paramMap.put("commonSearch",commonSearch);
+		}//if
+		
+		List<HashMap<String,Object>> list = commonCodeService.commonList(paramMap);
+		
+		return list;
+		
+	}//commonSearchList
+	
+	
+	//공통코드,하위 공통코드 수정
 	@RequestMapping(value="commonUpdate.do")
-	public ModelAndView commonUpdate(@RequestParam HashMap<String,Object> paramMap) {
+	public @ResponseBody int commonUpdate(@RequestParam HashMap<String,Object> paramMap) {
 		
 		int result = commonCodeService.commonUpdate(paramMap);
 		
-		ModelAndView mv = new ModelAndView();
-		
-		mv.addObject("result",result);
-		mv.setViewName("confirm");
-		
-		return mv;
+		return result;
 		
 	}//commonUpdate
 	
 	
-
+	//공통코드 삭제여부 확인
 	@RequestMapping(value="commonDeleteCheck.do")
 	public @ResponseBody HashMap<String, Integer> commonDeleteCheck(@RequestParam(value = "commCode") String commCode) {
 
@@ -132,71 +127,62 @@ public class CommonCodeController {
 	}// commonDeleteCheck
 
 	
-	
+	//공통코드,하위 공통코드 삭제
 	@RequestMapping(value="commonDelete.do")
-	public ModelAndView commonDelete(@RequestParam(value="commCode") String commCode,
+	public @ResponseBody int commonDelete(@RequestParam(value="commCode") String commCode,
 			@RequestParam HashMap<String, Object> paramMap) {
 
 		int result = commonCodeService.commonDelete(commCode);
 
-		ModelAndView mv = new ModelAndView();
-
-		mv.addObject("result", result);
-		mv.setViewName("confirm");
-		//mv.setView(new RedirectView("commonList.do"));
-
-		return mv;
+		return result;
 
 	}// commonDelete
 
 	
-	
 /* ====================================== 공통코드 상세보기 관련 ======================================================== */
 	
+	
+	//하위 공통코드 등록
 	@RequestMapping(value="commonInfoInsert.do")
-	public ModelAndView commonInfoInsert(@RequestParam HashMap<String, String> paramMap) {
+	public @ResponseBody int commonInfoInsert(@RequestParam HashMap<String, Object> paramMap) {
 
 		int result = commonCodeService.commonInfoInsert(paramMap);
 
-		ModelAndView mv = new ModelAndView();
-
-		mv.addObject("result", result);
-		mv.setViewName(PRE_VIEW_PATH + "confirm");
-
-		return mv;
+		return result;
 
 	}// commonInfoInsert
 
 	
-	
+	//하위 공통코드 목록
 	@RequestMapping(value="commonInfoList.do")
-	public @ResponseBody List<HashMap<String, String>> commonInfoList(@RequestParam(value="commPrntCode") String commPrntCode) {
+	public @ResponseBody List<HashMap<String, Object>> commonInfoList(@RequestParam(value="commPrntCode") String commPrntCode) {
 
-		List<HashMap<String, String>> list = commonCodeService.commonInfoList(commPrntCode);
-
+		List<HashMap<String, Object>> list = commonCodeService.commonInfoList(commPrntCode);
+		
 		return list;
 
 	}// commonInfoList
 
 	
-	
-	@RequestMapping(value="paging.do")
-	public List<HashMap<String, Integer>> paging(HttpServletRequest request) {
+	//페이징
+	@RequestMapping(value="commonPaging.do")
+	public @ResponseBody HashMap<String,Integer> paging(HttpServletRequest request,
+														@RequestParam HashMap<String,Object> paramMap) {
 
 		String selectPageNum = request.getParameter("selectPageNum");
 
 		if (selectPageNum == null || selectPageNum == "") {
 			selectPageNum = "1";
-		}
+		}//if
+		logger.debug("paramMap.get('selectPageNum') = " + paramMap.get("selectPageNum"));
+		HashMap<String,Integer> map = commonCodeService.paging(paramMap);
 
-		HashMap<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("selectPageNum", selectPageNum);
+		map.put("selectPageNum", Integer.parseInt(selectPageNum));
 
-		List<HashMap<String, Integer>> pagingList = commonCodeService.paging(paramMap);
-
-		return pagingList;
+		return map;
 
 	}// paging
+	
 
 	
 }// class

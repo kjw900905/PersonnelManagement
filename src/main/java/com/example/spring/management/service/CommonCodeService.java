@@ -27,96 +27,57 @@ public class CommonCodeService {
 	int pageNum;
 	
 	public CommonCodeService() {
-		this.postNum = 5;
-		this.pageNum = 5;
+		this.postNum = 10;
+		this.pageNum = 10;
 	}
 
 	
-	public int commonInsert(HashMap<String,String> paramMap) {
+	//공통코드 등록-
+	public int commonInsert(HashMap<String,Object> paramMap) {
 		
 		Calendar calendar = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String commCodeCrt = sdf.format(calendar.getTime());
 		
-		paramMap.put("commPrntCode", "");
-		paramMap.put("commPrntName", "");
-		paramMap.put("deptUpdtCode", "----");
+		paramMap.put("commPrntCode", 0);
 		paramMap.put("commCodeCrt", commCodeCrt);
 		paramMap.put("commCodeUpdt", "--------------");
 		paramMap.put("commDelYn", "N");
 		
 		int result = commonCodeDao.commonInsert(paramMap);
 		
-		
 		return result;
 		
 	}//commonInsert
 	
 	
-	public String commCodeCheck(String commCode) {
-
-		List<String> list = commonCodeDao.commCodeCheck(commCode);
-		
-		String checkValue = "";
-		
-		if(list.size() > 0) {
-			
-			checkValue = "이미 사용 중인 코드입니다.";
-			
-		}else {
-			
-			checkValue = "사용 가능한 코드입니다.";
-			
-		}//if
-		
-		
-		return checkValue;
-		
-	}//getDeptName
-	
-	
+	//공통코드 목록
 	public List<HashMap<String,Object>> commonList(HashMap<String,Object> paramMap){
 		
 		int allPostNum = commonCodeDao.commAllPostNum(paramMap);
 		int postNum = this.postNum;
 		int pageNum = this.pageNum;
 		int selectPageNum = Integer.parseInt((String)paramMap.get("selectPageNum"));
-		//int selectPageNum = 1;
 		
 		int endPost = selectPageNum*postNum;
 			
 		if(endPost<1) {
 			endPost = 1;
-		}
+		}//if
 		
 		int startPost = (endPost-(postNum-1))-1;
-		
 		
 		paramMap.put("startPost", startPost);
 		paramMap.put("postNum", postNum);
 		
-		
 		List<HashMap<String,Object>> list = commonCodeDao.commonList(paramMap);
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
-		Date date = new Date();
-		String commCodeCrt ="";
-		
-		
-		for(int i=0; i<list.size(); i++) {
-			
-			commCodeCrt = String.valueOf(list.get(i).get("commCodeCrt"));
-			paramMap.put("commCodeCrt", commCodeCrt);
-			//logger.debug("%%%%%%%%%%%%%%%%%%%%%%%%%%commCodeCrt["+i+"]: " + commCodeCrt);
-			
-		}//for
 		
 		return list;
 		
 	}//commonList
 	
 	
-	
+	//공통코드,하위 공통코드 수정
 	public int commonUpdate(HashMap<String,Object> paramMap) {
 		
 		Calendar calendar = Calendar.getInstance();
@@ -136,7 +97,7 @@ public class CommonCodeService {
 	}//commonUpdate
 	
 	
-	
+	//공통코드 삭제여부 확인
 	public int commonDeleteCheck(String param) {
 		
 		int commCode = Integer.parseInt(param);
@@ -150,7 +111,7 @@ public class CommonCodeService {
 	}//commonDeleteCheck
 	
 	
-	
+	//공통코드,하위 공통코드 삭제여부
 	public int commonDelete(String param) {
 		
 		int commCode = Integer.parseInt(param);
@@ -162,7 +123,8 @@ public class CommonCodeService {
 	}//commonDelete
 	
 	
-	public int commonInfoInsert(HashMap<String,String> paramMap) {
+	//하위 공통코드 등록
+	public int commonInfoInsert(HashMap<String,Object> paramMap) {
 		
 		Calendar calendar = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmdd");
@@ -170,101 +132,53 @@ public class CommonCodeService {
 		
 		paramMap.put("commCodeCrt", commCodeCrt);
 		paramMap.put("commCodeUpdt", "--------------");
-		paramMap.put("deptUpdtCode", "----");
 		paramMap.put("commDelYn", "N");
 		
 		int result = commonCodeDao.commonInfoInsert(paramMap);
 		
 		return result;
 		
-	}
+	}//commonInfoInsert
 	
 	
-	public List<HashMap<String,String>> commonInfoList(String param){
+	//하위 공통코드 목록
+	public List<HashMap<String,Object>> commonInfoList(String param){
 		
 		int commPrntCode = Integer.parseInt(param);
 		
-		List<HashMap<String,String>> list = commonCodeDao.commonInfoList(commPrntCode);
+		List<HashMap<String,Object>> list = commonCodeDao.commonInfoList(commPrntCode);
 		
 		return list;
 		
 	}//commonInfoList
 	
 	
-	
-	public int commAllPostNum(HashMap<String,Object> map) {
+	//전체 게시물 개수, 검색했을 때의 게시물 개수
+	public int commAllPostNum(HashMap<String,Object> paramMap) {
 		
-		int allPostNum = commonCodeDao.commAllPostNum(map);
+		int allPostNum = commonCodeDao.commAllPostNum(paramMap);
 		
 		return allPostNum;
 		
 	}//commAllPostNum
 	
 	
-	
-	public List<HashMap<String,Integer>> paging(HashMap<String,Object> paramMap){
+	//페이징
+	public HashMap<String,Integer> paging(HashMap<String,Object> paramMap){
 		
 		HashMap<String,Integer> map = new HashMap<String,Integer>();
-		List<HashMap<String,Integer>> list = new ArrayList<HashMap<String,Integer>>(); 
-		
 		
 		int allPostNum = commonCodeDao.commAllPostNum(paramMap);
 		int postNum = this.postNum;
 		int pageNum = this.pageNum;
-		int selectPageNum = Integer.parseInt((String)paramMap.get("selectPageNum"));
-		//int selectPageNum = 1;
 		
-		int allPageNum = 0;
+		map.put("allPostNum",allPostNum);
+		map.put("postNum",postNum);
+		map.put("pageNum",pageNum);
 		
-		if(allPostNum%postNum == 0) {
-			allPageNum = allPostNum/postNum;
-		}else {
-			allPageNum = (allPostNum/postNum)+1;
-		}//if
-		
-		
-		int startPage = ((selectPageNum/pageNum)*pageNum)+1;
-		
-		if(selectPageNum%pageNum == 0) {
-			startPage = (((selectPageNum/pageNum)-1)*pageNum)+1;
-		}//if
-		
-		
-		int endPage = (startPage+pageNum)-1;
-		
-		if(endPage > allPageNum) {
-			endPage = allPageNum;
-		}//if
-		
-		
-		int prevPage = startPage-1;
-		
-		if(startPage == 1) {
-			prevPage = 1;
-		}//if
-		
-		
-		int nextPage = startPage+pageNum;
-		
-		if(nextPage > allPageNum) {
-			nextPage = allPageNum;
-		}//if
-		
-		map.put("allPageNum", allPageNum);
-		map.put("startPage", startPage);
-		map.put("endPage", endPage);
-		map.put("prevPage", prevPage);
-		map.put("nextPage", nextPage);
-		
-		list.add(map);
-		
-		return list;
+		return map;
 		
 	}//paging
-	
-	
-	
-	
 	
 	
 }//class

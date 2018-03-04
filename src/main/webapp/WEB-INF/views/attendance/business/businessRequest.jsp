@@ -12,44 +12,35 @@
 
  	//빈 칸 체크 경고창 & ajax
  	function check_onclick(url, formId){
-  	
  		if(empEmno.value == "" || empName.value == "" || deptName.value == "" ||
  			 rankName.value == ""|| btstBtArea.value == "" || btstBtPf.value == "" ||
  			 btstBtP.value == "" || btstCont.value == ""){
  			
- 			alert("빈 칸을 입력해주십시오.");		
+ 			alert("빈 칸을 입력해주십시오.");
  		} else{
  			paging.ajaxFormSubmit(url, formId, function(rslt){
  				console.log("ajaxFormSubmit -> callback");
  				console.log("결과데이터:"+JSON.stringify(rslt));
  			
-<<<<<<< HEAD
-//  				insert 성공여부에 따른 alert창 띄우기
-				if(rslt.result == "true"){
-					console.log("휴가가 신청되었습니다.");
-=======
  				//insert 성공여부에 따른 alert창 띄우기
 				if(rslt.success == "Y"){
 					alert("출장 신청이 완료되었습니다.");
 				}else{
 					alert("출장 신청 실패");
->>>>>>> origin/유성실
 				}
  			});
  		}
  	}
-
  
 	//달력
 	$(function() {
-
 		//오늘 날짜로 보여주기
 		$('#btstCrtDate').val(moment().format('YYYY-MM-DD')); //출장신청일
 		$('#btstBtStartDate').val(moment().format('YYYY-MM-DD')); //출장시작일
 		$('#btstBtEndDate').val(moment().format('YYYY-MM-DD')); //출장종료일
 		$('#busiNight').val('0'); //0박
 		$('#busiDay').val('1'); //1일
-		
+
 		$('#crtCalender').datetimepicker({ //출장신청일 달력
 			viewMode : 'days',
 			format : 'YYYY-MM-DD'
@@ -74,16 +65,16 @@
 		$('#endCalender').on("dp.change", function() { //종료날짜를 변경할 때마다
 			var startDate = moment($('#btstBtStartDate').val(), "YYYYMMDD");
 			var endDate = moment($('#btstBtEndDate').val(), "YYYYMMDD");
-			
+
 			//endDate-startDate를 'n박 n일'로 출력
 			$('#busiNight').val(endDate.diff(startDate, "days"));
 			$('#busiDay').val(endDate.diff(startDate, "days")+1);
 		});
-		
+
 		$('#startCalender').on("dp.change", function() { //시작날짜를 변경할 때마다
 			var startDate = moment($('#btstBtStartDate').val(), "YYYYMMDD");
 			var endDate = moment($('#btstBtEndDate').val(), "YYYYMMDD");
-			
+
 			//endDate-startDate를 'n박 n일'로 출력
 			$('#busiNight').val(endDate.diff(startDate, "days"));
 			$('#busiDay').val(endDate.diff(startDate, "days")+1);
@@ -91,64 +82,73 @@
 
 //		$('#datetimepicker').datetimepicker('setDaysOfWeekDisabled', [0 , 6]); 
 		//Number(data_value).toLocaleString('en').split(".")[0]
-
 	});
- 	
+
  	/* 출장비 천단위마다 자동 콤마 start */
  	function inputPay(obj) { 
- 	    obj.value = comma(uncomma(obj.value)); 
+		obj.value = comma(uncomma(obj.value)); 
  	}
- 
+
 	function comma(str) { 
-	    str = String(str); 
-	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'); 
+    str = String(str); 
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'); 
 	} 
 
 	function uncomma(str) { 
-	    str = String(str); 
-	    return str.replace(/[^\d]+/g, ''); 
+    str = String(str); 
+    return str.replace(/[^\d]+/g, ''); 
 	}
  	/* 출장비 예상 금액 end */
- 	
+
  	
  	/* 사원선택 모달 start */
  	
-	//사원정보조회 리스트 출력
- 	function empModal(url){
-		paging.ajaxSubmit(url, "", function(rslt){
+ 	function empListModal(url, formId){ //사원정보조회 리스트 출력
+ 		$('#empModalTbody').empty(); //이전 리스트 삭제
+ 		
+ 		//퇴직자 포함 체크여부
+ 		if(($('#retrChk').prop("checked")) == true ){
+ 			$('#retrDelYn').val('on');
+ 		}else{
+ 			$('#retrDelYn').val('off');
+ 		}
+ 		
+ 		if($('#word').val() == '재직'){
+ 			$('input[type=hidden][name=retrKeyword]').val('N');
+ 		}else if($('#word').val() == '퇴직'){
+ 			$('input[type=hidden][name=retrKeyword]').val('Y');
+ 		}else{
+ 			$('input[name=keyword]').val($('#word').val());
+ 		}
+ 		
+		paging.ajaxFormSubmit(url, formId, function(rslt){
  			console.log("ajaxFormSubmit -> callback");
  			console.log("결과데이터:"+JSON.stringify(rslt));
- 			
- 			$('#empModalTbody').empty(); //이전 리스트 삭제
+
  			$('#empModalTable').children('thead').css('width','calc(100% - 1em)'); //테이블 스크롤 css
  			
- 			if(rslt.success == "Y"){
- 	 			$.each(rslt, function() {
- 	 				  $.each(this, function(k, v) {
- 	 					  if(v != "Y"){ //success 제외한 사원정보 data
-	 	 						$('#empModalTbody').append(
-	 	 	 	 					"<tr style='display:table;width:100%;table-layout:fixed;'>"+
- 	 	 								"<td>"+
- 											"<label class='fancy-checkbox-inline'>"+
- 												"<input type='checkbox' name='emnoChk'>"+ //checkbox
- 												"<span></span>"+
- 											"</label>"+
- 										"</td>"+
- 										"<td>"+ v.empEmno +"</td>"+
- 										"<td>"+ v.empName +"</td>"+
- 										"<td>"+ v.deptName +"</td>"+
- 										"<td>"+ v.rankName +"</td>"+
- 									"</tr>"
-	 							);
- 	 					  }
-	 	 				});
- 	 			});
- 			}else{
+ 			if(rslt == null){
  				$('#empModalTbody').append( //리스트가 없을 경우 : 조회된 데이터가 없습니다
-					"<tr style='display:table;width:100%;table-layout:fixed;'>"+
-						"<td colspan='5' class='text-center'>조회된 데이터가 없습니다.</td>"+
-					"</tr>"
-				);
+ 	 				"<div class='text-center'><br><br><br><br>조회할 데이터가 없습니다.</div>"
+ 	 			);
+ 			}else if(rslt.success == "Y"){
+ 	 			$.each(rslt.empList, function(k, v) {
+					$('#empModalTbody').append(
+ 	 					"<tr style='display:table;width:100%;table-layout:fixed;'>"+
+							"<td>"+
+								"<label class='fancy-checkbox-inline'>"+
+									"<input type='checkbox' name='emnoChk'>"+ //checkbox
+									"<span></span>"+
+								"</label>"+
+							"</td>"+
+							"<td>"+ v.retrDelYn +"</td>"+ //구분(재직,퇴직)
+							"<td>"+ v.empEmno +"</td>"+ //사원번호
+							"<td>"+ v.empName +"</td>"+ //사원명
+							"<td>"+ v.deptName +"</td>"+ //부서명
+							"<td>"+ v.rankName +"</td>"+ //직급명
+						"</tr>"
+					);
+ 	 			});
  			}
 
  	
@@ -169,7 +169,7 @@
 			});
 			
 			$(function(){ 
-				$("#empModalTable").tablesorter({sortList: [[0,0], [1,0]]}); 
+				$("#empModalTable").tablesorter({sortList: [[0,0], [1,0]]});
 			});
 		 	
 		});
@@ -178,19 +178,20 @@
 
  	//선택한 사원정보를 출장신청 폼에 자동 입력하기
  	function emnoClick(){
- 		var chkTr = $("input[name='emnoChk']:checked").closest("tr"); //체크된 체크박스와 가장 가까운 tr
- 		var empEmnoVal = chkTr.children().eq(1).text(); //tr 하부 2번째 td의 텍스트(사번)
- 		var empNameVal = chkTr.children().eq(2).text(); //tr 하부 3번째 td의 텍스트(이름)
- 		var deptNameVal = chkTr.children().eq(3).text(); //tr 하부 4번째 td의 텍스트(부서)
- 		var rankNameVal = chkTr.children().eq(4).text(); //tr 하부 5번째 td의 텍스트(직급)
-
-//  		console.log(emnoVal, nameVal, departmentVal, positionVal);
+ 		var chkTr = $("input[name=emnoChk]:checked").closest("tr"); //체크된 체크박스와 가장 가까운 tr
+ 		var empEmnoVal = chkTr.children().eq(2).text(); //tr 하부 3번째 td의 텍스트(사번)
+ 		var empNameVal = chkTr.children().eq(3).text(); //tr 하부 4번째 td의 텍스트(이름)
+ 		var deptNameVal = chkTr.children().eq(4).text(); //tr 하부 5번째 td의 텍스트(부서)
+ 		var rankNameVal = chkTr.children().eq(5).text(); //tr 하부 6번째 td의 텍스트(직급)
 
  		$('#empEmno').val(empEmnoVal);
  		$('#empName').val(empNameVal);
  		$('#deptName').val(deptNameVal);
  		$('#rankName').val(rankNameVal);
+ 		$(".modal-body input[name=keyword]").val(""); //키워드 내용 지우기
+ 		$('#word').val("");
  	}
+ 	
  	/* 사원선택 모달 end */
 </script>
 </head>
@@ -202,13 +203,14 @@
 				<div class="panel">
 					<div class="panel-body">
 						<form class="form-inline" id="busiFrm" method="post">
+							<input type="hidden" name="retrDelYn" value="off"> <!-- 사원 모달 리스트용 -->
 							<table class="table table-bordered">
 								<tr>
 									<td>신청번호</td>
 									<td><input type="text" class="form-control" readonly></td>
 									<td><!-- <i class="fa fa-asterisk-red" aria-hidden="true" ></i> -->신청일자</td>		
 									<td>
-									<!-- 사원 : 오늘 날짜 고정 -->	
+									<!-- 사원 : 오늘 날짜 고정 -->
 										<!-- <input type="text" class="form-control" id="tDate" readonly> -->
 									<!-- 관리자 : 달력(날짜 변경 가능) -->	
 										<div class="input-group date" id="crtCalender">
@@ -220,16 +222,16 @@
 									</td>
 
 									<td>전자결재상태</td>
-									<td><input type="text" class="form-control" readonly></td>
+									<td><input type="text" class="form-control" value="승인대기" readonly></td>
 								</tr>
 	
 								<tr><!-- 신청자도 관리자와 사원 기능 따로 만들기 -->
 									<td><!-- <i class="fa fa-asterisk-red" aria-hidden="true" ></i> -->신청자</td>
 									<td colspan="5">
-										<div class="input-group">	
-											<input type="text" class="form-control" id="empEmno" name="empEmno" placeholder="사번"> <!-- 사원번호 -->
+										<div class="input-group">
+												<input type="text" class="form-control" id="empEmno" name="empEmno" placeholder="사번"> <!-- 사원번호 -->
 											<span class="input-group-addon">
-												<span class="glyphicon glyphicon-search" aria-hidden="true" data-toggle="modal" data-target="#emnoModal" onclick="empModal('${pageContext.request.contextPath}/businessRequestEmpList.ajax')"></span> <!-- 검색 아이콘 -->
+												<span class="glyphicon glyphicon-search" aria-hidden="true" data-toggle="modal" data-target="#emnoModal" onclick="empListModal('${pageContext.request.contextPath}/businessRequestEmpList.ajax','busiFrm')"></span> <!-- 검색 아이콘 -->
 											</span>
 										</div>
 											<input type="text" class="form-control" id="empName" name="empName" placeholder="이름">
@@ -280,11 +282,11 @@
 								</tr>
 							</table>
 							<div class="text-right">
-								<button type="button" class="btn btn-info" onclick="check_onclick('${pageContext.request.contextPath}/businessRequestInsert.ajax', 'busiFrm')">신청하기</button>
+								<button type="button" class="btn btn-primary" onclick="check_onclick('${pageContext.request.contextPath}/businessRequestInsert.ajax', 'busiFrm')">신청하기</button>
 							</div>
 						</form>
 	
-	
+
 						<!-- 사원번호 Modal -->
 						<div id="emnoModal" class="modal fade" role="dialog">
 						  <div class="modal-dialog">
@@ -296,22 +298,26 @@
 									<p class="modal-title">사번 정보 조회</p>
 								</div>
 								<div class="modal-body">
-									<div class="search_wrap" style="padding: 0px 10px 20px 15px; ">
-										<form class="form-inline" name="empFrm">
-											검색어&nbsp;<input type="text" class="form-control" name="keyword">&nbsp;&nbsp;&nbsp;
+									<div class="search_wrap" style="padding: 0px 10px 20px 15px;">
+										<form class="form-inline" id="empFrm">
+											검색어&nbsp;<input type="text" class="form-control" id="word">&nbsp;&nbsp;&nbsp;
+											<input type="hidden" name="keyword">
+											<input type="hidden" name="retrKeyword">
 											<label class="fancy-checkbox-inline">
-												<input type="checkbox" name="retr">
+												<input type="checkbox" id="retrChk">
 												<span>퇴직자 포함</span>
 											</label>
-											<input type="button" class="btn btn-primary" style="float:right;" name="search" onclick="emnoSearch()" value="검색">
+											<input type="hidden" name="retrDelYn" id="retrDelYn">
+											<input type="button" class="btn btn-primary" style="float:right;" name="search" onclick="empListModal('${pageContext.request.contextPath}/businessRequestEmpList.ajax','empFrm')" value="검색">
 										</form>
 									</div>
 			
 									<div class="list_wrap">
-										<table class="table tablesorter table-bordered" id="empModalTable">
+										<table class="table tablesorter" id="empModalTable">
 											<thead style="display:table;width:100%;table-layout:fixed;">
 												<tr>
-													<th></th>
+													<th class="sorter-false"></th>
+													<th>구분</th>
 													<th>사원번호</th>
 													<th>이름</th>
 													<th>부서</th>

@@ -43,6 +43,8 @@
 <body>
 	<script src="/spring/resources/common/vendor/jquery/jquery.min.js"></script>
 	<script src="/spring/resources/common/js/jquery.form.js"></script>
+	<script src="/spring/resources/common/js/paging.js"></script>
+
 	<div id="wrapper">
 		<header id="header"> 
 			<tiles:insertAttribute name="header" />
@@ -64,12 +66,13 @@
 	<script src="/spring/resources/common/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/spring/resources/common/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="/spring/resources/common/scripts/klorofil-common.js"></script>
-	<script src="/spring/resources/common/js/paging.js"></script>
 	<script src="/spring/resources/common/js/moment.js"></script> <!-- ※datetimepicker보다 먼저 import 되어야함 -->
 	<script src="/spring/resources/common/js/ko.js"></script>
 	<script src="/spring/resources/common/js/bootstrap-datetimepicker.js"></script>
 	<script src="/spring/resources/common/js/jquery.tablesorter.js"></script> <!-- 테이블 정렬 -->
 	<script src="/spring/resources/common/js/commMenu.js"></script>
+	<script src="/spring/resources/common/js/jquery.printelement.js"></script> <!-- 인쇄 -->
+	<script src="/spring/resources/common/js/excelexportjs.js"></script> <!-- 엑셀다운 -->
 	<tiles:insertAttribute name="scripts"/>
 </body>
 </html>
